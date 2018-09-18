@@ -1,0 +1,23 @@
+{
+    "name": "front/gutenberg-cloud",
+    "description": "Your library of Gutenberg blocks in the cloud",
+    "type": "project",
+    "license": "GPL2",
+    "authors": [
+        {
+            "name": "Frontkom",
+            "email": "webadmin@front.no"
+        },
+        {
+            "name": "Foad Yousefi",
+            "email": "foad@front.no"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "GutenbergCloud\\": "core/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
