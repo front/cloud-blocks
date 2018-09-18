@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i);.wp-block-cloudblocks-hero-section {
+  position: relative;
+  margin-bottom: 20px;
+  background-color: #2db8ca;
+  background-size: cover;
+  background-position: center center; }
+  .wp-block-cloudblocks-hero-section .bg-overlay {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.5;
+    display: none; }
+  .wp-block-cloudblocks-hero-section section {
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    padding: 50px 20px 50px 20px;
+    max-width: 960px; }
+    @media (min-width: 768px) {
+      .wp-block-cloudblocks-hero-section section {
+        padding-top: 100px;
+        padding-bottom: 100px; } }
+    .wp-block-cloudblocks-hero-section section:after {
+      clear: both;
+      display: block;
+      content: " "; }
+  .wp-block-cloudblocks-hero-section main {
+    font-family: "Roboto Condensed", Impact, Charcoal, sans-serif !important;
+    margin-bottom: 20px; }
+    .wp-block-cloudblocks-hero-section main h1, .wp-block-cloudblocks-hero-section main h2, .wp-block-cloudblocks-hero-section main h3, .wp-block-cloudblocks-hero-section main h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 56px;
+      color: white; }
+    .wp-block-cloudblocks-hero-section main p {
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-size: 20px;
+      color: white; }
+    .wp-block-cloudblocks-hero-section main .wp-block-button__link {
+      display: inline-block;
+      margin: 0 20px 20px 0;
+      padding: 10px 20px;
+      border: 1px solid white;
+      border-radius: 0 !important;
+      color: white;
+      background-color: transparent;
+      text-decoration: none; }
+  .wp-block-cloudblocks-hero-section .image-feature {
+    display: block;
+    clear: both;
+    width: 250px;
+    min-height: 500px;
+    margin: 0 auto; }
+    .wp-block-cloudblocks-hero-section .image-feature img {
+      border: 0;
+      width: 100%;
+      height: auto; }
+  @media (min-width: 768px) {
+    .wp-block-cloudblocks-hero-section .image-left .image-feature {
+      clear: none;
+      margin-left: 0; }
+    .wp-block-cloudblocks-hero-section .image-left main {
+      float: right;
+      width: calc(100% - 300px); } }
+  @media (min-width: 768px) {
+    .wp-block-cloudblocks-hero-section .image-right .image-feature {
+      clear: none;
+      margin-right: 0; }
+    .wp-block-cloudblocks-hero-section .image-right main {
+      float: left;
+      width: calc(100% - 300px); } }
+  @media (min-width: 768px) {
+    .wp-block-cloudblocks-hero-section .image-left main, .wp-block-cloudblocks-hero-section .image-right main {
+      margin-top: 120px; } }
+
+.panel_body-title-hide {
+  margin-top: -1em;
+  margin-bottom: 1em; }
+  .panel_body-title-hide h2 {
+    display: none !important; }
+  .panel_body-title-hide .components-panel__body {
+    border-top: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important; }

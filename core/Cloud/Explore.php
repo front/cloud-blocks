@@ -84,7 +84,7 @@ class Explore {
           <li><a href="#" data-sort="favorites">Most downloaded</a></li>
         </ul>
 
-        <button type="button" class="button drawer-toggle" aria-expanded="false">Filter</button>
+        <button type="button" id="searchFilter" class="button drawer-toggle" aria-expanded="false">Filter</button>
 
         <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">Search for blocks</label><input placeholder="Søk etter tema..." type="search" aria-describedby="live-search-desc" id="wp-filter-search-input" class="wp-filter-search"></form>
 
@@ -134,7 +134,7 @@ class Explore {
             <button type="button" class="apply-filters button">Apply Filters<span></span></button>
             <button type="button" class="clear-filters button" aria-label="Clear all filters">Clear</button>
           </div>
-          
+
         </div>
       </div>
     </div>
