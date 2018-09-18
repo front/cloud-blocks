@@ -2,6 +2,8 @@
 
 namespace GutenbergCloud;
 
+use GutenbergCloud\Blocks;
+use GutenbergCloud\Cloud;
 
 /**
  * GutenbergCloud Class.
@@ -11,4 +13,8 @@ namespace GutenbergCloud;
  */
 class GutenbergCloud {
 
+  public function __construct() {
+    new Blocks;
+    Cloud\Explore::init();
+  }
 }

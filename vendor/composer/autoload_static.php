@@ -21,6 +21,8 @@ class ComposerStaticInit2948bd210a8be025dfcec89b6ee15fb8
     );
 
     public static $classMap = array (
+        'GutenbergCloud\\Blocks' => __DIR__ . '/../..' . '/core/Blocks/Blocks.php',
+        'GutenbergCloud\\Cloud\\Explore' => __DIR__ . '/../..' . '/core/Cloud/Explore.php',
         'GutenbergCloud\\GutenbergCloud' => __DIR__ . '/../..' . '/core/GutenbergCloud.php',
     );
 
