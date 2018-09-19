@@ -22,7 +22,21 @@ Vue.component('block-card', {
   `,
   methods: {
     installBlock() {
-      console.log(this.block.name)
+      let postData = this.block
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_install_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          console.log('Block installed ', res.data)  
+        })
+        .fail(error => {
+          console.log('There is some issues installing block: ', error);
+        })
     }
   }
 })
