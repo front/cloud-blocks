@@ -6,17 +6,29 @@
     "styles:compile": "node-sass -w assets/source/scss/style.scss -o assets/source/scss/",
     "styles:prefix": "postcss assets/source/scss/style.css -u autoprefixer -b \"last 2 versions\" --no-map -o assets/css/style.css -w",
     "styles": "concurrently \"npm run styles:compile\" \"npm run styles:prefix\"",
-    "babel": "babel --presets es2015 assets/source/js/script.js -o assets/js/script.js"
+    "babel": "babel --presets minify assets/js/script.js -o assets/js/script.min.js",
+    "combine": "concat -o assets/js/script.js assets/source/js/*",
+    "scripts": "concurrently \"npm run combine\" \"npm run babel\" "
+  },
+  "babel": {
+    "presets": [
+      ["@babel/env", {
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7"]
+        }
+      }]
+    ]
   },
   "author": "Foad Yousefi",
   "license": "GPL2",
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
     "autoprefixer": "^8.4.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
     "babel-preset-minify": "^0.4.3",
     "babel-watch": "^2.0.7",
+    "concat": "^1.0.3",
     "concurrently": "^3.5.1",
     "node-sass": "^4.9.0",
     "postcss-cli": "^5.0.0"
