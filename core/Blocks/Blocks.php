@@ -2,6 +2,8 @@
 
 namespace GutenbergCloud;
 
+use GutenbergCloud\Settings;
+
 class Blocks {
 
   public function __construct() {
@@ -26,7 +28,17 @@ class Blocks {
   public function install() {
     $block = $_REQUEST['data'];
     if ( isset( $block ) ) {
-      update_option( 'gutenberg_cloud_installed_blocks', $block );
+      $new_block = array(
+        'block_name'      => isset( $block['name'] ) ? $block['name'] : '',
+        'package_name'    => isset( $block['packageName'] ) ? $block['packageName'] : '',
+        'js_url'          => isset( $block['jsUrl'] ) ? $block['jsUrl'] : '',
+        'css_url'         => isset( $block['cssUrl'] ) ? $block['cssUrl'] : '',
+        'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
+        'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
+        'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
+      );
+      Settings::add( $new_block, true );
+
       $response = array(
         'code'      => 200,
         'message'   => 'Succesfully installed.'
