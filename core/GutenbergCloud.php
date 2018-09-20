@@ -15,7 +15,7 @@ class GutenbergCloud {
 
   public function __construct() {
     add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
+    
     new Blocks;
     Cloud\Explore::init();
   }

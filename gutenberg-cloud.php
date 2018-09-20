@@ -35,5 +35,8 @@ if ( ! defined( 'FGC_VERSION' ) ) {
 // Require autoload
 require_once  __DIR__ . '/vendor/autoload.php';
 
+// Register activation hook
+register_activation_hook( __FILE__, [ 'GutenbergCloud\Activator', 'init' ] );
+
 // Initiate plugin
 new GutenbergCloud\GutenbergCloud;
