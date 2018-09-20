@@ -131,6 +131,7 @@ var app = new Vue({
       blocks: [
         {
           name: 'Hero section',
+          packageName: '@frontkom/g-hero-section',
           jsUrl: 'https://unpkg.com/@frontkom/g-hero-section@0.5.0/build/index.js',
           cssUrl: 'https://unpkg.com/@frontkom/g-hero-section@0.5.0/build/style.css',
           infoUrl: 'https://www.npmjs.com/package/@frontkom/g-hero-section',
@@ -139,6 +140,7 @@ var app = new Vue({
         },
         {
           name: 'Content in columns',
+          packageName: '@frontkom/g-content-in-columns',
           jsUrl: 'https://unpkg.com/@frontkom/g-content-in-columns@0.1.1/build/index.js',
           cssUrl: 'https://unpkg.com/@frontkom/g-content-in-columns@0.1.1/build/style.css',
           infoUrl: 'https://www.npmjs.com/package/@frontkom/g-content-in-columns',
