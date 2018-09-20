@@ -4,6 +4,7 @@ namespace GutenbergCloud;
 
 use GutenbergCloud\Blocks;
 use GutenbergCloud\Cloud;
+use GutenbergCloud\Settings;
 
 /**
  * GutenbergCloud Class.
@@ -30,7 +31,8 @@ class GutenbergCloud {
     wp_enqueue_script( 'vuejs', 'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js', array( 'jquery' ), FGC_VERSION, true );
     wp_enqueue_script( 'gutenberg_cloud_admin_js', FGC_URL . 'assets/js/script.js', array( 'jquery' ), FGC_VERSION, true );
     $localized_data = array(
-			'ajaxUrl' 				=> admin_url( 'admin-ajax.php' )
+      'ajaxUrl' 				=> admin_url( 'admin-ajax.php' ),
+      'installedBlocks' => Settings::get_all()
 		);
     wp_localize_script( 'gutenberg_cloud_admin_js', 'fgcData', $localized_data );
     wp_enqueue_style( 'gutenberg_cloud_admin_styles', FGC_URL . 'assets/css/style.css', false, 20180914 );
