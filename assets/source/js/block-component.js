@@ -1,9 +1,15 @@
 Vue.component('block-card', {
   props: ['block'],
+  data() {
+    return {
+      installing: false
+    }
+  },
   template: `
     <div :class="[alreadyInstaleld ? 'block-installed' : '', 'theme']">
       <div class="theme-screenshot">
         <img :src="block.imageUrl" :alt="block.name">
+        <div class="spinner installing-block" v-if="installing"></div>
       </div>
 
       <span class="more-details">Show more details</span>
@@ -26,6 +32,7 @@ Vue.component('block-card', {
   `,
   methods: {
     installBlock() {
+      this.installing = true
       let postData = this.block
       jQuery.ajax({
         type: 'POST',
@@ -36,9 +43,11 @@ Vue.component('block-card', {
         }
       })
         .done(res => {
+          this.installing = false
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
+          this.installing = false
           console.log('There is some issues installing block: ', error);
         })
     }
