@@ -1,7 +1,7 @@
 Vue.component('block-card', {
   props: ['block'],
   template: `
-    <div class="theme">
+    <div :class="[alreadyInstaleld ? 'block-installed' : '', 'theme']">
       <div class="theme-screenshot">
         <img :src="block.imageUrl" :alt="block.name">
       </div>
@@ -13,7 +13,11 @@ Vue.component('block-card', {
         <span class="block-version">Version: {{ block.version }}</span>
 
         <div class="theme-actions">
-          <button class="button button-primary theme-install install-block-btn" @click.prevent="installBlock">Install</button>
+          <button class="button button-primary theme-install install-block-btn"
+              v-if="!alreadyInstaleld"
+              @click.prevent="installBlock">
+              Install
+          </button>
           <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">More details</a>
         </div>
       </div>
@@ -37,6 +41,11 @@ Vue.component('block-card', {
         .fail(error => {
           console.log('There is some issues installing block: ', error);
         })
+    }
+  },
+  computed: {
+    alreadyInstaleld() {
+      return fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
     }
   }
 })
