@@ -58,12 +58,12 @@ Vue.component('explorer-filter', {
         <li><a href="#" data-sort="featured" class="current" aria-current="page">Installed</a></li>
         <li><a href="#" data-sort="popular">Popular</a></li>
         <li><a href="#" data-sort="new">Latest</a></li>
-        <li><a href="#" data-sort="favorites">Most downloaded</a></li>
+        <li><a href="#" data-sort="favorites">Most used</a></li>
       </ul>
 
       <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">Filter</button>
 
-      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">Search for blocks</label><input placeholder="Søk etter tema..." type="search" aria-describedby="live-search-desc" id="wp-filter-search-input" class="wp-filter-search"></form>
+      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">Search for blocks</label><input placeholder="Search blocks..." type="search" aria-describedby="live-search-desc" id="wp-filter-search-input" class="wp-filter-search"></form>
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>
