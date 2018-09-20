@@ -33,7 +33,7 @@ class Settings {
     $block = self::get( $package_name );
     if ( isset( $block ) && $force ) {
       self::update( $block->id, $options );
-      
+
       return array(
         'message'   => 'Block was already installed, and updated with new data.',
         'block_id'  => $block->id
@@ -102,6 +102,21 @@ class Settings {
     );
 
     return $id;
+  }
+
+  /**
+  * Get all installed blocks.
+  * @since    0.1.0
+  * @param
+  * @return object|null $blocks          All installed blocks
+  */
+  public static function get_all() {
+    global $wpdb;
+    
+    $table_name = $wpdb->prefix . str_replace( '-', '_', FGC_NAME );
+    $blocks = $wpdb->get_results( "SELECT * FROM $table_name" );
+
+    return $blocks;
   }
 
   /**
