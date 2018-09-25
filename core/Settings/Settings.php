@@ -134,4 +134,19 @@ class Settings {
     return $block;
   }
 
+  /**
+  * Delete a row from database.
+  * @since    0.1.0
+  * @param string|null $package_name    npm package name
+  * @return object|null $block          The block in the database
+  */
+  public static function delete( $package_name = null ) {
+    global $wpdb;
+    
+    $table_name = $wpdb->prefix . str_replace( '-', '_', FGC_NAME );
+    $block = $wpdb->delete( $table_name, array('package_name' => $package_name) );
+
+    return $block;
+  }
+
 }
