@@ -94,6 +94,7 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = true
+          this.incrementInstalls(this.block.packageName)
           window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been installed successfully.`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
@@ -121,7 +122,19 @@ Vue.component('block-card', {
         })
         .fail(error => {
           this.installing = false
-          console.log('There is some issues installing block: ', error);
+          console.log('There is some issues installing block: ', error)
+        })
+    },
+    incrementInstalls(packageName) {
+      jQuery.ajax({
+        type: 'PUT',
+        url: `https://api.gutenbergcloud.org/blocks/${packageName}`
+      })
+        .done(() => {
+          console.log('Installation counter increased ')  
+        })
+        .fail(error => {
+          console.log('Some errors occured white increasing number of installs: ', error)
         })
     }
   }
@@ -212,16 +225,11 @@ Vue.component('filter-drawer', {
 
 var store = new Vuex.Store({
   state: {
-    installedBlock: {},
-    notification: {},
-    activeTimeout: -1
+    notification: {}
   },
   mutations: {
     setNotification(state, payload) {
       state.notification = payload
-    },
-    installedBlock(state, payload) {
-      state.installedBlock = payload
     }
   }
 })
