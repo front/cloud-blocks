@@ -1,3 +1,15 @@
+var store = new Vuex.Store({
+  state: {
+    notification: {}
+  },
+  mutations: {
+    setNotification(state, payload) {
+      state.notification = payload
+    }
+  }
+})
+
+
 var app = new Vue({
   el: '#blockExplorer',
   data() {

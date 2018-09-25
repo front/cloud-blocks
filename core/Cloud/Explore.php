@@ -70,7 +70,7 @@ class Explore {
     ?>
     <div class="wrap" id="blockExplorer">
       <h1><?php esc_html_e( self::$page_title, 'gutenberg-cloud' ); ?></h1>
-      
+      <admin-notice></admin-notice>
       <explorer-filter></explorer-filter>
       
 		  <div class="theme-browser content-filterable rendered">
