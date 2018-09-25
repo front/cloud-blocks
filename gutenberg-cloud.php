@@ -4,7 +4,7 @@ Plugin Name: Gutenberg Cloud
 Version: 1.0.0
 Description: Your library of Gutenberg blocks in the cloud
 Author: Frontkom - Fouad Yousefi
-Author URI: https://frintkom.no
+Author URI: https://frontkom.no
 License: GPL2
 */
 
