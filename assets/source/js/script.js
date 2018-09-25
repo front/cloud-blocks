@@ -21,14 +21,33 @@ var app = new Vue({
           imageUrl: 'https://image.slidesharecdn.com/wceu2018-180615075731/95/lets-build-a-gutenberg-block-wordcamp-europe-2018-1-638.jpg',
           version: '1.2.12'
         }
-      ]
+      ],
+      blo: []
     }
   },
   mounted() {
+    this.getBlocks()
   },
   methods: {
-    installBlock(block) {
-      console.log(block)
+    getBlocks() {
+      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+        let blocks = []
+        res.rows.map(block => {
+          console.log(block)
+          const theBlock = {}
+          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+          theBlock.name = block.config.name
+          theBlock.version = block.version
+          theBlock.packageName = block.name
+          blocks.push(theBlock)
+        })
+        this.blocks = blocks
+      })
     }
+  },
+  computed: {
   }
 })

@@ -2,7 +2,8 @@ Vue.component('block-card', {
   props: ['block'],
   data() {
     return {
-      installing: false
+      installing: false,
+      alreadyInstaleld: false
     }
   },
   template: `
@@ -30,6 +31,9 @@ Vue.component('block-card', {
 
     </div>
   `,
+  mounted() {
+    this.alreadyInstaleld = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
+  },
   methods: {
     installBlock() {
       this.installing = true
@@ -44,17 +48,13 @@ Vue.component('block-card', {
       })
         .done(res => {
           this.installing = false
+          this.alreadyInstaleld = true
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
           this.installing = false
           console.log('There is some issues installing block: ', error);
         })
-    }
-  },
-  computed: {
-    alreadyInstaleld() {
-      return fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
     }
   }
 })
@@ -165,14 +165,33 @@ var app = new Vue({
           imageUrl: 'https://image.slidesharecdn.com/wceu2018-180615075731/95/lets-build-a-gutenberg-block-wordcamp-europe-2018-1-638.jpg',
           version: '1.2.12'
         }
-      ]
+      ],
+      blo: []
     }
   },
   mounted() {
+    this.getBlocks()
   },
   methods: {
-    installBlock(block) {
-      console.log(block)
+    getBlocks() {
+      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+        let blocks = []
+        res.rows.map(block => {
+          console.log(block)
+          const theBlock = {}
+          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+          theBlock.name = block.config.name
+          theBlock.version = block.version
+          theBlock.packageName = block.name
+          blocks.push(theBlock)
+        })
+        this.blocks = blocks
+      })
     }
+  },
+  computed: {
   }
 })

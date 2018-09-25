@@ -2,7 +2,8 @@ Vue.component('block-card', {
   props: ['block'],
   data() {
     return {
-      installing: false
+      installing: false,
+      alreadyInstaleld: false
     }
   },
   template: `
@@ -30,6 +31,9 @@ Vue.component('block-card', {
 
     </div>
   `,
+  mounted() {
+    this.alreadyInstaleld = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
+  },
   methods: {
     installBlock() {
       this.installing = true
@@ -44,17 +48,13 @@ Vue.component('block-card', {
       })
         .done(res => {
           this.installing = false
+          this.alreadyInstaleld = true
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
           this.installing = false
           console.log('There is some issues installing block: ', error);
         })
-    }
-  },
-  computed: {
-    alreadyInstaleld() {
-      return fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
     }
   }
 })
