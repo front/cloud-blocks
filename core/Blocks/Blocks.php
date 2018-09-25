@@ -53,31 +53,23 @@ class Blocks {
 
   }
 
-  public function getBlocks() {
-    $blocks = get_option( 'gutenberg_cloud_installed_blocks', null );
-    $installed_blocks = array();
-    $installed_blocks[ $blocks['name'] ] = array(
-      'js'    => $blocks['jsUrl'],
-      'css'   => $blocks['cssUrl']
-    );
-    
-    return $installed_blocks;
-  }
   public function blocks_register_scripts($hook) {
-    $blocks = $this->getBlocks();
+    $blocks = Settings::get_all();
     global $post;
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-      foreach ($blocks as $key => $value) {
-        wp_register_script($key, $value['js'], array(), '1.0.1' , true);
-        wp_enqueue_script($key);
+      foreach ($blocks as $block) {
+        wp_register_script( str_replace( ' ', '-', $block->block_name ) , $block->js_url, array(), $block->block_version , true);
+        wp_enqueue_script( str_replace( ' ', '-', $block->block_name ) );
       }
     }
   }
+
+
   public function blocks_register_styles() {
-    $blocks = $this->getBlocks();
-    foreach ($blocks as $key => $value) {
-      wp_register_style($key, $value['css'], array(), '1.0.1');
-       wp_enqueue_style($key);
+    $blocks = Settings::get_all();
+    foreach ($blocks as $block) {
+      wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
+      wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
     }
   }
 }
