@@ -15,6 +15,9 @@ class Blocks {
     add_action( 'wp_enqueue_scripts', array( $this, 'blocks_register_styles' ) );
     add_action( 'wp_ajax_fgc_install_block', array( $this, 'install' ) );
     add_action( 'wp_ajax_nopriv_fgc_install_block', array( $this, 'install' ) );
+
+    add_action( 'wp_ajax_fgc_delete_block', array( $this, 'delete' ) );
+    add_action( 'wp_ajax_nopriv_fgc_delete_block', array( $this, 'delete' ) );
   }
 
 
@@ -51,6 +54,33 @@ class Blocks {
     );
     wp_send_json_success( $response );
 
+  }
+
+  /**
+   * Delete the block.
+   *
+   * @since 0.1.0
+   * @param
+   * @return
+   */
+  public function delete() {
+    $block = $_REQUEST['data'];
+    if ( isset( $block ) ) {
+      $package_name = isset( $block['packageName'] ) ? $block['packageName'] : '';
+
+      Settings::delete( $package_name );
+
+      $response = array(
+        'code'      => 200,
+        'message'   => 'Succesfully uninstalled.'
+      );
+      wp_send_json_success( $response );
+    }
+    $response = array(
+      'code'      => 400,
+      'message'   => 'Block could not be uninstalled!'
+    );
+    wp_send_json_success( $response );
   }
 
   public function blocks_register_scripts($hook) {

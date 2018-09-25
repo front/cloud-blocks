@@ -1,3 +1,43 @@
+Vue.component('admin-notice', {
+  data() {
+    return {
+      activeTimeout: -1
+    }
+  },
+  template: `
+    <div
+      :class="['fgc-notification', notification.class]"
+      v-cloak>
+      <p v-html="notification.text"></p>
+    </div>
+  `,
+  watch: {
+    isActive () {
+      this.showingTimeout()
+    }
+  },
+  mounted() {
+    this.showingTimeout()
+  },
+  methods: {
+    showingTimeout() {
+      window.clearTimeout(this.activeTimeout)
+      this.activeTimeout = window.setTimeout(() => {
+        window.store.state.notification.class = ''
+        this.isShowing = false
+      }, 4000)
+    }
+  },
+  computed: {
+    isActive() {
+      return window.store.state.notification.text
+    },
+    notification() {
+      return window.store.state.notification
+    }
+  }
+})
+
 Vue.component('block-card', {
   props: ['block'],
   data() {
@@ -25,6 +65,11 @@ Vue.component('block-card', {
               @click.prevent="installBlock">
               Install
           </button>
+          <button class="button button-delete theme-install install-block-btn"
+              v-else
+              @click.prevent="deleteBlock">
+              Delete
+          </button>
           <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">More details</a>
         </div>
       </div>
@@ -49,6 +94,29 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = true
+          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been installed successfully.`, class: 'show success' })
+          console.log('Block installed ', res.data)  
+        })
+        .fail(error => {
+          this.installing = false
+          console.log('There is some issues installing block: ', error);
+        })
+    },
+    deleteBlock() {
+      this.installing = true
+      let postData = this.block
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_delete_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          this.installing = false
+          this.alreadyInstaleld = false
+          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been uninstalled successfully.`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
@@ -141,6 +209,23 @@ Vue.component('filter-drawer', {
     </div>
   `
 })
+
+var store = new Vuex.Store({
+  state: {
+    installedBlock: {},
+    notification: {},
+    activeTimeout: -1
+  },
+  mutations: {
+    setNotification(state, payload) {
+      state.notification = payload
+    },
+    installedBlock(state, payload) {
+      state.installedBlock = payload
+    }
+  }
+})
+
 
 var app = new Vue({
   el: '#blockExplorer',

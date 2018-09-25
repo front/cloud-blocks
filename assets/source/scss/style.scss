@@ -1,3 +1,5 @@
+[v-cloak] > * { display:none }
+
 .g-blocks-filter {
   padding-left: 20px;
 }
@@ -27,4 +29,58 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.install-block-btn.button-delete {
+  color: #fff;
+  border-color: #E91E63;
+  background: #E91E63;
+  box-shadow: 0 1px 0 #E91E63;
+  vertical-align: top;
+
+  &:hover {
+    color: #fff;
+    border-color: #ab194a;
+    background: #c22057;
+    box-shadow: 0 1px 0 #cc1a56;
+    vertical-align: top;
+  }
+}
+
+.fgc-notification {
+  visibility: hidden;
+  min-width: 300px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 10px 24px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+}
+
+.fgc-notification.success{
+  background-color: rgb(24, 131, 219);
+}
+
+.fgc-notification.error{
+  background-color: #d1554c;
+}
+
+.fgc-notification.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 3.5s;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }
