@@ -16,6 +16,9 @@ class Blocks {
     add_action( 'wp_ajax_fgc_install_block', array( $this, 'install' ) );
     add_action( 'wp_ajax_nopriv_fgc_install_block', array( $this, 'install' ) );
 
+    add_action( 'wp_ajax_fgc_get_all_blocks', array( $this, 'get_all' ) );
+    add_action( 'wp_ajax_nopriv_fgc_get_all_blocks', array( $this, 'get_all' ) );
+
     add_action( 'wp_ajax_fgc_delete_block', array( $this, 'delete' ) );
     add_action( 'wp_ajax_nopriv_fgc_delete_block', array( $this, 'delete' ) );
 
@@ -23,6 +26,18 @@ class Blocks {
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
   }
 
+
+  /**
+   * Get all installed blocks.
+   *
+   * @since 0.1.0
+   * @param
+   * @return
+   */
+  public function get_all() {
+    $installed_blocks = Settings::get_all();
+    wp_send_json_success( $installed_blocks );
+  }
 
   /**
    * Install the block.
