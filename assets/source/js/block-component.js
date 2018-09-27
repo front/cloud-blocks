@@ -29,7 +29,7 @@ Vue.component('block-card', {
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
-              v-if="!alreadyInstaleld"
+              v-if="currentBrowsState != 'installed' && !alreadyInstaleld"
               @click.prevent="installBlock">
               Install
           </button>
@@ -46,11 +46,11 @@ Vue.component('block-card', {
   `,
   mounted() {
     this.currentVersion = this.block.version
-    if (!!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
-      this.alreadyInstaleld = window.store.state.browsState != 'installed'
-      if (window.store.state.browsState == 'installed') {
-        this.updateAvailable = !!fgcData.installedBlocks.filter(b => b.block_version < this.block.version).length
-        this.currentVersion = fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName)[0].block_version
+    if (!!window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
+      this.alreadyInstaleld = this.currentBrowsState != 'installed'
+      if (this.currentBrowsState == 'installed') {
+        this.updateAvailable = !!window.store.state.installedBlocks.filter(b => b.block_version < this.block.version).length
+        this.currentVersion = window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName)[0].block_version
       }
     }
   },
@@ -70,6 +70,7 @@ Vue.component('block-card', {
           this.installing = false
           this.alreadyInstaleld = true
           this.incrementInstalls(this.block.packageName)
+          window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been installed successfully.`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
@@ -92,6 +93,7 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = false
+          window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been uninstalled successfully.`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
@@ -115,6 +117,7 @@ Vue.component('block-card', {
           this.installing = false
           this.updateAvailable = false
           this.currentVersion = this.block.version
+          window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been updated successfully.`, class: 'show success' })
           console.log('Block Updated ', res.data)  
         })
@@ -134,6 +137,11 @@ Vue.component('block-card', {
         .fail(error => {
           console.log('Some errors occured white increasing number of installs: ', error)
         })
+    }
+  },
+  computed: {
+    currentBrowsState() {
+      return window.store.state.browsState
     }
   }
 })

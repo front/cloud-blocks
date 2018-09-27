@@ -1,7 +1,8 @@
 var store = new Vuex.Store({
   state: {
     notification: {},
-    browsState: null
+    browsState: null,
+    installedBlocks: fgcData.installedBlocks
   },
   mutations: {
     setNotification(state, payload) {
@@ -9,6 +10,26 @@ var store = new Vuex.Store({
     },
     setBrowsState(state, payload) {
       state.browsState = payload
+    },
+    setInstalledBlocks(state, payload) {
+      state.installedBlocks = payload
+    }
+  },
+  actions: {
+    getInstalledBlocks(store) {
+      jQuery.ajax({
+        type: 'GET',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_get_all_blocks"
+        }
+      })
+        .done(res => {
+          store.commit('setInstalledBlocks', res.data)
+        })
+        .fail(error => {
+          console.log('There is some issues installing block: ', error);
+        })
     }
   }
 })
@@ -21,6 +42,9 @@ var app = new Vue({
       blocks: []
     }
   },
+  created() {
+    window.store.dispatch('getInstalledBlocks')
+  },
   mounted() {
     const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
     this.getBlocks(currentBrowsState)
@@ -28,7 +52,8 @@ var app = new Vue({
     window.addEventListener('popstate', this.fetchBlocks)
   },
   watch: {
-    currentBrowsFilter (newState) {
+    currentBrowsFilter(newState) {
+      window.store.dispatch('getInstalledBlocks')
       this.getBlocks(newState)
     }
   },
@@ -53,7 +78,7 @@ var app = new Vue({
           theBlock.version = block.version
           theBlock.packageName = block.name
           if (brows == null || brows == 'installed') {
-            if (fgcData.installedBlocks && fgcData.installedBlocks.length && !!fgcData.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+            if (window.store.state.installedBlocks.length && window.store.state.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
               blocks.push(theBlock)
             }
           } else {
