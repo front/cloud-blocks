@@ -44,7 +44,8 @@ Vue.component('block-card', {
     return {
       installing: false,
       alreadyInstaleld: false,
-      updateAvailable: false
+      updateAvailable: false,
+      currentVersion: null
     }
   },
   template: `
@@ -64,7 +65,7 @@ Vue.component('block-card', {
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span class="block-version">Version: {{ block.version }}</span>
+        <span class="block-version">Version: {{ currentVersion }}</span>
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
@@ -84,8 +85,14 @@ Vue.component('block-card', {
     </div>
   `,
   mounted() {
-    this.alreadyInstaleld = window.store.state.browsState != 'installed' && !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
-    this.updateAvailable = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length && !!fgcData.installedBlocks.filter(b => b.block_version < this.block.version).length
+    this.currentVersion = this.block.version
+    if (!!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
+      this.alreadyInstaleld = window.store.state.browsState != 'installed'
+      if (window.store.state.browsState == 'installed') {
+        this.updateAvailable = !!fgcData.installedBlocks.filter(b => b.block_version < this.block.version).length
+        this.currentVersion = fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName)[0].block_version
+      }
+    }
   },
   methods: {
     installBlock() {
