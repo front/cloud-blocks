@@ -312,7 +312,7 @@ var app = new Vue({
     }
   },
   mounted() {
-    const currentBrowsState = this.getUrlParams('brows')
+    const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
     this.getBlocks(currentBrowsState)
     window.store.commit('setBrowsState', currentBrowsState)
     window.addEventListener('popstate', this.fetchBlocks)
