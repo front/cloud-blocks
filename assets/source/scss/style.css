@@ -9,16 +9,6 @@
   top: 15px;
   right: 20px; }
 
-.block-installed:before {
-  content: 'Installed';
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-  color: red;
-  font-size: 18px;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); }
-
 .spinner.installing-block {
   visibility: inherit;
   position: absolute;

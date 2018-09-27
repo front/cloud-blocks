@@ -7,11 +7,13 @@ Vue.component('block-card', {
     }
   },
   template: `
-    <div :class="[alreadyInstaleld ? 'block-installed' : '', 'theme']">
+    <div class="theme">
       <div class="theme-screenshot">
         <img :src="block.imageUrl" :alt="block.name">
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
+
+      <div v-if="alreadyInstaleld" class="notice notice-success notice-alt"><p>Installed</p></div>
 
       <span class="more-details">Show more details</span>
 
@@ -37,7 +39,7 @@ Vue.component('block-card', {
     </div>
   `,
   mounted() {
-    this.alreadyInstaleld = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
+    this.alreadyInstaleld = window.store.state.browsState != 'installed' && !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
   },
   methods: {
     installBlock() {
