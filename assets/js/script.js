@@ -214,7 +214,7 @@ Vue.component('explorer-filter', {
   template: `
     <div class="wp-filter g-blocks-filter hide-if-no-js">
       <div class="filter-count">
-        <span class="count theme-count">15</span>
+        <span class="count theme-count">{{ installedBlocksCount }}</span>
       </div>
 
       <ul class="filter-links">
@@ -238,6 +238,11 @@ Vue.component('explorer-filter', {
     },
     currentFilter(filter) {
       return window.store.state.browsState == filter ? 'current' : ''
+    }
+  },
+  computed: {
+    installedBlocksCount() {
+      return window.store.state.installedBlocks.length
     }
   }
 })
