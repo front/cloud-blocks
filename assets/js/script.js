@@ -154,6 +154,7 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.updateAvailable = false
+          this.currentVersion = this.block.version
           window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been updated successfully.`, class: 'show success' })
           console.log('Block Updated ', res.data)  
         })
