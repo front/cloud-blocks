@@ -3,7 +3,8 @@ Vue.component('block-card', {
   data() {
     return {
       installing: false,
-      alreadyInstaleld: false
+      alreadyInstaleld: false,
+      updateAvailable: false
     }
   },
   template: `
@@ -14,6 +15,10 @@ Vue.component('block-card', {
       </div>
 
       <div v-if="alreadyInstaleld" class="notice notice-success notice-alt"><p>Installed</p></div>
+
+      <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
+        <p>New version available. <button class="button-link" type="button" @click="updateBlock">Update now</button></p>
+      </div>
 
       <span class="more-details">Show more details</span>
 
@@ -40,6 +45,7 @@ Vue.component('block-card', {
   `,
   mounted() {
     this.alreadyInstaleld = window.store.state.browsState != 'installed' && !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
+    this.updateAvailable = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length && !!fgcData.installedBlocks.filter(b => b.block_version < this.block.version).length
   },
   methods: {
     installBlock() {
@@ -85,6 +91,28 @@ Vue.component('block-card', {
         .fail(error => {
           this.installing = false
           console.log('There is some issues installing block: ', error)
+        })
+    },
+    updateBlock() {
+      this.installing = true
+      let postData = this.block
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_update_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          this.installing = false
+          this.updateAvailable = false
+          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been updated successfully.`, class: 'show success' })
+          console.log('Block Updated ', res.data)  
+        })
+        .fail(error => {
+          this.installing = false
+          console.log('There is some issues updating block: ', error)
         })
     },
     incrementInstalls(packageName) {

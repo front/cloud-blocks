@@ -18,6 +18,9 @@ class Blocks {
 
     add_action( 'wp_ajax_fgc_delete_block', array( $this, 'delete' ) );
     add_action( 'wp_ajax_nopriv_fgc_delete_block', array( $this, 'delete' ) );
+
+    add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
+    add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
   }
 
 
@@ -79,6 +82,50 @@ class Blocks {
     $response = array(
       'code'      => 400,
       'message'   => 'Block could not be uninstalled!'
+    );
+    wp_send_json_success( $response );
+  }
+
+  /**
+   * Update the block.
+   *
+   * @since 0.1.0
+   * @param
+   * @return
+   */
+  public function update() {
+    $block = $_REQUEST['data'];
+    if ( isset( $block ) ) {
+      $the_block = array(
+        'block_name'      => isset( $block['name'] ) ? $block['name'] : '',
+        'package_name'    => isset( $block['packageName'] ) ? $block['packageName'] : '',
+        'js_url'          => isset( $block['jsUrl'] ) ? $block['jsUrl'] : '',
+        'css_url'         => isset( $block['cssUrl'] ) ? $block['cssUrl'] : '',
+        'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
+        'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
+        'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
+      );
+
+      $existing_block = Settings::get( $the_block['package_name'] );
+
+      $block_id = Settings::update( $existing_block->id, $the_block );
+
+      if ( isset( $block_id ) ) {
+        $response = array(
+          'code'      => 200,
+          'message'   => 'Succesfully updated.'
+        );
+      } else {
+        $response = array(
+          'code'      => 400,
+          'message'   => 'Block could not be updated!'
+        );
+      }
+      wp_send_json_success( $response );
+    }
+    $response = array(
+      'code'      => 400,
+      'message'   => 'Block could not be updated!'
     );
     wp_send_json_success( $response );
   }

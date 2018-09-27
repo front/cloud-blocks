@@ -43,14 +43,21 @@ Vue.component('block-card', {
   data() {
     return {
       installing: false,
-      alreadyInstaleld: false
+      alreadyInstaleld: false,
+      updateAvailable: false
     }
   },
   template: `
-    <div :class="[alreadyInstaleld ? 'block-installed' : '', 'theme']">
+    <div class="theme">
       <div class="theme-screenshot">
         <img :src="block.imageUrl" :alt="block.name">
         <div class="spinner installing-block" v-if="installing"></div>
+      </div>
+
+      <div v-if="alreadyInstaleld" class="notice notice-success notice-alt"><p>Installed</p></div>
+
+      <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
+        <p>New version available. <button class="button-link" type="button" @click="updateBlock">Update now</button></p>
       </div>
 
       <span class="more-details">Show more details</span>
@@ -77,7 +84,8 @@ Vue.component('block-card', {
     </div>
   `,
   mounted() {
-    this.alreadyInstaleld = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
+    this.alreadyInstaleld = window.store.state.browsState != 'installed' && !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length
+    this.updateAvailable = !!fgcData.installedBlocks.filter(b => b.package_name == this.block.packageName).length && !!fgcData.installedBlocks.filter(b => b.block_version < this.block.version).length
   },
   methods: {
     installBlock() {
@@ -123,6 +131,28 @@ Vue.component('block-card', {
         .fail(error => {
           this.installing = false
           console.log('There is some issues installing block: ', error)
+        })
+    },
+    updateBlock() {
+      this.installing = true
+      let postData = this.block
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_update_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          this.installing = false
+          this.updateAvailable = false
+          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been updated successfully.`, class: 'show success' })
+          console.log('Block Updated ', res.data)  
+        })
+        .fail(error => {
+          this.installing = false
+          console.log('There is some issues updating block: ', error)
         })
     },
     incrementInstalls(packageName) {
@@ -294,36 +324,25 @@ var app = new Vue({
     },
     getBlocks(brows) {
       let blocks = []
-      if (brows == null || brows == 'installed') {
-        let alreadyInstalled = fgcData.installedBlocks
-        if (alreadyInstalled.length) {
-          alreadyInstalled.map(block => {
-            const theBlock = {}
-            theBlock.jsUrl = block.js_url
-            theBlock.cssUrl = block.css_url
-            theBlock.infoUrl = block.info_url
-            theBlock.imageUrl = block.thumbnail
-            theBlock.name = block.block_name
-            theBlock.version = block.block_version
-            theBlock.packageName = block.package_name
+      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+        res.rows.map(block => {
+          const theBlock = {}
+          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+          theBlock.name = block.config.name
+          theBlock.version = block.version
+          theBlock.packageName = block.name
+          if (brows == null || brows == 'installed') {
+            if (fgcData.installedBlocks && fgcData.installedBlocks.length && !!fgcData.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+              blocks.push(theBlock)
+            }
+          } else {
             blocks.push(theBlock)
-          })
-        }
-      } else {
-        jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
-          res.rows.map(block => {
-            const theBlock = {}
-            theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
-            theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
-            theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
-            theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
-            theBlock.name = block.config.name
-            theBlock.version = block.version
-            theBlock.packageName = block.name
-            blocks.push(theBlock)
-          })
+          }
         })
-      }
+      })
       this.blocks = blocks
     },
     getUrlParams(name, url) {

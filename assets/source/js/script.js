@@ -42,36 +42,25 @@ var app = new Vue({
     },
     getBlocks(brows) {
       let blocks = []
-      if (brows == null || brows == 'installed') {
-        let alreadyInstalled = fgcData.installedBlocks
-        if (alreadyInstalled.length) {
-          alreadyInstalled.map(block => {
-            const theBlock = {}
-            theBlock.jsUrl = block.js_url
-            theBlock.cssUrl = block.css_url
-            theBlock.infoUrl = block.info_url
-            theBlock.imageUrl = block.thumbnail
-            theBlock.name = block.block_name
-            theBlock.version = block.block_version
-            theBlock.packageName = block.package_name
+      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+        res.rows.map(block => {
+          const theBlock = {}
+          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+          theBlock.name = block.config.name
+          theBlock.version = block.version
+          theBlock.packageName = block.name
+          if (brows == null || brows == 'installed') {
+            if (fgcData.installedBlocks && fgcData.installedBlocks.length && !!fgcData.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+              blocks.push(theBlock)
+            }
+          } else {
             blocks.push(theBlock)
-          })
-        }
-      } else {
-        jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
-          res.rows.map(block => {
-            const theBlock = {}
-            theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
-            theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
-            theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
-            theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
-            theBlock.name = block.config.name
-            theBlock.version = block.version
-            theBlock.packageName = block.name
-            blocks.push(theBlock)
-          })
+          }
         })
-      }
+      })
       this.blocks = blocks
     },
     getUrlParams(name, url) {
