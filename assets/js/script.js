@@ -144,7 +144,25 @@ Vue.component('explorer-filter', {
   componenets: ['filter-drawer'],
   data() {
     return {
-      drawerFilterOpen: false
+      drawerFilterOpen: false,
+      filterLinks: [
+        {
+          name: 'Installed',
+          slug: 'installed'
+        },
+        {
+          name: 'Popular',
+          slug: 'popular'
+        },
+        {
+          name: 'Latest',
+          slug: 'latest'
+        },
+        {
+          name: 'Most used',
+          slug: 'mostused'
+        }
+      ]
     }
   },
   template: `
@@ -154,10 +172,7 @@ Vue.component('explorer-filter', {
       </div>
 
       <ul class="filter-links">
-        <li><a href="#" data-sort="featured" class="current" aria-current="page">Installed</a></li>
-        <li><a href="#" data-sort="popular">Popular</a></li>
-        <li><a href="#" data-sort="new">Latest</a></li>
-        <li><a href="#" data-sort="favorites">Most used</a></li>
+        <li><a v-for="filter in filterLinks" :key="filter.slug" @click="filterLink(filter.slug)" :class="currentFilter(filter.slug)">{{ filter.name }}</a></li>
       </ul>
 
       <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">Filter</button>
@@ -166,7 +181,19 @@ Vue.component('explorer-filter', {
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>
-  `
+  `,
+  mounted() {
+  },
+  methods: {
+    filterLink(newFilter) {
+      let currentState = window.location.search.replace(/\&brows[=a-z]*/, '')
+      history.pushState({state: newFilter}, null, `${currentState}&brows=${newFilter}`)
+      window.store.commit('setBrowsState', newFilter)
+    },
+    currentFilter(filter) {
+      return window.store.state.browsState == filter ? 'current' : ''
+    }
+  }
 })
 
 
@@ -225,11 +252,15 @@ Vue.component('filter-drawer', {
 
 var store = new Vuex.Store({
   state: {
-    notification: {}
+    notification: {},
+    browsState: null
   },
   mutations: {
     setNotification(state, payload) {
       state.notification = payload
+    },
+    setBrowsState(state, payload) {
+      state.browsState = payload
     }
   }
 })
@@ -243,27 +274,71 @@ var app = new Vue({
     }
   },
   mounted() {
-    this.getBlocks()
+    const currentBrowsState = this.getUrlParams('brows')
+    this.getBlocks(currentBrowsState)
+    window.store.commit('setBrowsState', currentBrowsState)
+    window.addEventListener('popstate', this.fetchBlocks)
+  },
+  watch: {
+    currentBrowsFilter (newState) {
+      this.getBlocks(newState)
+    }
   },
   methods: {
-    getBlocks() {
-      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
-        let blocks = []
-        res.rows.map(block => {
-          const theBlock = {}
-          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
-          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
-          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
-          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
-          theBlock.name = block.config.name
-          theBlock.version = block.version
-          theBlock.packageName = block.name
-          blocks.push(theBlock)
+    fetchBlocks(e) {
+      let state = null
+      if (e.state) {
+        state = e.state.state
+      }
+      this.getBlocks(state)
+    },
+    getBlocks(brows) {
+      let blocks = []
+      if (brows == null || brows == 'installed') {
+        let alreadyInstalled = fgcData.installedBlocks
+        if (alreadyInstalled.length) {
+          alreadyInstalled.map(block => {
+            const theBlock = {}
+            theBlock.jsUrl = block.js_url
+            theBlock.cssUrl = block.css_url
+            theBlock.infoUrl = block.info_url
+            theBlock.imageUrl = block.thumbnail
+            theBlock.name = block.block_name
+            theBlock.version = block.block_version
+            theBlock.packageName = block.package_name
+            blocks.push(theBlock)
+          })
+        }
+      } else {
+        jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+          res.rows.map(block => {
+            const theBlock = {}
+            theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+            theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+            theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+            theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+            theBlock.name = block.config.name
+            theBlock.version = block.version
+            theBlock.packageName = block.name
+            blocks.push(theBlock)
+          })
         })
-        this.blocks = blocks
-      })
+      }
+      this.blocks = blocks
+    },
+    getUrlParams(name, url) {
+      if (!url) url = window.location.href
+      name = name.replace(/[\[\]]/g, '\\$&')
+      let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+      let results = regex.exec(url)
+      if (!results) return null
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, ' '))
     }
   },
   computed: {
+    currentBrowsFilter() {
+      return window.store.state.browsState
+    }
   }
 })

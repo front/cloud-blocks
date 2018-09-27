@@ -2,7 +2,25 @@ Vue.component('explorer-filter', {
   componenets: ['filter-drawer'],
   data() {
     return {
-      drawerFilterOpen: false
+      drawerFilterOpen: false,
+      filterLinks: [
+        {
+          name: 'Installed',
+          slug: 'installed'
+        },
+        {
+          name: 'Popular',
+          slug: 'popular'
+        },
+        {
+          name: 'Latest',
+          slug: 'latest'
+        },
+        {
+          name: 'Most used',
+          slug: 'mostused'
+        }
+      ]
     }
   },
   template: `
@@ -12,10 +30,7 @@ Vue.component('explorer-filter', {
       </div>
 
       <ul class="filter-links">
-        <li><a href="#" data-sort="featured" class="current" aria-current="page">Installed</a></li>
-        <li><a href="#" data-sort="popular">Popular</a></li>
-        <li><a href="#" data-sort="new">Latest</a></li>
-        <li><a href="#" data-sort="favorites">Most used</a></li>
+        <li><a v-for="filter in filterLinks" :key="filter.slug" @click="filterLink(filter.slug)" :class="currentFilter(filter.slug)">{{ filter.name }}</a></li>
       </ul>
 
       <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">Filter</button>
@@ -24,7 +39,19 @@ Vue.component('explorer-filter', {
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>
-  `
+  `,
+  mounted() {
+  },
+  methods: {
+    filterLink(newFilter) {
+      let currentState = window.location.search.replace(/\&brows[=a-z]*/, '')
+      history.pushState({state: newFilter}, null, `${currentState}&brows=${newFilter}`)
+      window.store.commit('setBrowsState', newFilter)
+    },
+    currentFilter(filter) {
+      return window.store.state.browsState == filter ? 'current' : ''
+    }
+  }
 })
 
 
