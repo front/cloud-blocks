@@ -15,7 +15,10 @@ use GutenbergCloud\Settings;
 class GutenbergCloud {
 
   public function __construct() {
-    add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+    global $pagenow;
+    if (( $pagenow == 'admin.php' ) && ($_GET['page'] == FGC_NAME)) {
+      add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+    }
     
     new Blocks;
     Cloud\Explore::init();
