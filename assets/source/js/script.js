@@ -55,6 +55,12 @@ var app = new Vue({
     currentBrowsFilter(newState) {
       window.store.dispatch('getInstalledBlocks')
       this.getBlocks(newState)
+    },
+    installedBlocks(newBlocksList, oldBlocksList) {
+      const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
+      if (newBlocksList.length != oldBlocksList.length && currentBrowsState == 'installed') {
+        this.blocks = this.blocks.filter(block => newBlocksList.some(bl => bl.package_name == block.packageName))
+      }
     }
   },
   methods: {
@@ -78,7 +84,7 @@ var app = new Vue({
           theBlock.version = block.version
           theBlock.packageName = block.name
           if (brows == null || brows == 'installed') {
-            if (window.store.state.installedBlocks.length && window.store.state.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+            if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
               blocks.push(theBlock)
             }
           } else {
@@ -101,6 +107,9 @@ var app = new Vue({
   computed: {
     currentBrowsFilter() {
       return window.store.state.browsState
+    },
+    installedBlocks() {
+      return window.store.state.installedBlocks
     }
   }
 })
