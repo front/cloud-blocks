@@ -95,11 +95,11 @@ Vue.component('block-card', {
           this.alreadyInstaleld = false
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been uninstalled successfully.`, class: 'show success' })
-          console.log('Block installed ', res.data)  
+          console.log('Block uninstalled ', res.data)  
         })
         .fail(error => {
           this.installing = false
-          console.log('There is some issues installing block: ', error)
+          console.log('There is some issues uninstalling block: ', error)
         })
     },
     updateBlock() {
