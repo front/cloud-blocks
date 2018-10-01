@@ -7,8 +7,19 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'GutenbergCloud\\Activator' => $baseDir . '/core/Activator.php',
-    'GutenbergCloud\\Blocks' => $baseDir . '/core/Blocks/Blocks.php',
-    'GutenbergCloud\\Cloud\\Explore' => $baseDir . '/core/Cloud/Explore.php',
+    'GutenbergCloud\\Blocks\\Blocks' => $baseDir . '/core/Blocks/Blocks.php',
+    'GutenbergCloud\\Blocks\\Explore' => $baseDir . '/core/Blocks/Explore.php',
+    'GutenbergCloud\\Blocks\\Options' => $baseDir . '/core/Blocks/Options.php',
     'GutenbergCloud\\GutenbergCloud' => $baseDir . '/core/GutenbergCloud.php',
-    'GutenbergCloud\\Settings' => $baseDir . '/core/Settings/Settings.php',
+    'GutenbergCloud\\Settings\\Settings' => $baseDir . '/core/Settings/Settings.php',
+    'SevenFields\\Bootstrap\\Bootstrap' => $vendorDir . '/foadyousefi/seven-fields/src/Bootstrap/Bootstrap.php',
+    'SevenFields\\Container\\Container' => $vendorDir . '/foadyousefi/seven-fields/src/Container/Container.php',
+    'SevenFields\\Fields\\Checkbox' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Checkbox.php',
+    'SevenFields\\Fields\\Fields' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Fields.php',
+    'SevenFields\\Fields\\Header' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Header.php',
+    'SevenFields\\Fields\\Html' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Html.php',
+    'SevenFields\\Fields\\Multiselect' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Multiselect.php',
+    'SevenFields\\Fields\\Select' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Select.php',
+    'SevenFields\\Fields\\Text' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Text.php',
+    'SevenFields\\Fields\\Textarea' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Textarea.php',
 );

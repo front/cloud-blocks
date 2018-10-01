@@ -1,6 +1,6 @@
 <?php
 
-namespace GutenbergCloud\Cloud;
+namespace GutenbergCloud\Blocks;
 
 class Explore {
  
@@ -14,16 +14,6 @@ class Explore {
 	 */
   public static $menu_slug;
 
-	/**
-	 * @param object $options_group
-	 */
-  public static $options_group;
-
-	/**
-	 * @param object $options_name
-	 */
-  public static $options_name;
-
   /**
    * Initiate things.
    *
@@ -34,8 +24,6 @@ class Explore {
   public static function init() {
     self::$page_title = ucwords( str_replace( '-', ' ', FGC_NAME ) );
     self::$menu_slug = FGC_NAME;
-    self::$options_group = str_replace( '-', '_', FGC_NAME ) . '_options_group';
-    self::$options_name = str_replace( '-', '_', FGC_NAME ) . '_options';;
     // Add menu 
     add_action( 'admin_menu', array( __class__, 'add_menu') );
   }

@@ -1,8 +1,8 @@
 <?php
 
-namespace GutenbergCloud;
+namespace GutenbergCloud\Blocks;
 
-use GutenbergCloud\Settings;
+use GutenbergCloud\Blocks\Options;
 
 class Blocks {
 
@@ -37,7 +37,7 @@ class Blocks {
    * @return
    */
   public function get_all() {
-    $installed_blocks = Settings::get_all();
+    $installed_blocks = Options::get_all();
     wp_send_json_success( $installed_blocks );
   }
 
@@ -60,7 +60,7 @@ class Blocks {
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
       );
-      Settings::add( $new_block, true );
+      Options::add( $new_block, true );
 
       $response = array(
         'code'      => 200,
@@ -88,7 +88,7 @@ class Blocks {
     if ( isset( $block ) ) {
       $package_name = isset( $block['packageName'] ) ? $block['packageName'] : '';
 
-      Settings::delete( $package_name );
+      Options::delete( $package_name );
 
       $response = array(
         'code'      => 200,
@@ -123,9 +123,9 @@ class Blocks {
         'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
       );
 
-      $existing_block = Settings::get( $the_block['package_name'] );
+      $existing_block = Options::get( $the_block['package_name'] );
 
-      $block_id = Settings::update( $existing_block->id, $the_block );
+      $block_id = Options::update( $existing_block->id, $the_block );
 
       if ( isset( $block_id ) ) {
         $response = array(
@@ -184,20 +184,20 @@ class Blocks {
       }
       global $pagenow;
       if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) {
-        wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-blocks', 'wp-element', 'wp-i18n' ), 123321, true);
+        wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-blocks', 'wp-element', 'wp-i18n' ), FGC_VERSION, true);
       }
       if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
-        wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), 12321);
+        wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), FGC_VERSION);
       }
     }
   }
 
   public function blocks_register_scripts($hook) {
-    $blocks = Settings::get_all();
+    $blocks = Options::get_all();
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
       foreach ($blocks as $block) {
-        wp_register_script( str_replace( ' ', '-', $block->block_name ) , $block->js_url, array(), $block->block_version , true);
+        wp_register_script( str_replace( ' ', '-', $block->block_name ) , $block->js_url, array('wp-blocks', 'wp-element', 'wp-i18n'), $block->block_version , true);
         wp_enqueue_script( str_replace( ' ', '-', $block->block_name ) );
       }
     }
@@ -205,7 +205,7 @@ class Blocks {
 
 
   public function blocks_register_styles() {
-    $blocks = Settings::get_all();
+    $blocks = Options::get_all();
     foreach ($blocks as $block) {
       wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
       wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
