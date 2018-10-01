@@ -55,7 +55,7 @@ Vue.component('block-card', {
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
 
-      <div v-if="alreadyInstaleld" class="notice notice-success notice-alt"><p>Installed</p></div>
+      <div v-if="alreadyInstaleld" class="notice inline notice-success notice-alt"><p>Installed</p></div>
 
       <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
         <p>New version available. <button class="button-link" type="button" @click="updateBlock">Update now</button></p>
