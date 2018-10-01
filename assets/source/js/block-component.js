@@ -49,7 +49,11 @@ Vue.component('block-card', {
     if (!!window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
       this.alreadyInstaleld = this.currentBrowsState != 'installed'
       if (this.currentBrowsState == 'installed') {
-        this.updateAvailable = !!window.store.state.installedBlocks.filter(b => b.block_version < this.block.version).length
+        this.updateAvailable = !!window.store.state.installedBlocks.filter(b => {
+          if (b.package_name == this.block.packageName) {
+            return b.block_version < this.block.version
+          }
+        }).length
         this.currentVersion = window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName)[0].block_version
       }
     }
