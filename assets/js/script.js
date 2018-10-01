@@ -73,7 +73,7 @@ Vue.component('block-card', {
               @click.prevent="installBlock">
               Install
           </button>
-          <button class="button button-delete theme-install install-block-btn"
+          <button class="button theme-install install-block-btn"
               v-else
               @click.prevent="deleteBlock">
               Delete
