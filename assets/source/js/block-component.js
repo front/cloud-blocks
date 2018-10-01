@@ -21,7 +21,7 @@ Vue.component('block-card', {
         <p>New version available. <button class="button-link" type="button" @click="updateBlock">Update now</button></p>
       </div>
 
-      <span class="more-details">Show more details</span>
+      <span class="more-details" @click="openMoreDetails">Show more details</span>
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
@@ -137,6 +137,11 @@ Vue.component('block-card', {
         .fail(error => {
           console.log('Some errors occured white increasing number of installs: ', error)
         })
+    },
+    openMoreDetails() {
+      if (this.block.infoUrl) {
+        window.open(this.block.infoUrl, '_blank')
+      }
     }
   },
   computed: {
