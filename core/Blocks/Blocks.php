@@ -24,6 +24,8 @@ class Blocks {
 
     add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
+
+    add_action( 'init', array( $this, 'custom_blocks' ) );
   }
 
 
@@ -145,9 +147,54 @@ class Blocks {
     wp_send_json_success( $response );
   }
 
+  /**
+   * Check for existence of custom blocks and load them.
+   * Custom blocks can be uploaded to /wp-content/gutenberg-blocks/
+   * They must follow file structure like:
+   * -/block-dir/
+   * --/style.css
+   * --/script.js
+   *
+   * @since 0.1.0
+   * @param
+   * @return
+   */
+  public function custom_blocks() {
+    // First we must make sure files.php loaded
+    if ( ! function_exists( 'get_home_path' ) ) {
+      include_once ABSPATH . '/wp-admin/includes/file.php';
+    }
+    // list all blocks (The sub-directory of /gutenberg-blocks/).
+    $gutenberg_blocks_dir = WP_CONTENT_DIR . '/gutenberg-blocks/';
+    $gutenberg_blocks = list_files($gutenberg_blocks_dir, 1);
+    // Then loop through blocks.
+    foreach ($gutenberg_blocks as $block) {
+      preg_match( '/([a-zA-Z-_]*(:?\/))$/i', $block, $block_name);
+      $block_name = str_replace('/', '', $block_name);
+      // And list js and css files.
+      $block_files = list_files($block, 1);
+      // Extract block js and css files
+      foreach ($block_files as $file) {
+        if ( preg_match('/style.css$/i', $file) ) {
+          preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_style );
+        }
+        if ( preg_match('/script.js$/i', $file) ) {
+          preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
+        }
+      }
+      global $pagenow;
+      if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) {
+        wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-blocks', 'wp-element', 'wp-i18n' ), 123321, true);
+      }
+      if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
+        wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), 12321);
+      }
+    }
+  }
+
   public function blocks_register_scripts($hook) {
     $blocks = Settings::get_all();
-    global $post;
+
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
       foreach ($blocks as $block) {
         wp_register_script( str_replace( ' ', '-', $block->block_name ) , $block->js_url, array(), $block->block_version , true);
