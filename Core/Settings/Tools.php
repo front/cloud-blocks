@@ -102,9 +102,9 @@ class Tools {
         foreach ( $blocks as $block ) {
           $imported = Options::insert( $block );
           if ( ( gettype( $imported == 'array' ) || gettype( $imported == 'object' ) ) && isset( $imported->block_name ) ) {
-            self::add_notice( sprintf(__('Package <b>%s</b> already installed.', 'gutenberg-cloug'), $imported->block_name ), 'error' );
+            self::add_notice( sprintf(__('Block <b>%s</b> already installed.', 'gutenberg-cloug'), $imported->block_name ), 'error' );
           } else {
-            self::add_notice( sprintf(__('Package <b>%s</b> installed successfully.', 'gutenberg-cloug'), $block['block_name'] ), 'success' );
+            self::add_notice( sprintf(__('Block <b>%s</b> installed successfully.', 'gutenberg-cloug'), $block['block_name'] ), 'success' );
           }
         }
 
