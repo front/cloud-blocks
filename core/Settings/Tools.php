@@ -39,7 +39,7 @@ class Tools {
   public static function init() {
     self::$page_title = ucwords( str_replace( '-', ' ', FGC_NAME ) );
     self::$menu_slug = FGC_NAME;
-//    add_action( 'admin_menu', array( __class__, 'settings_page') );
+    add_action( 'admin_menu', array( __class__, 'settings_page') );
     add_action('admin_notices', 		array( __class__, 'admin_notices'));
 
     add_action( 'init', array( __class__, 'export_import') );		
@@ -100,11 +100,15 @@ class Tools {
     	  }
         
         foreach ( $blocks as $block ) {
-          $imported = Options::insert( $block );
-          if ( ( gettype( $imported == 'array' ) || gettype( $imported == 'object' ) ) && isset( $imported->block_name ) ) {
-            self::add_notice( sprintf(__('Block <b>%s</b> already installed.', 'gutenberg-cloug'), $imported->block_name ), 'error' );
+          if ( isset( $block['package_name'] ) ) {
+            $imported = Options::insert( $block );
+            if ( ( gettype( $imported == 'array' ) || gettype( $imported == 'object' ) ) && isset( $imported->block_name ) ) {
+              self::add_notice( sprintf(__('Block <b>%s</b> already installed.', 'gutenberg-cloug'), $imported->block_name ), 'error' );
+            } else {
+              self::add_notice( sprintf(__('Block <b>%s</b> installed successfully.', 'gutenberg-cloug'), $block['block_name'] ), 'success' );
+            }
           } else {
-            self::add_notice( sprintf(__('Block <b>%s</b> installed successfully.', 'gutenberg-cloug'), $block['block_name'] ), 'success' );
+            self::add_notice( sprintf(__('Incorrect file type', 'gutenberg-cloug'), $block['block_name'] ), 'success' );
           }
         }
 
