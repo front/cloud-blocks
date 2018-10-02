@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gutenberg Cloud\n"
+"POT-Creation-Date: 2018-10-02 12:01+0200\n"
+"PO-Revision-Date: 2018-10-02 12:02+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: gutenberg-cloud.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: Core/Settings/Tools.php:72
+msgid "No file selected."
+msgstr "Ingen fil er valgt."
+
+#: Core/Settings/Tools.php:80
+msgid "Error uploading file. Please try again."
+msgstr "Feil med opplastingen av fil. Vennligst prøv igjen."
+
+#: Core/Settings/Tools.php:86
+msgid "Incorrect file type"
+msgstr "Feil filtype"
+
+#: Core/Settings/Tools.php:98
+msgid "Empty file imported"
+msgstr "Tom fil importert"
+
+#: Core/Settings/Tools.php:105
+#, php-format
+msgid "Block <b>%s</b> already installed."
+msgstr "Pakken <b> %s </b> allerede installert."
+
+#: Core/Settings/Tools.php:107
+#, php-format
+msgid "Block <b>%s</b> installed successfully."
+msgstr "Blokk <b> %s </b> ble installert."
+
+#: Core/Settings/Tools.php:189
+msgid "Tools"
+msgstr "Verktøy"
+
+#: Core/Settings/Tools.php:203
+msgid "Gutenberg cloud configurations"
+msgstr "Gutenberg cloud konfigurasjoner"
+
+#: Core/Settings/Tools.php:214
+msgid "Export installed blocks"
+msgstr "Eksporter installerte blokker"
+
+#: Core/Settings/Tools.php:217
+msgid ""
+"Here you can export all installed Gutenberg custom blocks from Gutenberg "
+"Cloud as a json file and import it elsewhere."
+msgstr ""
+"Her kan du eksportere alle installerte Gutenberg egendefinerte blokker fra "
+"Gutenberg Cloud som en JSON-fil og importere den et annet sted."
+
+#: Core/Settings/Tools.php:219
+msgid "Export file"
+msgstr "Eksportfil"
+
+#: Core/Settings/Tools.php:228
+msgid "Import custom blocks"
+msgstr "Importere egendefinerte blokker"
+
+#: Core/Settings/Tools.php:231
+msgid "Choose the JSON file you want to import."
+msgstr "Velg JSON-filen du vil importere."
+
+#: Core/Settings/Tools.php:235
+msgid "Choose the file"
+msgstr "Velg fil"
+
+#: Core/Settings/Tools.php:246
+msgid "Import file"
+msgstr "Import fil"
+
+#: vendor/foadyousefi/seven-fields/src/Container/Container.php:196
+msgid "Actions"
+msgstr "Aksjoner"
+
+#. Plugin Name of the plugin/theme
+msgid "Gutenberg Cloud"
+msgstr "Gutenberg Cloud"
+
+#. Description of the plugin/theme
+msgid "Your library of Gutenberg blocks in the cloud"
+msgstr "Ditt bibliotek av Gutenberg blokker i skyen"
+
+#. Author of the plugin/theme
+msgid "Frontkom - Fouad Yousefi"
+msgstr "Frontkom - Foad Yousefi"
+
+#. Author URI of the plugin/theme
+msgid "https://frontkom.no"
+msgstr "https://frontkom.no"
+
+#~ msgid "Settings"
+#~ msgstr "Innstillinger"
+
+#~ msgid "Test"
+#~ msgstr "Test"
+
+#~ msgid "Test text field"
+#~ msgstr "Test tekstfelt"
+
+#~ msgid "Testing translations again"
+#~ msgstr "Tester oversettelse igjen"
+
+#~ msgid "pages"
+#~ msgstr "sider"
