@@ -5,6 +5,7 @@ namespace GutenbergCloud;
 use GutenbergCloud\Blocks\Blocks;
 use GutenbergCloud\Blocks\Explore;
 use GutenbergCloud\Blocks\Options;
+use GutenbergCloud\Settings\Tools;
 
 /**
  * GutenbergCloud Class.
@@ -16,12 +17,15 @@ class GutenbergCloud {
 
   public function __construct() {
     global $pagenow;
-    if (( $pagenow == 'admin.php' ) && ($_GET['page'] == FGC_NAME)) {
+    if ( ( $pagenow == 'admin.php' ) && ( $_GET['page'] == FGC_NAME || $_GET['page'] == 'gutenberg-cloud-tools' ) ) {
       add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
     }
-    
+    // Initiate Blocks class. Responsible for install, update, delete and ... of blocks
     new Blocks;
+    // Initiate Explorer class. The main plugin page, the page which lists blocks.
     Explore::init();
+    // Initiate Plugin options page.
+    Tools::init();
   }
 
   /**
@@ -39,7 +43,7 @@ class GutenbergCloud {
       'installedBlocks' => Options::get_all()
 		);
     wp_localize_script( 'gutenberg_cloud_admin_js', 'fgcData', $localized_data );
-    wp_enqueue_style( 'gutenberg_cloud_admin_styles', FGC_URL . 'assets/css/style.css', false, 20180914 );
+    wp_enqueue_style( 'gutenberg_cloud_admin_styles', FGC_URL . 'assets/css/style.css', false, FGC_VERSION );
   }
 
 }
