@@ -34,7 +34,7 @@ class ComposerStaticInit2948bd210a8be025dfcec89b6ee15fb8
         'GutenbergCloud\\Blocks\\Explore' => __DIR__ . '/../..' . '/core/Blocks/Explore.php',
         'GutenbergCloud\\Blocks\\Options' => __DIR__ . '/../..' . '/core/Blocks/Options.php',
         'GutenbergCloud\\GutenbergCloud' => __DIR__ . '/../..' . '/core/GutenbergCloud.php',
-        'GutenbergCloud\\Settings\\Settings' => __DIR__ . '/../..' . '/core/Settings/Settings.php',
+        'GutenbergCloud\\Settings\\Tools' => __DIR__ . '/../..' . '/core/Settings/Tools.php',
         'SevenFields\\Bootstrap\\Bootstrap' => __DIR__ . '/..' . '/foadyousefi/seven-fields/src/Bootstrap/Bootstrap.php',
         'SevenFields\\Container\\Container' => __DIR__ . '/..' . '/foadyousefi/seven-fields/src/Container/Container.php',
         'SevenFields\\Fields\\Checkbox' => __DIR__ . '/..' . '/foadyousefi/seven-fields/src/Fields/Checkbox.php',

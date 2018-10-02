@@ -1,0 +1,42 @@
+[
+    {
+        "name": "foadyousefi/seven-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/foadyousefi/seven-fields.git",
+            "reference": "3ac7be69dc5b30138ae289002d18b974ea237d52"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/foadyousefi/seven-fields/zipball/3ac7be69dc5b30138ae289002d18b974ea237d52",
+            "reference": "3ac7be69dc5b30138ae289002d18b974ea237d52",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2018-10-02T07:34:15+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "SevenFields\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Foad Yousefi",
+                "email": "foadyousefi@gmail.com",
+                "homepage": "https://7km.co/"
+            }
+        ],
+        "description": "WordPress developer-friendly option pages with custom fields.",
+        "homepage": "https://7km.co/"
+    }
+]

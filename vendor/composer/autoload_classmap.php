@@ -11,7 +11,7 @@ return array(
     'GutenbergCloud\\Blocks\\Explore' => $baseDir . '/core/Blocks/Explore.php',
     'GutenbergCloud\\Blocks\\Options' => $baseDir . '/core/Blocks/Options.php',
     'GutenbergCloud\\GutenbergCloud' => $baseDir . '/core/GutenbergCloud.php',
-    'GutenbergCloud\\Settings\\Settings' => $baseDir . '/core/Settings/Settings.php',
+    'GutenbergCloud\\Settings\\Tools' => $baseDir . '/core/Settings/Tools.php',
     'SevenFields\\Bootstrap\\Bootstrap' => $vendorDir . '/foadyousefi/seven-fields/src/Bootstrap/Bootstrap.php',
     'SevenFields\\Container\\Container' => $vendorDir . '/foadyousefi/seven-fields/src/Container/Container.php',
     'SevenFields\\Fields\\Checkbox' => $vendorDir . '/foadyousefi/seven-fields/src/Fields/Checkbox.php',

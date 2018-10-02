@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c745a87447783c6069f7e915dca75f20",
+    "packages": [
+        {
+            "name": "foadyousefi/seven-fields",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/foadyousefi/seven-fields.git",
+                "reference": "3ac7be69dc5b30138ae289002d18b974ea237d52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/foadyousefi/seven-fields/zipball/3ac7be69dc5b30138ae289002d18b974ea237d52",
+                "reference": "3ac7be69dc5b30138ae289002d18b974ea237d52",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SevenFields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Foad Yousefi",
+                    "email": "foadyousefi@gmail.com",
+                    "homepage": "https://7km.co/"
+                }
+            ],
+            "description": "WordPress developer-friendly option pages with custom fields.",
+            "homepage": "https://7km.co/",
+            "time": "2018-10-02T07:34:15+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "foadyousefi/seven-fields": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

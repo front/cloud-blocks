@@ -19,5 +19,7 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "foadyousefi/seven-fields": "dev-master"
+    }
 }
