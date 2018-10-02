@@ -66,6 +66,53 @@ class Options {
   }
 
   /**
+  * Insert block into database.
+  * @since    0.1.0
+  * @param array $block     The array of block values
+  * @return int $id         Inserted records id
+  */
+  public static function insert( $block ) {
+    global $wpdb;
+    // Validate block
+    $block_name = isset( $block['block_name'] ) ? $block['block_name'] : '';
+    $package_name = isset( $block['package_name'] ) ? $block['package_name'] : '';
+    $js_url = isset( $block['js_url'] ) ? $block['js_url'] : '';
+    $css_url = isset( $block['css_url'] ) ? $block['css_url'] : '';
+    $info_url = isset( $block['info_url'] ) ? $block['info_url'] : '';
+    $thumbnail = isset( $block['thumbnail'] ) ? $block['thumbnail'] : '';
+    $block_version = isset( $block['block_version'] ) ? $block['block_version'] : '';
+
+    // First of all, lets make sure column exists or not.
+    $block = self::get( $package_name );
+    if ( isset( $block ) ) {
+      return $block;
+    } else {
+
+      $table_name = $wpdb->prefix . str_replace( '-', '_', FGC_NAME );
+      
+      $imserted = $wpdb->insert(
+        $table_name, 
+        array(
+          'block_name'      => $block_name,
+          'package_name'    => $package_name,
+          'js_url'          => $js_url,
+          'css_url'         => $css_url,
+          'info_url'        => $info_url,
+          'thumbnail'       => $thumbnail,
+          'block_version'   => $block_version
+        )
+      );
+    }
+    
+    if ( $imserted ) {
+      return $wpdb->insert_id;
+    }
+
+    return false;
+
+  }
+
+  /**
   * Update existing value in database.
   * @since    0.1.0
   * @param array $options   The options need to be stored into database
