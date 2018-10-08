@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gutenberg Cloud\n"
-"POT-Creation-Date: 2018-10-08 13:14+0200\n"
-"PO-Revision-Date: 2018-10-08 13:14+0200\n"
+"POT-Creation-Date: 2018-10-08 13:37+0200\n"
+"PO-Revision-Date: 2018-10-08 13:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -125,15 +125,15 @@ msgstr "Filter"
 
 #: core/Settings/Translations.php:27
 msgid "Update now"
-msgstr "oppdater nå"
+msgstr "Uppdater nå"
 
 #: core/Settings/Translations.php:28
 msgid "Show more details"
-msgstr "Vis mere detaljer"
+msgstr "Vis flere detaljer"
 
 #: core/Settings/Translations.php:29
 msgid "More details"
-msgstr "mere detaljer"
+msgstr "Flere detaljer"
 
 #: core/Settings/Translations.php:30
 msgid "have been installed successfully."
@@ -146,6 +146,14 @@ msgstr "er avinstallert.."
 #: core/Settings/Translations.php:32
 msgid "have been updated successfully."
 msgstr "er oppdatert."
+
+#: core/Settings/Translations.php:33
+msgid "New version available."
+msgstr "Ny versjon tilgjengelig."
+
+#: core/Settings/Translations.php:34
+msgid "Version"
+msgstr "Versjon"
 
 #: vendor/foadyousefi/seven-fields/src/Container/Container.php:196
 msgid "Actions"

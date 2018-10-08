@@ -30,6 +30,8 @@ class Translations {
       'block_installed'         => __( 'have been installed successfully.', 'gutenberg-cloud' ),
       'block_uninstalled'       => __( 'have been uninstalled successfully.', 'gutenberg-cloud' ),
       'block_updated'           => __( 'have been updated successfully.', 'gutenberg-cloud' ),
+      'update_available'        => __( 'New version available.', 'gutenberg-cloud' ),
+      'version'                 => __( 'Version', 'gutenberg-cloud' ),
     );
   }
 }
