@@ -5,19 +5,19 @@ Vue.component('explorer-filter', {
       drawerFilterOpen: false,
       filterLinks: [
         {
-          name: 'Installed',
+          name: fgcData.strings.installed,
           slug: 'installed'
         },
         {
-          name: 'Popular',
+          name: fgcData.strings.popular,
           slug: 'popular'
         },
         {
-          name: 'Latest',
+          name: fgcData.strings.latest,
           slug: 'latest'
         },
         {
-          name: 'Most used',
+          name: fgcData.strings.most_used,
           slug: 'mostused'
         }
       ]
@@ -33,9 +33,9 @@ Vue.component('explorer-filter', {
         <li><a v-for="filter in filterLinks" :key="filter.slug" @click="filterLink(filter.slug)" :class="currentFilter(filter.slug)">{{ filter.name }}</a></li>
       </ul>
 
-      <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">Filter</button>
+      <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">{{fgcData.strings.filter}}</button>
 
-      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">Search for blocks</label><input placeholder="Search blocks..." type="search" aria-describedby="live-search-desc" id="wp-filter-search-input" class="wp-filter-search"></form>
+      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">{{fgcData.strings.search_for_blocks}}</label><input :placeholder="fgcData.strings.search_blocks" type="search" id="wp-filter-search-input" class="wp-filter-search"></form>
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>

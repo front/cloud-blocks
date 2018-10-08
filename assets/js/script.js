@@ -55,13 +55,13 @@ Vue.component('block-card', {
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
 
-      <div v-if="alreadyInstaleld" class="notice inline notice-success notice-alt"><p>Installed</p></div>
+      <div v-if="alreadyInstaleld" class="notice inline notice-success notice-alt"><p>{{fgcData.strings.installed}}</p></div>
 
       <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
-        <p>New version available. <button class="button-link" type="button" @click="updateBlock">Update now</button></p>
+        <p>New version available. <button class="button-link" type="button" @click="updateBlock">{{fgcData.strings.update_now}}</button></p>
       </div>
 
-      <span class="more-details" @click="openMoreDetails">Show more details</span>
+      <span class="more-details" @click="openMoreDetails">{{fgcData.strings.show_more_details}}</span>
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
@@ -76,9 +76,9 @@ Vue.component('block-card', {
           <button class="button theme-install install-block-btn"
               v-else
               @click.prevent="deleteBlock">
-              Delete
+              {{fgcData.strings.delete}}
           </button>
-          <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">More details</a>
+          <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">{{fgcData.strings.more_details}}</a>
         </div>
       </div>
 
@@ -115,7 +115,7 @@ Vue.component('block-card', {
           this.alreadyInstaleld = true
           this.incrementInstalls(this.block.packageName)
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been installed successfully.`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
@@ -138,7 +138,7 @@ Vue.component('block-card', {
           this.installing = false
           this.alreadyInstaleld = false
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been uninstalled successfully.`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
           console.log('Block uninstalled ', res.data)  
         })
         .fail(error => {
@@ -162,7 +162,7 @@ Vue.component('block-card', {
           this.updateAvailable = false
           this.currentVersion = this.block.version
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been updated successfully.`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strigns.block_updated}`, class: 'show success' })
           console.log('Block Updated ', res.data)  
         })
         .fail(error => {
@@ -202,19 +202,19 @@ Vue.component('explorer-filter', {
       drawerFilterOpen: false,
       filterLinks: [
         {
-          name: 'Installed',
+          name: fgcData.strings.installed,
           slug: 'installed'
         },
         {
-          name: 'Popular',
+          name: fgcData.strings.popular,
           slug: 'popular'
         },
         {
-          name: 'Latest',
+          name: fgcData.strings.latest,
           slug: 'latest'
         },
         {
-          name: 'Most used',
+          name: fgcData.strings.most_used,
           slug: 'mostused'
         }
       ]
@@ -230,9 +230,9 @@ Vue.component('explorer-filter', {
         <li><a v-for="filter in filterLinks" :key="filter.slug" @click="filterLink(filter.slug)" :class="currentFilter(filter.slug)">{{ filter.name }}</a></li>
       </ul>
 
-      <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">Filter</button>
+      <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">{{fgcData.strings.filter}}</button>
 
-      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">Search for blocks</label><input placeholder="Search blocks..." type="search" aria-describedby="live-search-desc" id="wp-filter-search-input" class="wp-filter-search"></form>
+      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">{{fgcData.strings.search_for_blocks}}</label><input :placeholder="fgcData.strings.search_blocks" type="search" id="wp-filter-search-input" class="wp-filter-search"></form>
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>

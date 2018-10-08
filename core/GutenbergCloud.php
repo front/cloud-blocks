@@ -6,6 +6,7 @@ use GutenbergCloud\Blocks\Blocks;
 use GutenbergCloud\Blocks\Explore;
 use GutenbergCloud\Blocks\Options;
 use GutenbergCloud\Settings\Tools;
+use GutenbergCloud\Settings\Translations;
 
 /**
  * GutenbergCloud Class.
@@ -40,7 +41,8 @@ class GutenbergCloud {
     wp_enqueue_script( 'gutenberg_cloud_admin_js', FGC_URL . 'assets/js/script.js', array( 'jquery', 'vuejs', 'vuex', 'wp-i18n' ), FGC_VERSION, true );
     $localized_data = array(
       'ajaxUrl' 				=> admin_url( 'admin-ajax.php' ),
-      'installedBlocks' => Options::get_all()
+      'installedBlocks' => Options::get_all(),
+      'strings'         => Translations::strings()
 		);
     wp_localize_script( 'gutenberg_cloud_admin_js', 'fgcData', $localized_data );
     wp_enqueue_style( 'gutenberg_cloud_admin_styles', FGC_URL . 'assets/css/style.css', false, FGC_VERSION );

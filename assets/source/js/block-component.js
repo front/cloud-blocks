@@ -15,13 +15,13 @@ Vue.component('block-card', {
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
 
-      <div v-if="alreadyInstaleld" class="notice inline notice-success notice-alt"><p>Installed</p></div>
+      <div v-if="alreadyInstaleld" class="notice inline notice-success notice-alt"><p>{{fgcData.strings.installed}}</p></div>
 
       <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
-        <p>New version available. <button class="button-link" type="button" @click="updateBlock">Update now</button></p>
+        <p>New version available. <button class="button-link" type="button" @click="updateBlock">{{fgcData.strings.update_now}}</button></p>
       </div>
 
-      <span class="more-details" @click="openMoreDetails">Show more details</span>
+      <span class="more-details" @click="openMoreDetails">{{fgcData.strings.show_more_details}}</span>
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
@@ -36,9 +36,9 @@ Vue.component('block-card', {
           <button class="button theme-install install-block-btn"
               v-else
               @click.prevent="deleteBlock">
-              Delete
+              {{fgcData.strings.delete}}
           </button>
-          <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">More details</a>
+          <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">{{fgcData.strings.more_details}}</a>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ Vue.component('block-card', {
           this.alreadyInstaleld = true
           this.incrementInstalls(this.block.packageName)
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been installed successfully.`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
@@ -98,7 +98,7 @@ Vue.component('block-card', {
           this.installing = false
           this.alreadyInstaleld = false
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been uninstalled successfully.`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
           console.log('Block uninstalled ', res.data)  
         })
         .fail(error => {
@@ -122,7 +122,7 @@ Vue.component('block-card', {
           this.updateAvailable = false
           this.currentVersion = this.block.version
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `Block <b>${this.block.name}</b> have been updated successfully.`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strigns.block_updated}`, class: 'show success' })
           console.log('Block Updated ', res.data)  
         })
         .fail(error => {
