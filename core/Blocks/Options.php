@@ -195,4 +195,22 @@ class Options {
     return $block;
   }
 
+  /**
+  * Increate number of installs on api.gutenbergcloud.org
+  * @since    0.1.0
+  * @param string|null $package_name    npm package name
+  * @return object|null $body           Request response
+  */
+  public static function increate_installs( $package_name = null ) {
+    if ( empty( $package_name )  ) {
+      return;
+    }
+    $args = array(
+      'method' => 'PUT'
+    );
+    $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $package_name, $args );
+    $body = wp_remote_retrieve_body( $response );
+    return $body;
+  }
+
 }

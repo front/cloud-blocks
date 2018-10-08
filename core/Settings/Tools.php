@@ -105,6 +105,7 @@ class Tools {
             if ( ( gettype( $imported == 'array' ) || gettype( $imported == 'object' ) ) && isset( $imported->block_name ) ) {
               self::add_notice( sprintf(__('Block <b>%s</b> already installed.', 'gutenberg-cloug'), $imported->block_name ), 'error' );
             } else {
+              Options::increate_installs( $block['package_name'] );
               self::add_notice( sprintf(__('Block <b>%s</b> installed successfully.', 'gutenberg-cloug'), $block['block_name'] ), 'success' );
             }
           } else {
