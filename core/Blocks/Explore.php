@@ -17,7 +17,7 @@ class Explore {
   /**
    * Initiate things.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -31,7 +31,7 @@ class Explore {
   /**
    * Add options menu page.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -50,7 +50,7 @@ class Explore {
   /**
    * Settings page output.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */

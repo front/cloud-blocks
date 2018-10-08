@@ -11,7 +11,7 @@ class Translations {
    * 
    * @param 
    * @return array      Translatable strings
-   * @since 0.1.0
+   * @since 1.0.0
    */
   public function strings() {
     return array(

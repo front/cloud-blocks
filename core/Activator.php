@@ -12,7 +12,7 @@ class Activator {
 
   /**
   * activate, runs at plugin activation.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param
   * @return
   */
@@ -22,7 +22,7 @@ class Activator {
 
   /**
   * Create database table used for store and tracking active Gutenberg blocks.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param
   * @return
   */

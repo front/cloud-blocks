@@ -32,7 +32,7 @@ class Blocks {
   /**
    * Get all installed blocks.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -44,7 +44,7 @@ class Blocks {
   /**
    * Install the block.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -79,7 +79,7 @@ class Blocks {
   /**
    * Delete the block.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -106,7 +106,7 @@ class Blocks {
   /**
    * Update the block.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -155,7 +155,7 @@ class Blocks {
    * --/style.css
    * --/script.js
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */

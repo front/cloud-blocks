@@ -12,7 +12,7 @@ class Options {
 
   /**
   * Add new record to the database.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param array $options   The options need to be stored into database
   * @param boolean $force   If record exists, to update it or ignore.
   * @return int $id         Inserted records id
@@ -67,7 +67,7 @@ class Options {
 
   /**
   * Insert block into database.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param array $block     The array of block values
   * @return int $id         Inserted records id
   */
@@ -114,7 +114,7 @@ class Options {
 
   /**
   * Update existing value in database.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param array $options   The options need to be stored into database
   * @return int $id         Inserted records id
   */
@@ -152,7 +152,7 @@ class Options {
 
   /**
   * Get all installed blocks.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param
   * @return object|null $blocks          All installed blocks
   */
@@ -167,7 +167,7 @@ class Options {
 
   /**
   * Read a row from database.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param string|null $package_name   npm package name
   * @return object|null $block          The block in the database
   */
@@ -182,7 +182,7 @@ class Options {
 
   /**
   * Delete a row from database.
-  * @since    0.1.0
+  * @since 1.0.0
   * @param string|null $package_name    npm package name
   * @return object|null $block          The block in the database
   */
@@ -197,7 +197,7 @@ class Options {
 
   /**
   * Increate number of installs on api.gutenbergcloud.org
-  * @since    0.1.0
+  * @since 1.0.0
   * @param string|null $package_name    npm package name
   * @return object|null $body           Request response
   */

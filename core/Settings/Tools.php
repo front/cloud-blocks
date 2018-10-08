@@ -32,7 +32,7 @@ class Tools {
   /**
    * Initiate things.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -48,7 +48,7 @@ class Tools {
   /**
    * Handle import and export actions.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -121,7 +121,7 @@ class Tools {
   /**
    * Encode json object to be exported.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param object|array $json      Array or object to be encoded
    * @return
    */
@@ -186,7 +186,7 @@ class Tools {
   /**
    * Add settings sub-menu page.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -200,7 +200,7 @@ class Tools {
   /**
    * Plugin settings page output.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
@@ -264,7 +264,7 @@ class Tools {
   /**
    * Add admin notices
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param string $text
    * @param string $class
    * @param string $wrap
@@ -282,7 +282,7 @@ class Tools {
   /**
    * Add admin notices
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param string $text
    * @param string $class
    * @param string $wrap
@@ -296,7 +296,7 @@ class Tools {
   /**
    * Admin notices output.
    *
-   * @since 0.1.0
+   * @since 1.0.0
    * @param
    * @return
    */
