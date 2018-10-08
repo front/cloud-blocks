@@ -18,14 +18,14 @@ Vue.component('block-card', {
       <div v-if="alreadyInstaleld" class="notice inline notice-success notice-alt"><p>{{fgcData.strings.installed}}</p></div>
 
       <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
-        <p>New version available. <button class="button-link" type="button" @click="updateBlock">{{fgcData.strings.update_now}}</button></p>
+        <p>{{fgcData.strings.update_available}} <button class="button-link" type="button" @click="updateBlock">{{fgcData.strings.update_now}}</button></p>
       </div>
 
       <span class="more-details" @click="openMoreDetails">{{fgcData.strings.show_more_details}}</span>
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span class="block-version">Version: {{ currentVersion }}</span>
+        <span class="block-version">{{fgcData.strings.version}}: {{ currentVersion }}</span>
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
@@ -97,6 +97,7 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = false
+          this.decrementInstalls(this.block.packageName)
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
           console.log('Block uninstalled ', res.data)  
@@ -133,6 +134,18 @@ Vue.component('block-card', {
     incrementInstalls(packageName) {
       jQuery.ajax({
         type: 'PUT',
+        url: `https://api.gutenbergcloud.org/blocks/${packageName}`
+      })
+        .done(() => {
+          console.log('Installation counter increased ')  
+        })
+        .fail(error => {
+          console.log('Some errors occured white increasing number of installs: ', error)
+        })
+    },
+    decrementInstalls(packageName) {
+      jQuery.ajax({
+        type: 'DELETE',
         url: `https://api.gutenbergcloud.org/blocks/${packageName}`
       })
         .done(() => {
