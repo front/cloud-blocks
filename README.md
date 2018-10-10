@@ -17,6 +17,30 @@ Why Gutenberg Cloud? Installing an actual plugin/module for each block or block 
 ### Installation
 Install it just like any other plugin. It just works!
 
+### Available hooks
+
+`gitenberg_cloud_disable_style`
+
+Disable blocks styling for single block:
+
+```php
+add_filter( 'gitenberg_cloud_disable_style', 'disable_custom_blocks_styles');
+function disable_custom_blocks_styles( $block ) {
+	if ( $block->package_name == '@frontkom/g-content-in-columns') {
+		return true;
+	}
+}
+```
+
+Or disable for all custom blocks:
+
+```php
+add_filter( 'gitenberg_cloud_disable_style', 'disable_custom_blocks_styles');
+function disable_custom_blocks_styles( $block ) {
+	return true;
+}
+```
+
 ### Frequently Asked Questions
 **How do I add my own custom blocks to Gutenberg Cloud?**
 Gutenberg Cloud blocks are really just normal Gutenberg blocks. They have a screenshot and some other meta, but follows the official standards. See https://gutenbergcloud.org/ for more information.
