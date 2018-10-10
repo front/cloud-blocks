@@ -207,8 +207,15 @@ class Blocks {
   public function blocks_register_styles() {
     $blocks = Options::get_all();
     foreach ($blocks as $block) {
-      wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
-      wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
+      /**
+       * Use this filter in your functions.php or custom plugin 
+       * to enable/disable styling per individual block or for all of them.
+       */
+      $disable_style = apply_filters( 'gitenberg_cloud_disable_style', $block );
+      if ( !$disable_style ) {
+        wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
+        wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
+      }
     }
   }
 }
