@@ -192,6 +192,9 @@ class Blocks {
       }
       if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
         wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), FGC_VERSION);
+        if ( isset( $editor_style ) && !empty( $editor_style ) && is_admin() ) {
+          wp_enqueue_style( $block_name[0] . '-editor', '/' . $editor_style[0], array(), FGC_VERSION);
+        }
       }
     }
   }
