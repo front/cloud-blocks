@@ -190,7 +190,7 @@ class Blocks {
       if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) && isset( $block_script ) && !empty( $block_script ) ) {
         wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-blocks', 'wp-element', 'wp-i18n' ), FGC_VERSION, true);
       }
-      if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
+      if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) && isset( $block_style ) && !empty( $block_style ) ) {
         wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), FGC_VERSION);
         if ( isset( $editor_style ) && !empty( $editor_style ) && is_admin() ) {
           wp_enqueue_style( $block_name[0] . '-editor', '/' . $editor_style[0], array(), FGC_VERSION);
