@@ -211,7 +211,7 @@ class Blocks {
        * Use this filter in your functions.php or custom plugin 
        * to enable/disable styling per individual block or for all of them.
        */
-      $disable_style = apply_filters( 'gitenberg_cloud_disable_style', $block );
+      $disable_style = apply_filters( 'gitenberg_cloud_disable_style', false, $block );
       if ( !$disable_style ) {
         wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
         wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
