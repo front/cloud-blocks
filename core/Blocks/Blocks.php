@@ -179,6 +179,9 @@ class Blocks {
         if ( preg_match('/style.css$/i', $file) ) {
           preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_style );
         }
+        if ( preg_match('/editor.css$/i', $file) ) {
+          preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $editor_style );
+        }
         if ( preg_match('/index.js$/i', $file) ) {
           preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
         }
