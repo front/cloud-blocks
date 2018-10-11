@@ -187,7 +187,7 @@ class Blocks {
         }
       }
       global $pagenow;
-      if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) {
+      if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) && isset( $block_script ) && !empty( $block_script ) ) {
         wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-blocks', 'wp-element', 'wp-i18n' ), FGC_VERSION, true);
       }
       if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
