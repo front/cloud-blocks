@@ -37,8 +37,8 @@ class Explore {
    */
   public static function add_menu() {
     add_menu_page( 
-      esc_html__( self::$page_title, 'gutenberg-cloud' ),
-      esc_html__( self::$page_title, 'gutenberg-cloud' ),
+      esc_html__( self::$page_title, 'cloud-blocks' ),
+      esc_html__( self::$page_title, 'cloud-blocks' ),
       'manage_options',
       self::$menu_slug,
       array( __class__, 'cloud_explorer' ),
@@ -57,7 +57,7 @@ class Explore {
   public static function cloud_explorer() {
     ?>
     <div class="wrap" id="blockExplorer">
-      <h1><?php esc_html_e( self::$page_title, 'gutenberg-cloud' ); ?></h1>
+      <h1><?php esc_html_e( self::$page_title, 'cloud-blocks' ); ?></h1>
       <admin-notice></admin-notice>
       <explorer-filter></explorer-filter>
       

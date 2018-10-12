@@ -191,7 +191,7 @@ class Tools {
    * @return
    */
   public static function settings_page() {
-    Container::make( __( 'Tools', 'gutenberg-cloud' ), 'gutenberg-cloud-tools')
+    Container::make( __( 'Tools', 'cloud-blocks' ), 'gutenberg-cloud-tools')
         ->set_parent( self::$menu_slug )
         ->plain_page()
         ->add_fields(array( __CLASS__, 'settings_page_output') );
@@ -205,7 +205,7 @@ class Tools {
    * @return
    */
   public static function settings_page_output() {
-    Fields::add('header', null, __( 'Gutenberg cloud configurations', 'gutenberg-cloud' ));
+    Fields::add('header', null, __( 'Gutenberg cloud configurations', 'cloud-blocks' ));
     Fields::add('html', 'export_installed_blocks', null, self::export_fields_html() );
   }
 
@@ -216,12 +216,12 @@ class Tools {
         <div id="normal-sortables" class="meta-box-sortables">
           <!-- Export section - Start -->
           <div class="postbox ">
-            <h2 class="hndle"><span><?php _e( 'Export installed blocks', 'gutenberg-cloud' ); ?></span></h2>
+            <h2 class="hndle"><span><?php _e( 'Export installed blocks', 'cloud-blocks' ); ?></span></h2>
             <div class="inside">
               <form method="post">
-                <p><?php _e( 'Here you can export all installed Gutenberg custom blocks from Gutenberg Cloud as a json file and import it elsewhere.', 'gutenberg-cloud' ); ?></p>
+                <p><?php _e( 'Here you can export all installed Gutenberg custom blocks from Gutenberg Cloud as a json file and import it elsewhere.', 'cloud-blocks' ); ?></p>
                 <p class="fgc-submit">
-                  <button type="submit" name="action" class="button button-primary" value="download-json"><?php _e( 'Export file', 'gutenberg-cloud' ); ?></button>
+                  <button type="submit" name="action" class="button button-primary" value="download-json"><?php _e( 'Export file', 'cloud-blocks' ); ?></button>
                 </p>
                 <?php wp_nonce_field( 'fgc_nonce_check' ); ?>
               </form>
@@ -230,14 +230,14 @@ class Tools {
           <!-- Export section - End -->
           <!-- Import section - Start -->
           <div class="postbox">
-            <h2 class="hndle"><span><?php _e( 'Import custom blocks', 'gutenberg-cloud' ); ?></span></h2>
+            <h2 class="hndle"><span><?php _e( 'Import custom blocks', 'cloud-blocks' ); ?></span></h2>
             <div class="inside">
               <form method="post" enctype="multipart/form-data">
-                <p><?php _e( 'Choose the JSON file you want to import.', 'gutenberg-cloud' ); ?></p>
+                <p><?php _e( 'Choose the JSON file you want to import.', 'cloud-blocks' ); ?></p>
                 <div class="fgc-fields">
                   <div class="fgc-field" data-type="file">
                     <div class="fgc-label">
-                      <label for="fgc_import_file"><?php _e( 'Choose the file', 'gutenberg-cloud' ); ?></label>
+                      <label for="fgc_import_file"><?php _e( 'Choose the file', 'cloud-blocks' ); ?></label>
                     </div>
                     <div class="fgc-input">
                       <label class="fgc-basic-uploader">
@@ -248,7 +248,7 @@ class Tools {
                 </div>
 
                 <p class="fgc-submit">
-                  <button type="submit" name="action" class="button button-primary" value="import-json"><?php _e( 'Import file', 'gutenberg-cloud' ); ?></button>
+                  <button type="submit" name="action" class="button button-primary" value="import-json"><?php _e( 'Import file', 'cloud-blocks' ); ?></button>
                 </p>
                 <?php wp_nonce_field( 'fgc_nonce_check' ); ?>
               </form>

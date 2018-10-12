@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Gutenberg Cloud
+Plugin Name: Cloud Blocks
 Version: 1.0.0
 Description: Your library of Gutenberg blocks in the cloud
 Author: Frontkom - Fouad Yousefi
@@ -25,7 +25,7 @@ if ( ! defined( 'FGC_BASE' ) ) {
 }
 // Plugin name.
 if ( ! defined( 'FGC_NAME' ) ) {
-	define( 'FGC_NAME', 'gutenberg-cloud' );
+	define( 'FGC_NAME', 'cloud-blocks' );
 }
 // Plugin version .
 if ( ! defined( 'FGC_VERSION' ) ) {
@@ -38,7 +38,7 @@ require_once  __DIR__ . '/vendor/autoload.php';
 // Register text-domain for translations
 add_action( 'plugins_loaded', 'fgc_register_textdomain' );
 function fgc_register_textdomain() {
-	load_plugin_textdomain( 'gutenberg-cloud', false, basename( dirname( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'cloud-blocks', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }
 
 // Register activation hook

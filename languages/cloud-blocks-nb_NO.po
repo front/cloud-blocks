@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Gutenberg Cloud\n"
-"POT-Creation-Date: 2018-10-08 13:37+0200\n"
-"PO-Revision-Date: 2018-10-08 13:37+0200\n"
+"Project-Id-Version: Cloud Blocks\n"
+"POT-Creation-Date: 2018-10-12 13:29+0200\n"
+"PO-Revision-Date: 2018-10-12 13:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: gutenberg-cloud.php\n"
+"X-Poedit-WPHeader: cloud-blocks.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
@@ -160,8 +160,8 @@ msgid "Actions"
 msgstr "Aksjoner"
 
 #. Plugin Name of the plugin/theme
-msgid "Gutenberg Cloud"
-msgstr "Gutenberg Cloud"
+msgid "Cloud Blocks"
+msgstr "Cloud Blocks"
 
 #. Description of the plugin/theme
 msgid "Your library of Gutenberg blocks in the cloud"
@@ -174,6 +174,9 @@ msgstr "Frontkom - Foad Yousefi"
 #. Author URI of the plugin/theme
 msgid "https://frontkom.no"
 msgstr "https://frontkom.no"
+
+#~ msgid "Gutenberg Cloud"
+#~ msgstr "Gutenberg Cloud"
 
 #~ msgid "Settings"
 #~ msgstr "Innstillinger"
