@@ -1,4 +1,4 @@
-=== Gutenberg Cloud ===
+=== Cloud Blocks ===
 Contributors: frontkom
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder

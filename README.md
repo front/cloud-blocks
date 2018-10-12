@@ -1,4 +1,4 @@
-# Gutenberg Cloud
+# Cloud Blocks
 
 Your online library of Gutenberg blocks! Browse and discover new blocks, and install with a click.
 
