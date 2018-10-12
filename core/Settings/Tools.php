@@ -1,10 +1,10 @@
 <?php
 
-namespace GutenbergCloud\Settings;
+namespace CloudBlocks\Settings;
 
 use SevenFields\Fields\Fields;
 use SevenFields\Container\Container;
-use GutenbergCloud\Blocks\Options;
+use CloudBlocks\Blocks\Options;
 
 /**
  * Settings class.

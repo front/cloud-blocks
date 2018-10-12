@@ -1,6 +1,6 @@
 <?php 
 
-namespace GutenbergCloud;
+namespace CloudBlocks;
 
 /**
  * Activate Class.

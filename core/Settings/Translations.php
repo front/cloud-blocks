@@ -1,6 +1,6 @@
 <?php
 
-namespace GutenbergCloud\Settings;
+namespace CloudBlocks\Settings;
 
 // Contain translatable strings to be used in javascript files
 

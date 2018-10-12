@@ -11,9 +11,9 @@ class ComposerStaticInit2948bd210a8be025dfcec89b6ee15fb8
         array (
             'SevenFields\\' => 12,
         ),
-        'G' => 
+        'C' => 
         array (
-            'GutenbergCloud\\' => 15,
+            'CloudBlocks\\' => 12,
         ),
     );
 
@@ -22,20 +22,20 @@ class ComposerStaticInit2948bd210a8be025dfcec89b6ee15fb8
         array (
             0 => __DIR__ . '/..' . '/foadyousefi/seven-fields/src',
         ),
-        'GutenbergCloud\\' => 
+        'CloudBlocks\\' => 
         array (
             0 => __DIR__ . '/../..' . '/core',
         ),
     );
 
     public static $classMap = array (
-        'GutenbergCloud\\Activator' => __DIR__ . '/../..' . '/core/Activator.php',
-        'GutenbergCloud\\Blocks\\Blocks' => __DIR__ . '/../..' . '/core/Blocks/Blocks.php',
-        'GutenbergCloud\\Blocks\\Explore' => __DIR__ . '/../..' . '/core/Blocks/Explore.php',
-        'GutenbergCloud\\Blocks\\Options' => __DIR__ . '/../..' . '/core/Blocks/Options.php',
-        'GutenbergCloud\\GutenbergCloud' => __DIR__ . '/../..' . '/core/GutenbergCloud.php',
-        'GutenbergCloud\\Settings\\Tools' => __DIR__ . '/../..' . '/core/Settings/Tools.php',
-        'GutenbergCloud\\Settings\\Translations' => __DIR__ . '/../..' . '/core/Settings/Translations.php',
+        'CloudBlocks\\Activator' => __DIR__ . '/../..' . '/core/Activator.php',
+        'CloudBlocks\\Blocks\\Blocks' => __DIR__ . '/../..' . '/core/Blocks/Blocks.php',
+        'CloudBlocks\\Blocks\\Explore' => __DIR__ . '/../..' . '/core/Blocks/Explore.php',
+        'CloudBlocks\\Blocks\\Options' => __DIR__ . '/../..' . '/core/Blocks/Options.php',
+        'CloudBlocks\\CloudBlocks' => __DIR__ . '/../..' . '/core/CloudBlocks.php',
+        'CloudBlocks\\Settings\\Tools' => __DIR__ . '/../..' . '/core/Settings/Tools.php',
+        'CloudBlocks\\Settings\\Translations' => __DIR__ . '/../..' . '/core/Settings/Translations.php',
         'SevenFields\\Bootstrap\\Bootstrap' => __DIR__ . '/..' . '/foadyousefi/seven-fields/src/Bootstrap/Bootstrap.php',
         'SevenFields\\Container\\Container' => __DIR__ . '/..' . '/foadyousefi/seven-fields/src/Container/Container.php',
         'SevenFields\\Fields\\Checkbox' => __DIR__ . '/..' . '/foadyousefi/seven-fields/src/Fields/Checkbox.php',

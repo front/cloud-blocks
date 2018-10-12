@@ -1,6 +1,6 @@
 <?php 
 
-namespace GutenbergCloud\Blocks;
+namespace CloudBlocks\Blocks;
 
 /**
  * Options class.

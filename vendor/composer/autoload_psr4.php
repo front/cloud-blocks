@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'SevenFields\\' => array($vendorDir . '/foadyousefi/seven-fields/src'),
-    'GutenbergCloud\\' => array($baseDir . '/core'),
+    'CloudBlocks\\' => array($baseDir . '/core'),
 );

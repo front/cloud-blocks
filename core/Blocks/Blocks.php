@@ -1,8 +1,8 @@
 <?php
 
-namespace GutenbergCloud\Blocks;
+namespace CloudBlocks\Blocks;
 
-use GutenbergCloud\Blocks\Options;
+use CloudBlocks\Blocks\Options;
 
 class Blocks {
 

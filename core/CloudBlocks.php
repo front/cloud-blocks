@@ -1,20 +1,20 @@
 <?php
 
-namespace GutenbergCloud;
+namespace CloudBlocks;
 
-use GutenbergCloud\Blocks\Blocks;
-use GutenbergCloud\Blocks\Explore;
-use GutenbergCloud\Blocks\Options;
-use GutenbergCloud\Settings\Tools;
-use GutenbergCloud\Settings\Translations;
+use CloudBlocks\Blocks\Blocks;
+use CloudBlocks\Blocks\Explore;
+use CloudBlocks\Blocks\Options;
+use CloudBlocks\Settings\Tools;
+use CloudBlocks\Settings\Translations;
 
 /**
- * GutenbergCloud Class.
+ * CloudBlocks Class.
  *
  * This is main class called to initiate all functionalities this plugin provides.
  *
  */
-class GutenbergCloud {
+class CloudBlocks {
 
   public function __construct() {
     global $pagenow;

@@ -15,7 +15,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "GutenbergCloud\\": "core/"
+            "CloudBlocks\\": "core/"
         }
     },
     "minimum-stability": "dev",
