@@ -7,9 +7,6 @@ use CloudBlocks\Blocks\Options;
 class Blocks {
 
   public function __construct() {
-    // add_action( 'admin_enqueue_scripts', array( $this, 'theme_register_scripts' ) );
-    // add_action( 'admin_enqueue_scripts', array( $this, 'theme_register_styles' ) );
-    // add_action( 'wp_enqueue_scripts', array( $this, 'theme_register_styles' ) );
     add_action( 'admin_enqueue_scripts', array( $this, 'blocks_register_scripts' ) );
     add_action( 'admin_enqueue_scripts', array( $this, 'blocks_register_styles' ) );
     add_action( 'wp_enqueue_scripts', array( $this, 'blocks_register_styles' ) );
