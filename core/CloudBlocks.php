@@ -3,6 +3,7 @@
 namespace CloudBlocks;
 
 use CloudBlocks\Blocks\Blocks;
+use CloudBlocks\Activator;
 use CloudBlocks\Blocks\Explore;
 use CloudBlocks\Blocks\Options;
 use CloudBlocks\Settings\Tools;
@@ -27,6 +28,9 @@ class CloudBlocks {
     Explore::init();
     // Initiate Plugin options page.
     Tools::init();
+
+    // check for available db structure update
+    add_action( 'init', array( 'CloudBlocks\Activator', 'update_db' ) );
   }
 
   /**
