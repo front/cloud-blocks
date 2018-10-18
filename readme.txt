@@ -1,11 +1,11 @@
 === Cloud Blocks ===
-Contributors: frontkom
+Contributors: frontkom, foadyousefi
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder
-Requires at least: 4.0
-Tested up to: 4.9
+Requires at least: 4.9.8
+Tested up to: 4.9.8
 Requires PHP: 5
-Stable tag: trunk
+Stable tag: 1.0.0
 License: GNU GPL
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
