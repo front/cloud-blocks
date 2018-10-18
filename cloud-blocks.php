@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Cloud Blocks
-Version: 1.0.0
+Version: 1.0.1
 Description: Your library of Gutenberg blocks in the cloud
 Author: Frontkom - Fouad Yousefi
 Author URI: https://frontkom.no

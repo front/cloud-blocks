@@ -5,7 +5,7 @@ Tags: gutenberg, pagebuilder
 Requires at least: 4.9.8
 Tested up to: 4.9.8
 Requires PHP: 5
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GNU GPL
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -31,6 +31,11 @@ How do I add my own custom blocks to Gutenberg Cloud?
 Gutenberg Cloud blocks are really just normal Gutenberg blocks. They have a screenshot and some other meta, but follows the official standards. See https://gutenbergcloud.org/ for more information.
 
 == Changelog ==
+
+
+= 1.0.1 =
+* Fix: is_plugin_active() undefined fix
+* Fix: Change strings functions to static
 
 = 1.0.0 =
 * Initial plugin

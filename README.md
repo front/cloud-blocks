@@ -48,5 +48,10 @@ Gutenberg Cloud blocks are really just normal Gutenberg blocks. They have a scre
 
 ### Changelog
 
+
+##### 1.0.1
+* Fix: is_plugin_active() undefined fix
+* Fix: Change strings functions to static
+
 ##### 1.0.0
 * Initial plugin
