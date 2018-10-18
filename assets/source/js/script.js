@@ -2,7 +2,8 @@ var store = new Vuex.Store({
   state: {
     notification: {},
     browsState: null,
-    installedBlocks: fgcData.installedBlocks
+    installedBlocks: fgcData.installedBlocks,
+    searchQuery: null
   },
   mutations: {
     setNotification(state, payload) {
@@ -13,6 +14,9 @@ var store = new Vuex.Store({
     },
     setInstalledBlocks(state, payload) {
       state.installedBlocks = payload
+    },
+    setSearchQuery(state, payload) {
+      state.searchQuery = payload
     }
   },
   actions: {
@@ -47,14 +51,33 @@ var app = new Vue({
   },
   mounted() {
     const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
-    this.getBlocks(currentBrowsState)
+    const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
+    let query = {
+      state: currentBrowsState,
+      q
+    }
+    this.getBlocks(query)
     window.store.commit('setBrowsState', currentBrowsState)
     window.addEventListener('popstate', this.fetchBlocks)
   },
   watch: {
     currentBrowsFilter(newState) {
+      const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
       window.store.dispatch('getInstalledBlocks')
-      this.getBlocks(newState)
+      let query = {
+        state: newState,
+        q
+      }
+      this.getBlocks(query)
+    },
+    currentSearchQuery(q) {
+      const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
+      window.store.dispatch('getInstalledBlocks')
+      let query = {
+        state: currentBrowsState,
+        q
+      }
+      this.getBlocks(query)
     },
     installedBlocks(newBlocksList, oldBlocksList) {
       const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
@@ -71,9 +94,13 @@ var app = new Vue({
       }
       this.getBlocks(state)
     },
-    getBlocks(brows) {
+    getBlocks(query) {
       let blocks = []
-      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+      let queryString = ''
+      if (query.q !== null) {
+        queryString = `q=${query.q}`
+      }
+      jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
         res.rows.map(block => {
           const theBlock = {}
           theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
@@ -83,7 +110,7 @@ var app = new Vue({
           theBlock.name = block.config.name
           theBlock.version = block.version
           theBlock.packageName = block.name
-          if (brows == null || brows == 'installed') {
+          if (query.state == null || query.state == 'installed') {
             if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
               blocks.push(theBlock)
             }
@@ -107,6 +134,9 @@ var app = new Vue({
   computed: {
     currentBrowsFilter() {
       return window.store.state.browsState
+    },
+    currentSearchQuery() {
+      return window.store.state.searchQuery
     },
     installedBlocks() {
       return window.store.state.installedBlocks

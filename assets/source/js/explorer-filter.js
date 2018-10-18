@@ -3,6 +3,7 @@ Vue.component('explorer-filter', {
   data() {
     return {
       drawerFilterOpen: false,
+      searchQuery: null,
       filterLinks: [
         {
           name: fgcData.strings.installed,
@@ -15,10 +16,6 @@ Vue.component('explorer-filter', {
         {
           name: fgcData.strings.latest,
           slug: 'latest'
-        },
-        {
-          name: fgcData.strings.most_used,
-          slug: 'mostused'
         }
       ]
     }
@@ -33,9 +30,9 @@ Vue.component('explorer-filter', {
         <li><a v-for="filter in filterLinks" :key="filter.slug" @click="filterLink(filter.slug)" :class="currentFilter(filter.slug)">{{ filter.name }}</a></li>
       </ul>
 
-      <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">{{fgcData.strings.filter}}</button>
+      <button type="button" v-if="false" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">{{fgcData.strings.filter}}</button>
 
-      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">{{fgcData.strings.search_for_blocks}}</label><input :placeholder="fgcData.strings.search_blocks" type="search" id="wp-filter-search-input" class="wp-filter-search"></form>
+      <form class="search-form" @submit.prevent="searchForBlock"><label class="screen-reader-text" for="wp-filter-search-input">{{fgcData.strings.search_for_blocks}}</label><input :placeholder="fgcData.strings.search_blocks" v-model="searchQuery" type="search" id="wp-filter-search-input" class="wp-filter-search"></form>
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>
@@ -50,6 +47,12 @@ Vue.component('explorer-filter', {
     },
     currentFilter(filter) {
       return window.store.state.browsState == filter ? 'current' : ''
+    },
+    searchForBlock() {
+      let currentState = window.location.search.replace(/\&q[=a-z\-]*/, '')
+      let query = this.searchQuery.replace(/\s+/g, '-').toLowerCase()
+      history.pushState({state: query}, null, `${currentState}&q=${query}`)
+      window.store.commit('setSearchQuery', query)
     }
   },
   computed: {

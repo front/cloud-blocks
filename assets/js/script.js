@@ -213,6 +213,7 @@ Vue.component('explorer-filter', {
   data() {
     return {
       drawerFilterOpen: false,
+      searchQuery: null,
       filterLinks: [
         {
           name: fgcData.strings.installed,
@@ -225,10 +226,6 @@ Vue.component('explorer-filter', {
         {
           name: fgcData.strings.latest,
           slug: 'latest'
-        },
-        {
-          name: fgcData.strings.most_used,
-          slug: 'mostused'
         }
       ]
     }
@@ -243,9 +240,9 @@ Vue.component('explorer-filter', {
         <li><a v-for="filter in filterLinks" :key="filter.slug" @click="filterLink(filter.slug)" :class="currentFilter(filter.slug)">{{ filter.name }}</a></li>
       </ul>
 
-      <button type="button" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">{{fgcData.strings.filter}}</button>
+      <button type="button" v-if="false" id="searchFilter" class="button drawer-toggle" :aria-expanded="drawerFilterOpen" @click="drawerFilterOpen = !drawerFilterOpen">{{fgcData.strings.filter}}</button>
 
-      <form class="search-form"><label class="screen-reader-text" for="wp-filter-search-input">{{fgcData.strings.search_for_blocks}}</label><input :placeholder="fgcData.strings.search_blocks" type="search" id="wp-filter-search-input" class="wp-filter-search"></form>
+      <form class="search-form" @submit.prevent="searchForBlock"><label class="screen-reader-text" for="wp-filter-search-input">{{fgcData.strings.search_for_blocks}}</label><input :placeholder="fgcData.strings.search_blocks" v-model="searchQuery" type="search" id="wp-filter-search-input" class="wp-filter-search"></form>
 
       <filter-drawer :style="{display: drawerFilterOpen ? 'block' : 'none'}"></filter-drawer>
     </div>
@@ -260,6 +257,12 @@ Vue.component('explorer-filter', {
     },
     currentFilter(filter) {
       return window.store.state.browsState == filter ? 'current' : ''
+    },
+    searchForBlock() {
+      let currentState = window.location.search.replace(/\&q[=a-z\-]*/, '')
+      let query = this.searchQuery.replace(/\s+/g, '-').toLowerCase()
+      history.pushState({state: query}, null, `${currentState}&q=${query}`)
+      window.store.commit('setSearchQuery', query)
     }
   },
   computed: {
@@ -327,7 +330,8 @@ var store = new Vuex.Store({
   state: {
     notification: {},
     browsState: null,
-    installedBlocks: fgcData.installedBlocks
+    installedBlocks: fgcData.installedBlocks,
+    searchQuery: null
   },
   mutations: {
     setNotification(state, payload) {
@@ -338,6 +342,9 @@ var store = new Vuex.Store({
     },
     setInstalledBlocks(state, payload) {
       state.installedBlocks = payload
+    },
+    setSearchQuery(state, payload) {
+      state.searchQuery = payload
     }
   },
   actions: {
@@ -372,14 +379,33 @@ var app = new Vue({
   },
   mounted() {
     const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
-    this.getBlocks(currentBrowsState)
+    const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
+    let query = {
+      state: currentBrowsState,
+      q
+    }
+    this.getBlocks(query)
     window.store.commit('setBrowsState', currentBrowsState)
     window.addEventListener('popstate', this.fetchBlocks)
   },
   watch: {
     currentBrowsFilter(newState) {
+      const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
       window.store.dispatch('getInstalledBlocks')
-      this.getBlocks(newState)
+      let query = {
+        state: newState,
+        q
+      }
+      this.getBlocks(query)
+    },
+    currentSearchQuery(q) {
+      const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
+      window.store.dispatch('getInstalledBlocks')
+      let query = {
+        state: currentBrowsState,
+        q
+      }
+      this.getBlocks(query)
     },
     installedBlocks(newBlocksList, oldBlocksList) {
       const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
@@ -396,9 +422,13 @@ var app = new Vue({
       }
       this.getBlocks(state)
     },
-    getBlocks(brows) {
+    getBlocks(query) {
       let blocks = []
-      jQuery.get('https://api.gutenbergcloud.org/blocks', (res) => {
+      let queryString = ''
+      if (query.q !== null) {
+        queryString = `q=${query.q}`
+      }
+      jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
         res.rows.map(block => {
           const theBlock = {}
           theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
@@ -408,7 +438,7 @@ var app = new Vue({
           theBlock.name = block.config.name
           theBlock.version = block.version
           theBlock.packageName = block.name
-          if (brows == null || brows == 'installed') {
+          if (query.state == null || query.state == 'installed') {
             if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
               blocks.push(theBlock)
             }
@@ -432,6 +462,9 @@ var app = new Vue({
   computed: {
     currentBrowsFilter() {
       return window.store.state.browsState
+    },
+    currentSearchQuery() {
+      return window.store.state.searchQuery
     },
     installedBlocks() {
       return window.store.state.installedBlocks
