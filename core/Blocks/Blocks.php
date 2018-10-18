@@ -224,6 +224,11 @@ class Blocks {
       if ( !$disable_style ) {
         wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
         wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
+        
+        if (is_admin() && isset( $block->editor_css ) && !empty( $block->editor_css ) ) {
+          wp_register_style( str_replace( ' ', '-', $block->block_name ) . '-editor' , $block->editor_css, array(), $block->block_version);
+          wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) . '-editor' );
+        }
       }
     }
   }
