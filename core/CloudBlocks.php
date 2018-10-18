@@ -18,6 +18,39 @@ use CloudBlocks\Settings\Translations;
 class CloudBlocks {
 
   public function __construct() {
+    if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+      $this->init();
+    } else {
+      add_action( 'admin_notices', array( $this, 'gutenberg_inactive_notice' ) );
+    }
+  }
+
+  /**
+  * Show admin notice if Gutenberg is not active.
+  * @since 1.0.0
+  * @param
+  * @return
+  */
+  public function gutenberg_inactive_notice() {
+    ?>
+      <div class="notice notice-error">
+        <p>
+          <strong>
+            <?php _e( 'Gutenberg is not enabled. Please try again after enabling.', 'cloud-blocks' ); ?>
+          </strong>
+        </p>
+      </div>
+    <?php
+  }
+
+  /**
+  * Initiate plugin.
+  * We will initiate plugin only if gutenberg plugin is active.
+  * @since 1.0.0
+  * @param
+  * @return
+  */
+  public function init() {
     global $pagenow;
     if ( ( $pagenow == 'admin.php' ) && ( $_GET['page'] == FGC_NAME || $_GET['page'] == 'gutenberg-cloud-tools' ) ) {
       add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
