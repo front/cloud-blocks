@@ -56,12 +56,13 @@ class Blocks {
         'package_name'    => isset( $block['packageName'] ) ? $block['packageName'] : '',
         'js_url'          => isset( $block['jsUrl'] ) ? $block['jsUrl'] : '',
         'css_url'         => isset( $block['cssUrl'] ) ? $block['cssUrl'] : '',
+        'editor_css'      => isset( $block['editorCss'] ) ? $block['editorCss'] : '',
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
       );
       Options::add( $new_block, true );
-
+      update_option( 'gutenberg_cloud_install_block', $new_block);
       $response = array(
         'code'      => 200,
         'message'   => 'Succesfully installed.'
@@ -118,6 +119,7 @@ class Blocks {
         'package_name'    => isset( $block['packageName'] ) ? $block['packageName'] : '',
         'js_url'          => isset( $block['jsUrl'] ) ? $block['jsUrl'] : '',
         'css_url'         => isset( $block['cssUrl'] ) ? $block['cssUrl'] : '',
+        'editor_css'      => isset( $block['editorCss'] ) ? $block['editorCss'] : '',
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : ''

@@ -62,6 +62,7 @@ Vue.component('block-card', {
     installBlock() {
       this.installing = true
       let postData = this.block
+      console.log(postData)
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
@@ -149,7 +150,7 @@ Vue.component('block-card', {
         url: `https://api.gutenbergcloud.org/blocks/${packageName}`
       })
         .done(() => {
-          console.log('Installation counter increased ')  
+          console.log('Installation counter decreased ')  
         })
         .fail(error => {
           console.log('Some errors occured white increasing number of installs: ', error)

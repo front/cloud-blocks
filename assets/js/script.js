@@ -102,6 +102,7 @@ Vue.component('block-card', {
     installBlock() {
       this.installing = true
       let postData = this.block
+      console.log(postData)
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
@@ -189,7 +190,7 @@ Vue.component('block-card', {
         url: `https://api.gutenbergcloud.org/blocks/${packageName}`
       })
         .done(() => {
-          console.log('Installation counter increased ')  
+          console.log('Installation counter decreased ')  
         })
         .fail(error => {
           console.log('Some errors occured white increasing number of installs: ', error)
@@ -433,6 +434,7 @@ var app = new Vue({
           const theBlock = {}
           theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
           theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
           theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
           theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
           theBlock.name = block.config.name

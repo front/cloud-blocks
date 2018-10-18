@@ -24,6 +24,7 @@ class Options {
     $package_name = $options['package_name'];
     $js_url = $options['js_url'];
     $css_url = $options['css_url'];
+    $editor_css = $options['editor_css'];
     $info_url = $options['info_url'];
     $thumbnail = $options['thumbnail'];
     $block_version = $options['block_version'];
@@ -53,6 +54,7 @@ class Options {
           'package_name'    => $package_name,
           'js_url'          => $js_url,
           'css_url'         => $css_url,
+          'editor_css'      => $editor_css,
           'info_url'        => $info_url,
           'thumbnail'       => $thumbnail,
           'block_version'   => $block_version
@@ -78,6 +80,7 @@ class Options {
     $package_name = isset( $block['package_name'] ) ? $block['package_name'] : '';
     $js_url = isset( $block['js_url'] ) ? $block['js_url'] : '';
     $css_url = isset( $block['css_url'] ) ? $block['css_url'] : '';
+    $editor_css = isset( $block['editor_css'] ) ? $block['editor_css'] : '';
     $info_url = isset( $block['info_url'] ) ? $block['info_url'] : '';
     $thumbnail = isset( $block['thumbnail'] ) ? $block['thumbnail'] : '';
     $block_version = isset( $block['block_version'] ) ? $block['block_version'] : '';
@@ -97,6 +100,7 @@ class Options {
           'package_name'    => $package_name,
           'js_url'          => $js_url,
           'css_url'         => $css_url,
+          'editor_css'      => $editor_css,
           'info_url'        => $info_url,
           'thumbnail'       => $thumbnail,
           'block_version'   => $block_version
@@ -125,6 +129,7 @@ class Options {
     $package_name = $options['package_name'];
     $js_url = $options['js_url'];
     $css_url = $options['css_url'];
+    $editor_css = $options['editor_css'];
     $info_url = $options['info_url'];
     $thumbnail = $options['thumbnail'];
     $block_version = $options['block_version'];
@@ -138,6 +143,7 @@ class Options {
         'package_name'    => $package_name,
         'js_url'          => $js_url,
         'css_url'         => $css_url,
+        'editor_css'      => $editor_css,
         'info_url'        => $info_url,
         'thumbnail'       => $thumbnail,
         'block_version'   => $block_version

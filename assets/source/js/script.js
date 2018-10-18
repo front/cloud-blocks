@@ -105,6 +105,7 @@ var app = new Vue({
           const theBlock = {}
           theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
           theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
           theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
           theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
           theBlock.name = block.config.name

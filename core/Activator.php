@@ -79,7 +79,7 @@ class Activator {
         package_name varchar(150) NOT NULL UNIQUE,
         js_url varchar(255) DEFAULT '' NOT NULL,
         css_url varchar(255) DEFAULT '' NOT NULL,
-        editor_css varchar(255) DEFAULT '' NOT NULL,
+        editor_css varchar(255) DEFAULT '',
         info_url varchar(255) DEFAULT '' NOT NULL,
         thumbnail varchar(255) DEFAULT '' NOT NULL,
         block_version varchar(10) DEFAULT '' NOT NULL,
