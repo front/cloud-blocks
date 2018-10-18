@@ -31,7 +31,7 @@ Vue.component('block-card', {
           <button class="button button-primary theme-install install-block-btn"
               v-if="currentBrowsState != 'installed' && !alreadyInstaleld"
               @click.prevent="installBlock">
-              Install
+              {{fgcData.strings.install}}
           </button>
           <button class="button theme-install install-block-btn"
               v-else

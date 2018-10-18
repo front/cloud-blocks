@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-18 13:25+0200\n"
-"PO-Revision-Date: 2018-10-18 13:56+0200\n"
+"POT-Creation-Date: 2018-10-18 15:54+0200\n"
+"PO-Revision-Date: 2018-10-18 15:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: core/CloudBlocks.php:39
+#: core/CloudBlocks.php:40
 msgid "Gutenberg is not enabled. Please try again after enabling."
 msgstr ""
 "O Gutenberg não está activado. Por favor, tente novamente após activá-lo."
@@ -66,11 +66,11 @@ msgstr "Exportar blocos instalados"
 
 #: core/Settings/Tools.php:222
 msgid ""
-"Here you can export all installed Gutenberg custom blocks from Gutenberg "
-"Cloud as a json file and import it elsewhere."
+"Export all your installed blocks from Gutenberg Cloud as JSON. Note: The "
+"content will not be exported."
 msgstr ""
-"Aqui pode exportar todos os blocos personalizados instalados na Gutenberg "
-"Cloud num ficheiro JSON e importá-lo em outro lugar."
+"Exportar da Gutenberg Could todos os blocos instalados para um ficheiro "
+"JSON. Nota: o conteúdo não será exportado."
 
 #: core/Settings/Tools.php:224
 msgid "Export file"
@@ -101,62 +101,66 @@ msgid "Delete"
 msgstr "Excluir"
 
 #: core/Settings/Translations.php:20
+msgid "Install"
+msgstr "Instalar"
+
+#: core/Settings/Translations.php:21
 msgid "Installed"
 msgstr "Instalado"
 
-#: core/Settings/Translations.php:21
+#: core/Settings/Translations.php:22
 msgid "Popular"
 msgstr "Popular"
 
-#: core/Settings/Translations.php:22
+#: core/Settings/Translations.php:23
 msgid "Latest"
 msgstr "Mais recentes"
 
-#: core/Settings/Translations.php:23
+#: core/Settings/Translations.php:24
 msgid "Most used"
 msgstr "Mais utilizados"
 
-#: core/Settings/Translations.php:24
+#: core/Settings/Translations.php:25
 msgid "Search for blocks"
 msgstr "Procurar blocos"
 
-#: core/Settings/Translations.php:25
+#: core/Settings/Translations.php:26
 msgid "Search blocks..."
 msgstr "Pesquisar blocos…"
 
-#: core/Settings/Translations.php:26
+#: core/Settings/Translations.php:27
 msgid "Filter"
 msgstr "Filtro"
 
-#: core/Settings/Translations.php:27
+#: core/Settings/Translations.php:28
 msgid "Update now"
 msgstr "Atualizar agora"
 
-#: core/Settings/Translations.php:28
+#: core/Settings/Translations.php:29
 msgid "Show more details"
 msgstr "Mostrar mais detalhes"
 
-#: core/Settings/Translations.php:29
+#: core/Settings/Translations.php:30
 msgid "More details"
 msgstr "Mais detalhes"
 
-#: core/Settings/Translations.php:30
+#: core/Settings/Translations.php:31
 msgid "have been installed successfully."
 msgstr "foram instalados com sucesso."
 
-#: core/Settings/Translations.php:31
+#: core/Settings/Translations.php:32
 msgid "have been uninstalled successfully."
 msgstr "foram desinstalados com sucesso."
 
-#: core/Settings/Translations.php:32
+#: core/Settings/Translations.php:33
 msgid "have been updated successfully."
 msgstr "foram atualizados com sucesso."
 
-#: core/Settings/Translations.php:33
+#: core/Settings/Translations.php:34
 msgid "New version available."
 msgstr "Nova versão disponível."
 
-#: core/Settings/Translations.php:34
+#: core/Settings/Translations.php:35
 msgid "Version"
 msgstr "Versão"
 

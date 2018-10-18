@@ -219,7 +219,7 @@ class Tools {
             <h2 class="hndle"><span><?php _e( 'Export installed blocks', 'cloud-blocks' ); ?></span></h2>
             <div class="inside">
               <form method="post">
-                <p><?php _e( 'Here you can export all installed Gutenberg custom blocks from Gutenberg Cloud as a json file and import it elsewhere.', 'cloud-blocks' ); ?></p>
+                <p><?php _e( 'Export all your installed blocks from Gutenberg Cloud as JSON. Note: The content will not be exported.', 'cloud-blocks' ); ?></p>
                 <p class="fgc-submit">
                   <button type="submit" name="action" class="button button-primary" value="download-json"><?php _e( 'Export file', 'cloud-blocks' ); ?></button>
                 </p>

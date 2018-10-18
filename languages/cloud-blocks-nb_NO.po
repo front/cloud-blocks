@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-18 13:12+0200\n"
-"PO-Revision-Date: 2018-10-18 13:13+0200\n"
+"POT-Creation-Date: 2018-10-18 15:38+0200\n"
+"PO-Revision-Date: 2018-10-18 15:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: core/CloudBlocks.php:39
+#: core/CloudBlocks.php:40
 msgid "Gutenberg is not enabled. Please try again after enabling."
 msgstr "Gutenberg er ikke aktivert. Skru den på, og prøv igjen!"
 
@@ -65,11 +65,11 @@ msgstr "Eksporter installerte blokker"
 
 #: core/Settings/Tools.php:222
 msgid ""
-"Here you can export all installed Gutenberg custom blocks from Gutenberg "
-"Cloud as a json file and import it elsewhere."
+"Export all your installed blocks from Gutenberg Cloud as JSON. Note: The "
+"content will not be exported."
 msgstr ""
-"Her kan du eksportere alle installerte Gutenberg egendefinerte blokker fra "
-"Gutenberg Cloud som en JSON-fil og importere den et annet sted."
+"Klikk for å eksportere aktive blokker fra Gutenberg Cloud som JSON. OBS: "
+"Innholdet blir ikke eksportert."
 
 #: core/Settings/Tools.php:224
 msgid "Export file"
@@ -100,62 +100,66 @@ msgid "Delete"
 msgstr "Slett"
 
 #: core/Settings/Translations.php:20
+msgid "Install"
+msgstr "Aktiver"
+
+#: core/Settings/Translations.php:21
 msgid "Installed"
 msgstr "Installert"
 
-#: core/Settings/Translations.php:21
+#: core/Settings/Translations.php:22
 msgid "Popular"
 msgstr "Populær"
 
-#: core/Settings/Translations.php:22
+#: core/Settings/Translations.php:23
 msgid "Latest"
 msgstr "Nyeste"
 
-#: core/Settings/Translations.php:23
+#: core/Settings/Translations.php:24
 msgid "Most used"
 msgstr "Mest brukt"
 
-#: core/Settings/Translations.php:24
+#: core/Settings/Translations.php:25
 msgid "Search for blocks"
 msgstr "Søk etter blokker"
 
-#: core/Settings/Translations.php:25
+#: core/Settings/Translations.php:26
 msgid "Search blocks..."
 msgstr "Søk blokker..."
 
-#: core/Settings/Translations.php:26
+#: core/Settings/Translations.php:27
 msgid "Filter"
 msgstr "Filter"
 
-#: core/Settings/Translations.php:27
+#: core/Settings/Translations.php:28
 msgid "Update now"
 msgstr "Uppdater nå"
 
-#: core/Settings/Translations.php:28
+#: core/Settings/Translations.php:29
 msgid "Show more details"
 msgstr "Vis flere detaljer"
 
-#: core/Settings/Translations.php:29
+#: core/Settings/Translations.php:30
 msgid "More details"
 msgstr "Flere detaljer"
 
-#: core/Settings/Translations.php:30
+#: core/Settings/Translations.php:31
 msgid "have been installed successfully."
 msgstr "er installert."
 
-#: core/Settings/Translations.php:31
+#: core/Settings/Translations.php:32
 msgid "have been uninstalled successfully."
 msgstr "er avinstallert.."
 
-#: core/Settings/Translations.php:32
+#: core/Settings/Translations.php:33
 msgid "have been updated successfully."
 msgstr "er oppdatert."
 
-#: core/Settings/Translations.php:33
+#: core/Settings/Translations.php:34
 msgid "New version available."
 msgstr "Ny versjon tilgjengelig."
 
-#: core/Settings/Translations.php:34
+#: core/Settings/Translations.php:35
 msgid "Version"
 msgstr "Versjon"
 

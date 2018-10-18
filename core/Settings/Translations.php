@@ -17,6 +17,7 @@ class Translations {
     return array(
       'block'                   => __( 'Block', 'cloud-blocks' ),
       'delete'                  => __( 'Delete', 'cloud-blocks' ),
+      'install'                 => __( 'Install', 'cloud-blocks' ),
       'installed'               => __( 'Installed', 'cloud-blocks' ),
       'popular'                 => __( 'Popular', 'cloud-blocks' ),
       'latest'                  => __( 'Latest', 'cloud-blocks' ),
