@@ -13,7 +13,7 @@ class Translations {
    * @return array      Translatable strings
    * @since 1.0.0
    */
-  public function strings() {
+  public static function strings() {
     return array(
       'block'                   => __( 'Block', 'cloud-blocks' ),
       'delete'                  => __( 'Delete', 'cloud-blocks' ),
