@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
 "POT-Creation-Date: 2018-10-18 13:25+0200\n"
-"PO-Revision-Date: 2018-10-18 13:28+0200\n"
+"PO-Revision-Date: 2018-10-18 13:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -40,17 +40,17 @@ msgstr "Tipo de ficheiro incorreto"
 
 #: core/Settings/Tools.php:98
 msgid "Empty file imported"
-msgstr "Ficheiro vazio importado"
+msgstr "O ficheiro importado está vazio"
 
 #: core/Settings/Tools.php:106
 #, php-format
 msgid "Block <b>%s</b> already installed."
-msgstr "Bloco <b> %s </b> já está instalado."
+msgstr "O bloco <b> %s </b> já foi instalado."
 
 #: core/Settings/Tools.php:109
 #, php-format
 msgid "Block <b>%s</b> installed successfully."
-msgstr "Bloco <b> %s </b> instalado com êxito."
+msgstr "O bloco <b> %s </b> foi instalado com sucesso."
 
 #: core/Settings/Tools.php:194
 msgid "Tools"
@@ -58,7 +58,7 @@ msgstr "Ferramentas"
 
 #: core/Settings/Tools.php:208
 msgid "Gutenberg cloud configurations"
-msgstr "Configurações da nuvem de Gutenberg"
+msgstr "Configurações da Gutenberg cloud"
 
 #: core/Settings/Tools.php:219
 msgid "Export installed blocks"
@@ -69,9 +69,8 @@ msgid ""
 "Here you can export all installed Gutenberg custom blocks from Gutenberg "
 "Cloud as a json file and import it elsewhere."
 msgstr ""
-"Aqui você pode exportar todos os blocos personalizados Gutenberg "
-"instalados da nuvem de Gutenberg como um ficheiro JSON e importá-lo em "
-"outro lugar."
+"Aqui pode exportar todos os blocos personalizados instalados na Gutenberg "
+"Cloud num ficheiro JSON e importá-lo em outro lugar."
 
 #: core/Settings/Tools.php:224
 msgid "Export file"
@@ -83,7 +82,7 @@ msgstr "Importar blocos personalizados"
 
 #: core/Settings/Tools.php:236
 msgid "Choose the JSON file you want to import."
-msgstr "Escolha o ficheiro JSON que você deseja importar."
+msgstr "Escolha o ficheiro JSON que deseja importar."
 
 #: core/Settings/Tools.php:240
 msgid "Choose the file"
@@ -123,7 +122,7 @@ msgstr "Procurar blocos"
 
 #: core/Settings/Translations.php:25
 msgid "Search blocks..."
-msgstr "Blocos de busca..."
+msgstr "Pesquisar blocos…"
 
 #: core/Settings/Translations.php:26
 msgid "Filter"
@@ -143,11 +142,11 @@ msgstr "Mais detalhes"
 
 #: core/Settings/Translations.php:30
 msgid "have been installed successfully."
-msgstr "foram instalados com êxito."
+msgstr "foram instalados com sucesso."
 
 #: core/Settings/Translations.php:31
 msgid "have been uninstalled successfully."
-msgstr "foram desinstaladas com êxito."
+msgstr "foram desinstalados com sucesso."
 
 #: core/Settings/Translations.php:32
 msgid "have been updated successfully."
@@ -167,15 +166,15 @@ msgstr "Ações"
 
 #. Plugin Name of the plugin/theme
 msgid "Cloud Blocks"
-msgstr "Blocos da nuvem"
+msgstr "Cloud Blocks"
 
 #. Description of the plugin/theme
 msgid "Your library of Gutenberg blocks in the cloud"
-msgstr "Sua biblioteca de Gutenberg bloqueia na nuvem"
+msgstr "A sua biblioteca de blocos do Gutenberg na cloud"
 
 #. Author of the plugin/theme
 msgid "Frontkom - Fouad Yousefi"
-msgstr "Frontkom-Fuad Yousefi"
+msgstr "Frontkom-Foad Yousefi"
 
 #. Author URI of the plugin/theme
 msgid "https://frontkom.no"
