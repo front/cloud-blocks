@@ -16,6 +16,7 @@ class Translations {
   public static function strings() {
     return array(
       'block'                   => __( 'Block', 'cloud-blocks' ),
+      'the_block'               => __( 'The block', 'cloud-blocks' ),
       'delete'                  => __( 'Delete', 'cloud-blocks' ),
       'install'                 => __( 'Install', 'cloud-blocks' ),
       'installed'               => __( 'Installed', 'cloud-blocks' ),

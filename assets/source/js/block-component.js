@@ -76,7 +76,7 @@ Vue.component('block-card', {
           this.alreadyInstaleld = true
           this.incrementInstalls(this.block.packageName)
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
         })
         .fail(error => {
