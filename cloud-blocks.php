@@ -29,7 +29,7 @@ if ( ! defined( 'FGC_NAME' ) ) {
 }
 // Plugin version .
 if ( ! defined( 'FGC_VERSION' ) ) {
-	define( 'FGC_VERSION', '1.0.0' );
+	define( 'FGC_VERSION', '1.0.4' );
 }
 
 // Require autoload
