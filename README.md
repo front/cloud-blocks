@@ -9,7 +9,7 @@
 - Serve the blocks from a CDN
 
 ### Why use Gutenberg Cloud?
-Installing an actual plugin for each block or block collection easily leads to managing lots of code that you don’t really need. It’s like having one app for each website you visit, instead of just installing a web browser. With the block manager, you have a growing library at your fingertips, without the bloat. It’s like an app store for blocks – except it’s free.
+Installing an actual plugin for each block or block collection easily leads to managing lots of code that you don’t really need. It’s like having one app for each website you visit, instead of just installing a web browser. With the block manager, you have a growing library at your fingertips, without the bloat. 
 
 ### Get started
 Install the plugin, and look for the cloud icon in the main menu. Browse around and activate a few blocks. Voila – these are now available to you in the Gutenberg editor!
@@ -26,21 +26,23 @@ To install individual blocks, look for the cloud icon in the left side menu. Cli
 
 ## Frequently Asked Questions
 
-**How do I migrate a block collection plugin to Gutenberg Cloud?**
+### How do I migrate a block collection plugin to Gutenberg Cloud?
 Glad you asked! This simply means removing some PHP, adding some meta data and publishing on NPM. [Follow these simple steps](https://github.com/front/cloud-blocks/blob/master/docs/migrate-block.md).
 
-**How do I create a custom block for Gutenberg Cloud?**
+### How do I create a custom block for Gutenberg Cloud?
 Gutenberg Cloud blocks are really just normal Gutenberg blocks, without the PHP. [Follow these steps to do it](https://github.com/front/cloud-blocks/blob/master/docs/create-block.md)!
 
-**How do I disable CSS for a single block?**
+### How do I disable CSS for a single block?
 This is useful for letting your theme control your block styles. There’s a hook for this, [documented here](https://github.com/front/cloud-blocks/blob/master/docs/hooks.md).
 
-**Why is the plugin called Cloud Blocks?**
+### Why is the plugin called Cloud Blocks?
 We wanted to name it Gutenberg Cloud, but since it’s not possible to name a plugin starting with the name of another plugin (i.e. Gutenberg), we ended up calling it Cloud Blocks. Makes sense though, doesn’t it?
 
-A**re the blocks really served from the cloud?**
+### Are the blocks really served from "the cloud"?
 Indeed, they are! The source code for each block is on NPM, but the JS/CSS is served by a CDN. No local downloads!
 
+### Can I add private custom blocks?
+Sure! Just add your custom blocks into **wp-content/cloud-blocks/** folder.
 
 ## Available hooks
 
