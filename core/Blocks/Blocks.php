@@ -59,7 +59,7 @@ class Blocks {
         'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
       );
       Options::add( $new_block, true );
-      update_option( 'gutenberg_cloud_install_block', $new_block);
+
       $response = array(
         'code'      => 200,
         'message'   => 'Succesfully installed.'
@@ -217,7 +217,7 @@ class Blocks {
        * Use this filter in your functions.php or custom plugin 
        * to enable/disable styling per individual block or for all of them.
        */
-      $disable_style = apply_filters( 'gutenberg_cloud_disable_style', false, $block );
+      $disable_style = apply_filters( 'cloud_blocks_disable_style', false, $block );
       if ( !$disable_style ) {
         wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
         wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
