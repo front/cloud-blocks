@@ -47,6 +47,9 @@ Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. 
 
 ## Changelog
 
+#### 1.0.4
+* **Fix**: Fix translations variable name in javascript files
+
 #### 1.0.3
 * **Change**: Update readme
 * **Add**: More docs
