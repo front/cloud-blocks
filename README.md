@@ -45,32 +45,6 @@ Indeed, they are! The source code for each block is on NPM, but the JS/CSS is se
 Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [Here is how file structure must look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
-## Available hooks
-
-`gutenberg_cloud_disable_style`
-
-Disable blocks styling for single block:
-
-```php
-add_filter( 'gutenberg_cloud_disable_style', 'disable_custom_blocks_styles', 10, 2);
-function disable_custom_blocks_styles( $exclude, $block ) {
-	if ( $block->package_name == '@frontkom/g-content-in-columns') {
-		return true;
-	}
-	return false;
-}
-```
-
-Or disable for all custom blocks:
-
-```php
-add_filter( 'gutenberg_cloud_disable_style', 'disable_custom_blocks_styles', 10, 2);
-function disable_custom_blocks_styles( $exclude, $block ) {
-	return true;
-}
-```
-
-
 ## Changelog
 
 #### 1.0.2
