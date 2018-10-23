@@ -69,6 +69,7 @@ Sure! Just add your custom blocks into **wp-content/cloud-blocks/** folder.
 = 1.0.2 =
 * Change: Some translation fixes
 * Change: Better documentation and screenshot
+* Added: Italian translation. (Thanks to [cipo28](https://github.com/front/cloud-blocks/pull/1))
 
 = 1.0.1 =
 * Fix: is_plugin_active() undefined fix
