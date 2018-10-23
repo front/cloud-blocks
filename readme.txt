@@ -1,40 +1,74 @@
 === Cloud Blocks ===
 Contributors: frontkom, foadyousefi
 Author URI: https://frontkom.no
-Tags: gutenberg, pagebuilder
+Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
 Tested up to: 4.9.8
 Requires PHP: 5
-Stable tag: 1.0.1
-License: GNU GPL
-License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Stable tag: 1.0.2
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Your online library of Gutenberg blocks! Browse and discover new blocks, and install with a click.
 
 == Description ==
-No block collection plugins needed:
-This is the only plugin you need to browse and install new blocks.
+**Gutenberg Cloud: Your online library of blocks!** Cloud Blocks is the only plugin you need to browse and install new blocks:
 
-Reuse between platforms
-Gutenberg blocks can be used in both Wordpress and Drupal
+- Discover and install custom blocks with a click
+- Install only the blocks you need – no huge plugin collections needed
+- Reuse blocks between WordPress and Drupal
+- Serve the blocks from a CDN
 
-Code once, use everywhere: As Gutenberg blocks are CMS agnostic, we want to provide an ecosystem all systems can connect to.
+## Why use Gutenberg Cloud?
+Installing an actual plugin for each block or block collection easily leads to managing lots of code that you don’t really need. It’s like having one app for each website you visit, instead of just installing a web browser. With the block manager, you have a growing library at your fingertips, without the bloat. It’s like an app store for blocks – except it’s free.
 
-Why Gutenberg Cloud? Installing an actual plugin/module for each block or block collection easily leads to managing lots of code that you don’t really need. It’s like having one app for each website you visit, instead of just installing a browser. With the block manager, you have a growing library at your fingertips, without the bloat.
+## Get started
+Install the plugin, and look for the cloud icon in the main menu. Browse around and activate a few blocks. Voila – these are now available to you in the Gutenberg editor!
+
+## How it works under the hood
+Gutenberg Cloud is a service that fetches Open Source Gutenberg blocks hosted on NPM. The assets from these are served from CloudFlare using unpkg.com. The Cloud Blocks plugin provides an interface in WordPress for Gutenberg Cloud.
+
+Code once, use everywhere: Since the blocks are JS/CSS only, they are CMS agnostic. This means you can develop a block for a Drupal site, and reuse it later on a WordPress blog.
+
 
 == Installation ==
 Install it just like any other plugin. It just works!
 
-== Frequently Asked Questions ==
-How do I add my own custom blocks to Gutenberg Cloud?
+== Screenshots ==
 
-Gutenberg Cloud blocks are really just normal Gutenberg blocks. They have a screenshot and some other meta, but follows the official standards. See https://gutenbergcloud.org/ for more information.
+1. Discover and install blocks
+
+== Frequently Asked Questions ==
+
+**How do I migrate a block collection plugin to Gutenberg Cloud?**
+
+This simply means removing some PHP, adding some meta data and publishing on NPM. [Follow these simple steps](https://github.com/front/cloud-blocks/blob/master/docs/migrate-block.md).
+
+**How do I create a custom block for Gutenberg Cloud?**
+
+Gutenberg Cloud blocks are really just normal Gutenberg blocks, without the PHP. [Follow these steps to do it](https://github.com/front/cloud-blocks/blob/master/docs/create-block.md)!
+
+**How do I disable CSS for a single block?**
+
+This is useful for letting your theme control your block styles. There’s a hook for this, [documented here](https://github.com/front/cloud-blocks/blob/master/docs/hooks.md).
+
+**Why is the plugin called Cloud Blocks?**
+
+We wanted to name it Gutenberg Cloud, but since it’s not possible to name a plugin starting with the name of another plugin (i.e. Gutenberg), we ended up calling it Cloud Blocks. Makes sense though, doesn’t it?
+
+**Are the blocks really served from "the cloud"?**
+
+Indeed, they are! The source code for each block is on NPM, but the JS/CSS is served by a CDN. No local downloads!
+
+**Can I add private custom blocks?**
+
+Sure! Just add your custom blocks into **wp-content/cloud-blocks/** folder.
 
 == Changelog ==
 
-
 = 1.0.2 =
 * Change: Some translation fixes
+* Change: Better documentation and screenshot
 
 = 1.0.1 =
 * Fix: is_plugin_active() undefined fix
