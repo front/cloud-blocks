@@ -13,7 +13,7 @@ wp-content/gutenberg-blocks
               │     │     ├── editor.css (optional)
               │     │     └── index.js
               │     │
-              │     ├── your build files
+              │     ├── your source files
               │     ...
               │
               ├── block-two
@@ -21,4 +21,4 @@ wp-content/gutenberg-blocks
               ...   ...
 ```
 
-You can use any build tool you like, or simply write your blocks in plain css and vanilla javascript. But the block files must be under **/your-private-block/build/** folder. 
+You can use any build tool you like, or simply write your blocks in plain css and vanilla javascript. But the block files must be under **/your-private-block/build/** folder and follow naming convention.
