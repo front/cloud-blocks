@@ -164,7 +164,7 @@ Vue.component('block-card', {
           this.updateAvailable = false
           this.currentVersion = this.block.version
           window.store.dispatch('getInstalledBlocks')
-          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strigns.block_updated}`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_updated}`, class: 'show success' })
           console.log('Block Updated ', res.data)  
         })
         .fail(error => {
