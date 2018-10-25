@@ -1,6 +1,6 @@
 # Migrating blocks from a plugin
 
-### If you already have a plugin with a collection of custom blocks and would like to add them to Gutenberg Cloud, follow these 10 steps.
+**If you already have a plugin with a collection of custom blocks and would like to add them to Gutenberg Cloud, follow these 10 steps.**
 
 ## 1. Initiate a new package for NPM
 
@@ -25,7 +25,9 @@ Gutenberg Cloud looks for custom blocks in NPM repository, and it looks for the 
 }
 ```
 
-Since you used create-cloud-block, these are already there. Without these, Gutenberg Cloud will ignore your block.
+Since you used create-cloud-block, these are already there. **Without these, Gutenberg Cloud will ignore your block.**
+
+Additionally, we recommend adding a couple of keywords describing what it does. Examples: social, map, hero, etc
 
 ## 3. Add gutenbergCloud object to package.json
 
@@ -52,7 +54,7 @@ Not all of them – you don’t need the PHP files. Here are some typical files/
 
   - block index        => /src/[block-name]/index.js
   - block style        => /src/[block-name]/style.scss
-  - block editor style => /src/[block-name]/style.scss (only if necessary)
+  - block editor style => /src/[block-name]/editor.scss (only if necessary)
 
 Feel free to organize blocks files and dependencies as you prefer. This is only the suggestion the create-cloud-block tool gives us.
 
