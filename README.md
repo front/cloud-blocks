@@ -1,6 +1,7 @@
 # Cloud Blocks
 
 ## Description
+
 **IMPORTANT: THIS PLUGIN IS IN BETA UNTIL WP 5.0**
 
 **Gutenberg Cloud: Your online library of blocks!** Cloud Blocks is the only plugin you need to browse and install new blocks:
@@ -51,6 +52,7 @@ Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. 
 
 #### 1.0.4
 * **Fix**: Fix translations variable name in javascript files
+* **Change**: Update readme
 
 #### 1.0.3
 * **Change**: Update readme

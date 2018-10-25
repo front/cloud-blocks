@@ -12,6 +12,9 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Your online library of Gutenberg blocks! Browse and discover new blocks, and install with a click.
 
 == Description ==
+
+**IMPORTANT: THIS PLUGIN IS IN BETA UNTIL WP 5.0**
+
 **Gutenberg Cloud: Your online library of blocks!** Cloud Blocks is the only plugin you need to browse and install new blocks:
 
 - Discover and install custom blocks with a click
@@ -69,6 +72,7 @@ Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. 
 
 = 1.0.4 =
 * Fix: Fix translations variable name in javascript files
+* Change: Update readme
 
 = 1.0.3 =
 * Change: Update readme
