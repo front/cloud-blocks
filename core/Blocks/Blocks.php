@@ -56,7 +56,8 @@ class Blocks {
         'editor_css'      => isset( $block['editorCss'] ) ? $block['editorCss'] : '',
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
-        'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
+        'block_version'   => isset( $block['version'] ) ? $block['version'] : '',
+        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : ''
       );
       Options::add( $new_block, true );
 
@@ -119,7 +120,8 @@ class Blocks {
         'editor_css'      => isset( $block['editorCss'] ) ? $block['editorCss'] : '',
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
-        'block_version'   => isset( $block['version'] ) ? $block['version'] : ''
+        'block_version'   => isset( $block['version'] ) ? $block['version'] : '',
+        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : ''
       );
 
       $existing_block = Options::get( $the_block['package_name'] );
@@ -214,22 +216,22 @@ class Blocks {
     global $pagenow;
     $blocks = Options::get_all();
     if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
-    foreach ($blocks as $block) {
-      /**
-       * Use this filter in your functions.php or custom plugin 
-       * to enable/disable styling per individual block or for all of them.
-       */
-      $disable_style = apply_filters( 'cloud_blocks_disable_style', false, $block );
+      foreach ($blocks as $block) {
+        /**
+         * Use this filter in your functions.php or custom plugin 
+         * to enable/disable styling per individual block or for all of them.
+         */
+        $disable_style = apply_filters( 'cloud_blocks_disable_style', false, $block );
         if ( !$disable_style && !empty( $block->css_url ) ) {
-        wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
-        wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
-        
-        if (is_admin() && isset( $block->editor_css ) && !empty( $block->editor_css ) ) {
-          wp_register_style( str_replace( ' ', '-', $block->block_name ) . '-editor' , $block->editor_css, array(), $block->block_version);
-          wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) . '-editor' );
+          wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
+          wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
+          
+          if (is_admin() && isset( $block->editor_css ) && !empty( $block->editor_css ) ) {
+            wp_register_style( str_replace( ' ', '-', $block->block_name ) . '-editor' , $block->editor_css, array(), $block->block_version);
+            wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) . '-editor' );
+          }
         }
       }
     }
   }
-}
 }

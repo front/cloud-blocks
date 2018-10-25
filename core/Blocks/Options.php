@@ -28,6 +28,7 @@ class Options {
     $info_url = $options['info_url'];
     $thumbnail = $options['thumbnail'];
     $block_version = $options['block_version'];
+    $block_manifest = $options['block_manifest'];
 
     // First of all, lets make sure column exists or not.
     $block = self::get( $package_name );
@@ -57,7 +58,8 @@ class Options {
           'editor_css'      => $editor_css,
           'info_url'        => $info_url,
           'thumbnail'       => $thumbnail,
-          'block_version'   => $block_version
+          'block_version'   => $block_version,
+          'block_manifest'   => $block_manifest
         )
       );
       return array(
@@ -84,6 +86,7 @@ class Options {
     $info_url = isset( $block['info_url'] ) ? $block['info_url'] : '';
     $thumbnail = isset( $block['thumbnail'] ) ? $block['thumbnail'] : '';
     $block_version = isset( $block['block_version'] ) ? $block['block_version'] : '';
+    $block_manifest = isset( $block['block_manifest'] ) ? $block['block_manifest'] : '';
 
     // First of all, lets make sure column exists or not.
     $block = self::get( $package_name );
@@ -103,7 +106,8 @@ class Options {
           'editor_css'      => $editor_css,
           'info_url'        => $info_url,
           'thumbnail'       => $thumbnail,
-          'block_version'   => $block_version
+          'block_version'   => $block_version,
+          'block_manifest'   => $block_manifest
         )
       );
     }
@@ -133,6 +137,7 @@ class Options {
     $info_url = $options['info_url'];
     $thumbnail = $options['thumbnail'];
     $block_version = $options['block_version'];
+    $block_manifest = $options['block_manifest'];
 
     $table_name = $wpdb->prefix . str_replace( '-', '_', FGC_NAME );
     
@@ -146,7 +151,8 @@ class Options {
         'editor_css'      => $editor_css,
         'info_url'        => $info_url,
         'thumbnail'       => $thumbnail,
-        'block_version'   => $block_version
+        'block_version'   => $block_version,
+        'block_manifest'   => $block_manifest
       ),
       array(
         'id'      => $id
