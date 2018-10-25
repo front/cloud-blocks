@@ -219,7 +219,7 @@ Vue.component('block-details', {
     }
   },
   template: `
-    <div class="theme-overlay" tabindex="0" role="dialog" aria-label="Temadetaljer"><div class="theme-overlay">
+    <div class="theme-overlay" tabindex="0" role="dialog"><div class="theme-overlay">
       <div class="theme-backdrop"></div>
       <div class="theme-wrap wp-clearfix" role="document">
         <div class="theme-header">
@@ -247,8 +247,7 @@ Vue.component('block-details', {
             </p>
 
             <p class="theme-tags">
-              <span>{{fgcData.strings.tags}}:</span>
-                {{ blockTags }}
+              <span>{{fgcData.strings.tags}}:</span>{{ blockTags }}
             </p>
             
           </div>
@@ -256,8 +255,8 @@ Vue.component('block-details', {
 
         <div class="theme-actions">
           <div class="inactive-theme">
-            <a v-if="alreadyInstaleld" @click.prevent="deleteBlock" class="button activate" aria-label="Aktiver Screenr">{{fgcData.strings.delete}}</a>
-            <a v-else @click.prevent="installBlock" class="button activate" aria-label="Aktiver Screenr">{{fgcData.strings.install}}</a>
+            <a v-if="alreadyInstaleld" @click.prevent="deleteBlock" class="button activate">{{fgcData.strings.delete}}</a>
+            <a v-else @click.prevent="installBlock" class="button activate">{{fgcData.strings.install}}</a>
             <a :href="blockUrl" target="_blank" class="button button-primary load-customize hide-if-no-customize">{{fgcData.strings.visit_homepage}}</a>
           </div>
         </div>
