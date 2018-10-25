@@ -14,7 +14,7 @@ class Activator {
    * Current version of custom db table
 	 * @param object
 	 */
-  public static $current_db_version = '1.1';
+  public static $current_db_version = '1.2';
   
   /**
   * activate, runs at plugin activation.
@@ -83,6 +83,7 @@ class Activator {
         info_url varchar(255) DEFAULT '' NOT NULL,
         thumbnail varchar(255) DEFAULT '' NOT NULL,
         block_version varchar(10) DEFAULT '' NOT NULL,
+        block_manifest text DEFAULT '' NOT NULL,
         block_installed datetime DEFAULT CURRENT_TIMESTAMP,
         block_updated datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY  (id)
