@@ -1,6 +1,8 @@
 # Cloud Blocks
 
 ## Description
+**IMPORTANT: THIS PLUGIN IS IN BETA UNTIL WP 5.0**
+
 **Gutenberg Cloud: Your online library of blocks!** Cloud Blocks is the only plugin you need to browse and install new blocks:
 
 - Discover and install custom blocks with a click
