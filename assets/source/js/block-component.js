@@ -10,7 +10,7 @@ Vue.component('block-card', {
   },
   template: `
     <div class="theme">
-      <div class="theme-screenshot">
+      <div class="theme-screenshot" @click="openMoreDetails">
         <img :src="block.imageUrl" :alt="block.name">
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
@@ -25,7 +25,8 @@ Vue.component('block-card', {
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span class="block-version">{{fgcData.strings.version}}: {{ currentVersion }}</span>
+        <span v-if="blockManifest.author" class="block-author">{{fgcData.strings.by}}: {{ blockManifest.author }}</span>
+        <span v-else class="block-version">{{fgcData.strings.version}}: {{ currentVersion }}</span>
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
@@ -62,7 +63,7 @@ Vue.component('block-card', {
     installBlock() {
       this.installing = true
       let postData = this.block
-      console.log(postData)
+      console.log('Install block', postData)
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
@@ -157,14 +158,15 @@ Vue.component('block-card', {
         })
     },
     openMoreDetails() {
-      if (this.block.infoUrl) {
-        window.open(this.block.infoUrl, '_blank')
-      }
+      window.store.commit('openOverlay', this.block)
     }
   },
   computed: {
     currentBrowsState() {
       return window.store.state.browsState
+    },
+    blockManifest() {
+      return JSON.parse(this.block.blockManifest)
     }
   }
 })

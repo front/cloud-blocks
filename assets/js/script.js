@@ -50,7 +50,7 @@ Vue.component('block-card', {
   },
   template: `
     <div class="theme">
-      <div class="theme-screenshot">
+      <div class="theme-screenshot" @click="openMoreDetails">
         <img :src="block.imageUrl" :alt="block.name">
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
@@ -65,7 +65,8 @@ Vue.component('block-card', {
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span class="block-version">{{fgcData.strings.version}}: {{ currentVersion }}</span>
+        <span v-if="blockManifest.author" class="block-author">{{fgcData.strings.by}}: {{ blockManifest.author }}</span>
+        <span v-else class="block-version">{{fgcData.strings.version}}: {{ currentVersion }}</span>
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
@@ -102,7 +103,7 @@ Vue.component('block-card', {
     installBlock() {
       this.installing = true
       let postData = this.block
-      console.log(postData)
+      console.log('Install block', postData)
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
@@ -197,18 +198,175 @@ Vue.component('block-card', {
         })
     },
     openMoreDetails() {
-      if (this.block.infoUrl) {
-        window.open(this.block.infoUrl, '_blank')
-      }
+      window.store.commit('openOverlay', this.block)
     }
   },
   computed: {
     currentBrowsState() {
       return window.store.state.browsState
+    },
+    blockManifest() {
+      return JSON.parse(this.block.blockManifest)
     }
   }
 })
 
+Vue.component('block-details', {
+  props: ['block'],
+  data() {
+    return {
+      alreadyInstaleld: false
+    }
+  },
+  template: `
+    <div class="theme-overlay" tabindex="0" role="dialog" aria-label="Temadetaljer"><div class="theme-overlay">
+      <div class="theme-backdrop"></div>
+      <div class="theme-wrap wp-clearfix" role="document">
+        <div class="theme-header">
+          <button class="close dashicons dashicons-no" @click="closeOverlay"></button>
+        </div>
+
+        <div class="theme-about wp-clearfix">
+          <div class="theme-screenshots">
+            <div class="screenshot">
+              <img :src="block.imageUrl" :alt="block.name">
+            </div>
+          </div>
+
+          <div class="theme-info">
+            <h2 class="theme-name">
+              {{ block.name }}
+                <span class="theme-version">{{fgcData.strings.version}}: {{ block.version }}</span>
+            </h2>
+            <p v-if="blockManifest.author && blockUrl" class="theme-author">{{fgcData.strings.by}} <a :href="blockUrl" target="_blank">{{ blockManifest.author }} </a></p>
+            <p v-else-if="blockManifest.author" class="theme-author">{{fgcData.strings.by}} {{ blockManifest.author }}</p>
+
+            
+            <p class="theme-description">
+              {{ blockManifest.description }}
+            </p>
+
+            <p class="theme-tags">
+              <span>{{fgcData.strings.tags}}:</span>
+                {{ blockTags }}
+            </p>
+            
+          </div>
+        </div>
+
+        <div class="theme-actions">
+          <div class="inactive-theme">
+            <a v-if="alreadyInstaleld" @click.prevent="deleteBlock" class="button activate" aria-label="Aktiver Screenr">{{fgcData.strings.delete}}</a>
+            <a v-else @click.prevent="installBlock" class="button activate" aria-label="Aktiver Screenr">{{fgcData.strings.install}}</a>
+            <a :href="blockUrl" target="_blank" class="button button-primary load-customize hide-if-no-customize">{{fgcData.strings.visit_homepage}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`,
+  mounted() {
+    window.addEventListener('keyup', this.keypressEvent)
+    if (!!window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
+      this.alreadyInstaleld = true
+    }
+  },
+  computed: {
+    blockManifest() {
+      return JSON.parse(this.block.blockManifest)
+    },
+    blockUrl() {
+      if (this.blockManifest.homepage) {
+        return this.blockManifest.homepage
+      } else if (this.blockManifest.repository) {
+        return this.blockManifest.repository.url
+      } else {
+        return `https://www.npmjs.com/package/${this.block.packageName}`
+      }
+    },
+    blockTags() {
+      return this.blockManifest.keywords.join(', ')
+    }
+  },
+  methods: {
+    keypressEvent(e) {
+      if (e.keyCode === 27) {
+       this.closeOverlay() 
+      }
+    },
+    closeOverlay() {
+      window.store.commit('openOverlay', null)
+    },
+    installBlock() {
+      let postData = this.block
+      console.log('Install block', postData)
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_install_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          this.alreadyInstaleld = true
+          this.incrementInstalls(this.block.packageName)
+          window.store.dispatch('getInstalledBlocks')
+          window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
+          console.log('Block installed ', res.data)  
+        })
+        .fail(error => {
+          this.installing = false
+          console.log('There is some issues installing block: ', error);
+        })
+    },
+    deleteBlock() {
+      let postData = this.block
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_delete_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          this.alreadyInstaleld = false
+          this.decrementInstalls(this.block.packageName)
+          window.store.dispatch('getInstalledBlocks')
+          window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
+          console.log('Block uninstalled ', res.data)  
+        })
+        .fail(error => {
+          this.installing = false
+          console.log('There is some issues uninstalling block: ', error)
+        })
+    },
+    incrementInstalls(packageName) {
+      jQuery.ajax({
+        type: 'PUT',
+        url: `https://api.gutenbergcloud.org/blocks/${packageName}`
+      })
+        .done(() => {
+          console.log('Installation counter increased ')  
+        })
+        .fail(error => {
+          console.log('Some errors occured white increasing number of installs: ', error)
+        })
+    },
+    decrementInstalls(packageName) {
+      jQuery.ajax({
+        type: 'DELETE',
+        url: `https://api.gutenbergcloud.org/blocks/${packageName}`
+      })
+        .done(() => {
+          console.log('Installation counter decreased ')  
+        })
+        .fail(error => {
+          console.log('Some errors occured white increasing number of installs: ', error)
+        })
+    },
+  }
+})
 Vue.component('explorer-filter', {
   componenets: ['filter-drawer'],
   data() {
@@ -332,7 +490,8 @@ var store = new Vuex.Store({
     notification: {},
     browsState: null,
     installedBlocks: fgcData.installedBlocks,
-    searchQuery: null
+    searchQuery: null,
+    opendOverlay: null
   },
   mutations: {
     setNotification(state, payload) {
@@ -346,6 +505,9 @@ var store = new Vuex.Store({
     },
     setSearchQuery(state, payload) {
       state.searchQuery = payload
+    },
+    openOverlay(state, payload) {
+      state.opendOverlay = payload
     }
   },
   actions: {
@@ -431,22 +593,25 @@ var app = new Vue({
       }
       jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
         res.rows.map(block => {
-          const theBlock = {}
-          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
-          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
-          theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
-          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
-          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
-          theBlock.name = block.config.name
-          theBlock.version = block.version
-          theBlock.packageName = block.name
-          if (query.state == null || query.state == 'installed') {
-            if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+          jQuery.get(block.manifest, (blockManifest) => {
+            const theBlock = {}
+            theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+            theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+            theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
+            theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+            theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+            theBlock.name = block.config.name
+            theBlock.blockManifest = JSON.stringify(blockManifest)
+            theBlock.version = block.version
+            theBlock.packageName = block.name
+            if (query.state == null || query.state == 'installed') {
+              if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+                blocks.push(theBlock)
+              }
+            } else {
               blocks.push(theBlock)
             }
-          } else {
-            blocks.push(theBlock)
-          }
+          })
         })
       })
       this.blocks = blocks
@@ -470,6 +635,9 @@ var app = new Vue({
     },
     installedBlocks() {
       return window.store.state.installedBlocks
+    },
+    openOverlay() {
+      return window.store.state.opendOverlay
     }
   }
 })

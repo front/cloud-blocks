@@ -65,6 +65,7 @@ class Explore {
         <div class="themes wp-clearfix">
           <block-card v-for="block in blocks" :key="block.name" :block="block"/>
         </div>
+          <block-details v-if="openOverlay" :block="openOverlay"></block-details>
       </div>
 
     </div>

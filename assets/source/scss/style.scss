@@ -4,7 +4,8 @@
   padding-left: 20px;
 }
 
-.block-version {
+.block-version,
+.block-author {
   position: absolute;
   top: 15px;
   right: 20px;
@@ -43,7 +44,7 @@
   border-radius: 2px;
   padding: 10px 24px;
   position: fixed;
-  z-index: 1;
+  z-index: 100000;
   left: 50%;
   transform: translateX(-50%);
   bottom: 30px;
