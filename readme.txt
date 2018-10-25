@@ -70,6 +70,10 @@ Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. 
 
 == Changelog ==
 
+= 1.0.5 =
+* Add: Add modal with block info (like themes) [issue #2](https://github.com/front/cloud-blocks/issues/2)
+* Fix: Limit enqueue of block styles only to editor or front-end
+
 = 1.0.4 =
 * Fix: Fix translations variable name in javascript files
 * Change: Update readme
