@@ -211,14 +211,16 @@ class Blocks {
 
 
   public function blocks_register_styles() {
+    global $pagenow;
     $blocks = Options::get_all();
+    if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
     foreach ($blocks as $block) {
       /**
        * Use this filter in your functions.php or custom plugin 
        * to enable/disable styling per individual block or for all of them.
        */
       $disable_style = apply_filters( 'cloud_blocks_disable_style', false, $block );
-      if ( !$disable_style ) {
+        if ( !$disable_style && !empty( $block->css_url ) ) {
         wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
         wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
         
@@ -229,4 +231,5 @@ class Blocks {
       }
     }
   }
+}
 }
