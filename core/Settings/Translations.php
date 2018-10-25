@@ -19,6 +19,8 @@ class Translations {
       'the_block'               => __( 'The block', 'cloud-blocks' ),
       'delete'                  => __( 'Delete', 'cloud-blocks' ),
       'install'                 => __( 'Install', 'cloud-blocks' ),
+      'by'                      => __( 'By', 'cloud-blocks' ),
+      'tags'                    => __( 'Tags', 'cloud-blocks' ),
       'installed'               => __( 'Installed', 'cloud-blocks' ),
       'popular'                 => __( 'Popular', 'cloud-blocks' ),
       'latest'                  => __( 'Latest', 'cloud-blocks' ),
@@ -34,6 +36,7 @@ class Translations {
       'block_updated'           => __( 'have been updated successfully.', 'cloud-blocks' ),
       'update_available'        => __( 'New version available.', 'cloud-blocks' ),
       'version'                 => __( 'Version', 'cloud-blocks' ),
+      'visit_homepage'          => __( 'Visit homepage', 'cloud-blocks' ),
     );
   }
 }

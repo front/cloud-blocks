@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-22 11:20+0200\n"
-"PO-Revision-Date: 2018-10-22 11:20+0200\n"
+"POT-Creation-Date: 2018-10-25 14:51+0200\n"
+"PO-Revision-Date: 2018-10-25 15:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -109,64 +109,76 @@ msgid "Install"
 msgstr "Instalar"
 
 #: core/Settings/Translations.php:22
+msgid "By"
+msgstr "Por"
+
+#: core/Settings/Translations.php:23
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: core/Settings/Translations.php:24
 msgid "Installed"
 msgstr "Instalado"
 
-#: core/Settings/Translations.php:23
+#: core/Settings/Translations.php:25
 msgid "Popular"
 msgstr "Popular"
 
-#: core/Settings/Translations.php:24
+#: core/Settings/Translations.php:26
 msgid "Latest"
 msgstr "Mais recentes"
 
-#: core/Settings/Translations.php:25
+#: core/Settings/Translations.php:27
 msgid "Most used"
 msgstr "Mais utilizados"
 
-#: core/Settings/Translations.php:26
+#: core/Settings/Translations.php:28
 msgid "Search for blocks"
 msgstr "Procurar blocos"
 
-#: core/Settings/Translations.php:27
+#: core/Settings/Translations.php:29
 msgid "Search blocks..."
 msgstr "Pesquisar blocos…"
 
-#: core/Settings/Translations.php:28
+#: core/Settings/Translations.php:30
 msgid "Filter"
 msgstr "Filtro"
 
-#: core/Settings/Translations.php:29
+#: core/Settings/Translations.php:31
 msgid "Update now"
 msgstr "Atualizar agora"
 
-#: core/Settings/Translations.php:30
+#: core/Settings/Translations.php:32
 msgid "Show more details"
 msgstr "Mostrar mais detalhes"
 
-#: core/Settings/Translations.php:31
+#: core/Settings/Translations.php:33
 msgid "More details"
 msgstr "Mais detalhes"
 
-#: core/Settings/Translations.php:32
+#: core/Settings/Translations.php:34
 msgid "have been installed successfully."
 msgstr "foi instalado com sucesso."
 
-#: core/Settings/Translations.php:33
+#: core/Settings/Translations.php:35
 msgid "have been uninstalled successfully."
 msgstr "foi desinstalado com sucesso."
 
-#: core/Settings/Translations.php:34
+#: core/Settings/Translations.php:36
 msgid "have been updated successfully."
 msgstr "foi atualizado com sucesso."
 
-#: core/Settings/Translations.php:35
+#: core/Settings/Translations.php:37
 msgid "New version available."
 msgstr "Nova versão disponível."
 
-#: core/Settings/Translations.php:36
+#: core/Settings/Translations.php:38
 msgid "Version"
 msgstr "Versão"
+
+#: core/Settings/Translations.php:39
+msgid "Visit homepage"
+msgstr "Visite a homepage"
 
 #: vendor/foadyousefi/seven-fields/src/Container/Container.php:196
 msgid "Actions"
@@ -182,7 +194,7 @@ msgstr "A sua biblioteca de blocos do Gutenberg na cloud"
 
 #. Author of the plugin/theme
 msgid "Frontkom"
-msgstr ""
+msgstr "Frontkom"
 
 #. Author URI of the plugin/theme
 msgid "https://frontkom.no"
