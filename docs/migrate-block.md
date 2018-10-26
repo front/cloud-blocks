@@ -134,7 +134,10 @@ Create a 1200*900 px png. Preferably, run it through [tinypng.com](https://tinyp
 
 ## 10. Publish to NPM
 
-If everything looks good, Make sure your README.md makes sense, then get you block up there:
+Make sure your README.md makes sense, and update the package.json values for `homepage`, `author` and `description`. Note that these will be visible in the UI when clicking to see More details. 
+
+Next step:
+
 
 ```sh
 $ npm run build
