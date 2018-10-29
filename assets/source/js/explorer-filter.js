@@ -23,7 +23,7 @@ Vue.component('explorer-filter', {
   template: `
     <div class="wp-filter g-blocks-filter hide-if-no-js">
       <div class="filter-count">
-        <span class="count theme-count">{{ installedBlocksCount }}</span>
+        <span class="count theme-count">{{ blocksCount }}</span>
       </div>
 
       <ul class="filter-links">
@@ -56,8 +56,12 @@ Vue.component('explorer-filter', {
     }
   },
   computed: {
-    installedBlocksCount() {
-      return window.store.state.installedBlocks.length
+    blocksCount() {
+      if (window.store.state.browseState === 'installed' && window.store.state.installedBlocks.length) {
+        return window.store.state.installedBlocks.length
+      } else {
+        return window.store.state.blocksCount
+      }
     }
   }
 })

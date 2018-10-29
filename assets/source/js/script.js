@@ -4,7 +4,8 @@ var store = new Vuex.Store({
     browseState: null,
     installedBlocks: fgcData.installedBlocks,
     searchQuery: null,
-    opendOverlay: null
+    opendOverlay: null,
+    blocksCount: 0
   },
   mutations: {
     setNotification(state, payload) {
@@ -21,6 +22,9 @@ var store = new Vuex.Store({
     },
     openOverlay(state, payload) {
       state.opendOverlay = payload
+    },
+    setBlocksCount(state, payload) {
+      state.blocksCount = payload
     }
   },
   actions: {
@@ -108,6 +112,9 @@ var app = new Vue({
         queryString += `&order=${query.state}`
       }
       jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
+        if (res.count) {
+          window.store.commit('setBlocksCount', res.count)
+        }
         for (const block of res.rows) {
           const theBlock = {}
           theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
