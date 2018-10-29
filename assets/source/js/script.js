@@ -104,28 +104,29 @@ var app = new Vue({
       if (query.q !== null) {
         queryString = `q=${query.q}`
       }
+      if (query.state !== null) {
+        queryString += `&order=${query.state}`
+      }
       jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
-        res.rows.map(block => {
-          jQuery.get(block.manifest, (blockManifest) => {
-            const theBlock = {}
-            theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
-            theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
-            theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
-            theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
-            theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
-            theBlock.name = block.config.name
-            theBlock.blockManifest = JSON.stringify(blockManifest)
-            theBlock.version = block.version
-            theBlock.packageName = block.name
-            if (query.state == null || query.state == 'installed') {
-              if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
-                blocks.push(theBlock)
-              }
-            } else {
+        for (const block of res.rows) {
+          const theBlock = {}
+          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+          theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
+          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+          theBlock.name = block.config.name
+          theBlock.blockManifest = JSON.stringify(block.package)
+          theBlock.version = block.version
+          theBlock.packageName = block.name
+          if (query.state == null || query.state == 'installed') {
+            if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
               blocks.push(theBlock)
             }
-          })
-        })
+          } else {
+            blocks.push(theBlock)
+          }
+        }
       })
       this.blocks = blocks
     },
