@@ -37,7 +37,7 @@ Vue.component('block-card', {
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
-              v-if="currentBrowsState != 'installed' && !alreadyInstaleld"
+              v-if="currentBrowseState != 'installed' && !alreadyInstaleld"
               @click.prevent="installBlock">
               {{fgcData.strings.install}}
           </button>
@@ -55,8 +55,8 @@ Vue.component('block-card', {
   mounted() {
     this.currentVersion = this.block.version
     if (!!window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
-      this.alreadyInstaleld = this.currentBrowsState != 'installed'
-      if (this.currentBrowsState == 'installed') {
+      this.alreadyInstaleld = this.currentBrowseState != 'installed'
+      if (this.currentBrowseState == 'installed') {
         this.updateAvailable = !!window.store.state.installedBlocks.filter(b => {
           if (b.package_name == this.block.packageName) {
             return b.block_version < this.block.version
@@ -169,8 +169,8 @@ Vue.component('block-card', {
     }
   },
   computed: {
-    currentBrowsState() {
-      return window.store.state.browsState
+    currentBrowseState() {
+      return window.store.state.browseState
     },
     blockManifest() {
       return JSON.parse(this.block.blockManifest)

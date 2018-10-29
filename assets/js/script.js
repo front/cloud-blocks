@@ -77,7 +77,7 @@ Vue.component('block-card', {
 
         <div class="theme-actions">
           <button class="button button-primary theme-install install-block-btn"
-              v-if="currentBrowsState != 'installed' && !alreadyInstaleld"
+              v-if="currentBrowseState != 'installed' && !alreadyInstaleld"
               @click.prevent="installBlock">
               {{fgcData.strings.install}}
           </button>
@@ -95,8 +95,8 @@ Vue.component('block-card', {
   mounted() {
     this.currentVersion = this.block.version
     if (!!window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
-      this.alreadyInstaleld = this.currentBrowsState != 'installed'
-      if (this.currentBrowsState == 'installed') {
+      this.alreadyInstaleld = this.currentBrowseState != 'installed'
+      if (this.currentBrowseState == 'installed') {
         this.updateAvailable = !!window.store.state.installedBlocks.filter(b => {
           if (b.package_name == this.block.packageName) {
             return b.block_version < this.block.version
@@ -209,8 +209,8 @@ Vue.component('block-card', {
     }
   },
   computed: {
-    currentBrowsState() {
-      return window.store.state.browsState
+    currentBrowseState() {
+      return window.store.state.browseState
     },
     blockManifest() {
       return JSON.parse(this.block.blockManifest)
@@ -416,12 +416,12 @@ Vue.component('explorer-filter', {
   },
   methods: {
     filterLink(newFilter) {
-      let currentState = window.location.search.replace(/\&brows[=a-z]*/, '')
-      history.pushState({state: newFilter}, null, `${currentState}&brows=${newFilter}`)
-      window.store.commit('setBrowsState', newFilter)
+      let currentState = window.location.search.replace(/\&browse[=a-z]*/, '')
+      history.pushState({state: newFilter}, null, `${currentState}&browse=${newFilter}`)
+      window.store.commit('setBrowseState', newFilter)
     },
     currentFilter(filter) {
-      return window.store.state.browsState == filter ? 'current' : ''
+      return window.store.state.browseState == filter ? 'current' : ''
     },
     searchForBlock() {
       let currentState = window.location.search.replace(/\&q[=a-z\-]*/, '')
@@ -494,7 +494,7 @@ Vue.component('filter-drawer', {
 var store = new Vuex.Store({
   state: {
     notification: {},
-    browsState: null,
+    browseState: null,
     installedBlocks: fgcData.installedBlocks,
     searchQuery: null,
     opendOverlay: null
@@ -503,8 +503,8 @@ var store = new Vuex.Store({
     setNotification(state, payload) {
       state.notification = payload
     },
-    setBrowsState(state, payload) {
-      state.browsState = payload
+    setBrowseState(state, payload) {
+      state.browseState = payload
     },
     setInstalledBlocks(state, payload) {
       state.installedBlocks = payload
@@ -547,18 +547,18 @@ var app = new Vue({
     window.store.dispatch('getInstalledBlocks')
   },
   mounted() {
-    const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
+    const currentBrowseState = this.getUrlParams('browse') ? this.getUrlParams('browse') : 'installed'
     const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
     let query = {
-      state: currentBrowsState,
+      state: currentBrowseState,
       q
     }
     this.getBlocks(query)
-    window.store.commit('setBrowsState', currentBrowsState)
+    window.store.commit('setBrowseState', currentBrowseState)
     window.addEventListener('popstate', this.fetchBlocks)
   },
   watch: {
-    currentBrowsFilter(newState) {
+    currentBrowseFilter(newState) {
       const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
       window.store.dispatch('getInstalledBlocks')
       let query = {
@@ -568,17 +568,17 @@ var app = new Vue({
       this.getBlocks(query)
     },
     currentSearchQuery(q) {
-      const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
+      const currentBrowseState = this.getUrlParams('browse') ? this.getUrlParams('browse') : 'installed'
       window.store.dispatch('getInstalledBlocks')
       let query = {
-        state: currentBrowsState,
+        state: currentBrowseState,
         q
       }
       this.getBlocks(query)
     },
     installedBlocks(newBlocksList, oldBlocksList) {
-      const currentBrowsState = this.getUrlParams('brows') ? this.getUrlParams('brows') : 'installed'
-      if (newBlocksList.length != oldBlocksList.length && currentBrowsState == 'installed') {
+      const currentBrowseState = this.getUrlParams('browse') ? this.getUrlParams('browse') : 'installed'
+      if (newBlocksList.length != oldBlocksList.length && currentBrowseState == 'installed') {
         this.blocks = this.blocks.filter(block => newBlocksList.some(bl => bl.package_name == block.packageName))
       }
     }
@@ -633,8 +633,8 @@ var app = new Vue({
     }
   },
   computed: {
-    currentBrowsFilter() {
-      return window.store.state.browsState
+    currentBrowseFilter() {
+      return window.store.state.browseState
     },
     currentSearchQuery() {
       return window.store.state.searchQuery

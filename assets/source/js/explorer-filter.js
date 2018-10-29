@@ -41,12 +41,12 @@ Vue.component('explorer-filter', {
   },
   methods: {
     filterLink(newFilter) {
-      let currentState = window.location.search.replace(/\&brows[=a-z]*/, '')
-      history.pushState({state: newFilter}, null, `${currentState}&brows=${newFilter}`)
-      window.store.commit('setBrowsState', newFilter)
+      let currentState = window.location.search.replace(/\&browse[=a-z]*/, '')
+      history.pushState({state: newFilter}, null, `${currentState}&browse=${newFilter}`)
+      window.store.commit('setBrowseState', newFilter)
     },
     currentFilter(filter) {
-      return window.store.state.browsState == filter ? 'current' : ''
+      return window.store.state.browseState == filter ? 'current' : ''
     },
     searchForBlock() {
       let currentState = window.location.search.replace(/\&q[=a-z\-]*/, '')
