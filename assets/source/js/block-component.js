@@ -25,7 +25,14 @@ Vue.component('block-card', {
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span v-if="blockManifest.author" class="block-author">{{fgcData.strings.by}}: {{ blockManifest.author }}</span>
+        <span v-if="blockManifest.author" class="block-author">{{fgcData.strings.by}}: 
+          <span v-if="typeof blockManifest.author == 'object'">
+            {{ blockManifest.author.name }}
+          </span>
+          <span v-if="typeof blockManifest.author == 'string'">
+            {{ blockManifest.author }}
+          </span>
+        </span>
         <span v-else class="block-version">{{fgcData.strings.version}}: {{ currentVersion }}</span>
 
         <div class="theme-actions">
