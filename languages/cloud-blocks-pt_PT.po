@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-25 14:51+0200\n"
-"PO-Revision-Date: 2018-10-25 15:03+0200\n"
+"POT-Creation-Date: 2018-10-30 10:16+0100\n"
+"PO-Revision-Date: 2018-10-30 10:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: core/CloudBlocks.php:40
+#: core/CloudBlocks.php:42
 msgid "Gutenberg is not enabled. Please try again after enabling."
 msgstr ""
 "O Gutenberg não está activado. Por favor, tente novamente após activá-lo."
@@ -179,6 +179,10 @@ msgstr "Versão"
 #: core/Settings/Translations.php:39
 msgid "Visit homepage"
 msgstr "Visite a homepage"
+
+#: core/Settings/Translations.php:40
+msgid "Homepage"
+msgstr "Homepage"
 
 #: vendor/foadyousefi/seven-fields/src/Container/Container.php:196
 msgid "Actions"
