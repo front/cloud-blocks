@@ -18,8 +18,10 @@ use CloudBlocks\Settings\Translations;
 class CloudBlocks {
 
   public function __construct() {
+    global $wp_version;
+    
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if ( \is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+    if ( \is_plugin_active( 'gutenberg/gutenberg.php' ) || (int) $wp_version >= 5 ) {
       $this->init();
     } else {
       add_action( 'admin_notices', array( $this, 'gutenberg_inactive_notice' ) );
