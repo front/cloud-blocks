@@ -46,7 +46,7 @@ Vue.component('block-card', {
               @click.prevent="deleteBlock">
               {{fgcData.strings.delete}}
           </button>
-          <a class="button preview install-theme-preview" :href="blockUrl" target="_blank">{{fgcData.strings.more_details}}</a>
+          <a class="button button-primary" :href="blockUrl" target="_blank">{{fgcData.strings.homepage}}</a>
         </div>
       </div>
 

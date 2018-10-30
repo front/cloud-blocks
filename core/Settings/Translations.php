@@ -37,6 +37,7 @@ class Translations {
       'update_available'        => __( 'New version available.', 'cloud-blocks' ),
       'version'                 => __( 'Version', 'cloud-blocks' ),
       'visit_homepage'          => __( 'Visit homepage', 'cloud-blocks' ),
+      'homepage'                => __( 'Homepage', 'cloud-blocks' ),
     );
   }
 }
