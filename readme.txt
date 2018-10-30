@@ -65,7 +65,7 @@ Indeed, they are! The source code for each block is on NPM, but the JS/CSS is se
 
 **Can I add private custom blocks?**
 
-Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [Here is how file structure must look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
+Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
 == Changelog ==
