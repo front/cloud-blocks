@@ -25,8 +25,8 @@ Vue.component('block-details', {
               {{ block.name }}
                 <span class="theme-version">{{fgcData.strings.version}}: {{ block.version }}</span>
             </h2>
-            <p v-if="blockManifest.author && blockUrl" class="theme-author">{{fgcData.strings.by}} <a :href="blockUrl" target="_blank">{{ blockManifest.author }} </a></p>
-            <p v-else-if="blockManifest.author" class="theme-author">{{fgcData.strings.by}} {{ blockManifest.author }}</p>
+            <p v-if="blockAuthor && blockUrl" class="theme-author">{{fgcData.strings.by}} <a :href="blockUrl" target="_blank">{{ blockAuthor }} </a></p>
+            <p v-else-if="blockAuthor" class="theme-author">{{fgcData.strings.by}} {{ blockAuthor }}</p>
 
             
             <p class="theme-description">
@@ -63,10 +63,19 @@ Vue.component('block-details', {
     blockUrl() {
       if (this.blockManifest.homepage) {
         return this.blockManifest.homepage
-      } else if (this.blockManifest.repository) {
-        return this.blockManifest.repository.url
+      } else if (this.blockManifest.author && typeof this.blockManifest.author == 'object' && this.blockManifest.author.url) {
+        return this.blockManifest.author.url
       } else {
         return `https://www.npmjs.com/package/${this.block.packageName}`
+      }
+    },
+    blockAuthor() {
+      if (this.blockManifest.author && typeof this.blockManifest.author == 'object' && this.blockManifest.author.name) {
+        return this.blockManifest.author.name
+      } else if (this.blockManifest.author && typeof this.blockManifest.author == 'string') {
+        return this.blockManifest.author
+      } else {
+        return null
       }
     },
     blockTags() {
