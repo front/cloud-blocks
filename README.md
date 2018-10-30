@@ -14,8 +14,11 @@
 ### Why use Gutenberg Cloud?
 Installing an actual plugin for each block or block collection easily leads to managing lots of code that you don’t really need. It’s like having one app for each website you visit, instead of just installing a web browser. With the block manager, you have a growing library at your fingertips, without the bloat. 
 
-### Get started
-Install the plugin, and look for the cloud icon in the main menu. Browse around and activate a few blocks. Voila – these are now available to you in the Gutenberg editor!
+## Getting started
+1. Install the plugin
+2. Click the new cloud icon in the main menu
+3. Browse around and click a block to see description, version and bigger screenshot
+4. Activate a few blocks. Voila – these are now available to you in the Gutenberg editor!
 
 ### How it works under the hood
 Gutenberg Cloud is a service that fetches Open Source Gutenberg blocks hosted on NPM. The assets from these are served from CloudFlare using unpkg.com. The Cloud Blocks plugin provides an interface in WordPress for Gutenberg Cloud.
@@ -45,7 +48,7 @@ We wanted to name it Gutenberg Cloud, but since it’s not possible to name a pl
 Indeed, they are! The source code for each block is on NPM, but the JS/CSS is served by a CDN. No local downloads!
 
 ### Can I add private custom blocks?
-Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [Here is how file structure must look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
+Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
 ## Changelog
