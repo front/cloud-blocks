@@ -3,7 +3,7 @@ Contributors: frontkom, foadyousefi, ssousa
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
-Tested up to: 4.9.8
+Tested up to: 5
 Requires PHP: 5
 Stable tag: 1.0.5
 License: GPLv3
@@ -72,6 +72,14 @@ Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. 
 
 
 == Changelog ==
+
+= 1.0.6 =
+* Add: Implement order for blocks (Latest or Popular)
+* Fix: Block counter in popular and latest tabls
+* Fix: Display block author
+* Change: Blocks homepage url 
+* Change: If there is no installed blocks, redirect to Popular tab instead of Installed
+* Change: Update documentations
 
 = 1.0.5 =
 * Add: Add modal with block info (like themes) [issue #2](https://github.com/front/cloud-blocks/issues/2)

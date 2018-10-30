@@ -53,6 +53,14 @@ Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. 
 
 ## Changelog
 
+#### 1.0.6
+* **Add:** Implement order for blocks (Latest or Popular)
+* **Fix:** Block counter in popular and latest tabls
+* **Fix:** Display block author
+* **Change**: Blocks homepage url 
+* **Change:** If there is no installed blocks, redirect to Popular tab instead of Installed
+* **Change:** Update documentations
+
 #### 1.0.5
 * **Add**: Add modal with block info (like themes) [issue #2](https://github.com/front/cloud-blocks/issues/2)
 * **Fix**: Limit enqueue of block styles only to editor or front-end
