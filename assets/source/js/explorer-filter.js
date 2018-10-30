@@ -38,6 +38,9 @@ Vue.component('explorer-filter', {
     </div>
   `,
   mounted() {
+    if (!window.store.state.installedBlocks.length) {
+      this.filterLink('popular')
+    }
   },
   methods: {
     filterLink(newFilter) {
