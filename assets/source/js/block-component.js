@@ -46,7 +46,7 @@ Vue.component('block-card', {
               @click.prevent="deleteBlock">
               {{fgcData.strings.delete}}
           </button>
-          <a class="button preview install-theme-preview" :href="block.infoUrl" target="_blank">{{fgcData.strings.more_details}}</a>
+          <a class="button preview install-theme-preview" :href="blockUrl" target="_blank">{{fgcData.strings.more_details}}</a>
         </div>
       </div>
 
@@ -174,6 +174,15 @@ Vue.component('block-card', {
     },
     blockManifest() {
       return JSON.parse(this.block.blockManifest)
-    }
+    },
+    blockUrl() {
+      if (this.blockManifest.homepage) {
+        return this.blockManifest.homepage
+      } else if (this.blockManifest.author && typeof this.blockManifest.author == 'object' && this.blockManifest.author.url) {
+        return this.blockManifest.author.url
+      } else {
+        return `https://www.npmjs.com/package/${this.block.packageName}`
+      }
+    },
   }
 })
