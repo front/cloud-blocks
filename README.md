@@ -34,7 +34,7 @@ To install individual blocks, look for the cloud icon in the left side menu. Cli
 
 **Is it secure to run blocks from other people?**
 
-The team checks submitted blocks on NPM, and will blacklist bad ones. As the number of blocks increase, we might switch to whitelisting each block upon request, rather than blacklisting.
+The team checks submitted blocks on NPM, and will blacklist bad ones. As the number of blocks increases, we might switch to whitelisting each block upon request, rather than blacklisting.
 
 **How do I migrate a block collection plugin to Gutenberg Cloud?**
 
