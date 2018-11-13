@@ -111,8 +111,13 @@ class Explore {
       <hr class="wp-header-end">
 
       <div class="upload-plugin-wrap">
-        <div class="upload-plugin">
+        <div class="upload-plugin upload-custom-block">
           <p class="install-help"><?php _e( 'If you have a custom Gutenberg block, you can upload it here.', 'cloud-blocks' ); ?></p>
+          <p class="fgc-center-text block-install-help">
+            <?php echo sprintf( __( 'If using Git, we recommend adjusting your .gitignore and commit your block in <b>%s</b>', 'gutenberg-cloug' ), '<code>/wp-content/uploads/gutenberg-blocks/*</code>' ); ?>
+            <br />
+            <a href="https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md"><?php _e( 'See documentation: Private blocks.', 'cloud-blocks' ); ?></a>
+          </p>
           <form method="post" enctype="multipart/form-data" class="wp-upload-form">
             <?php wp_nonce_field( 'fgc_upload_block' ); ?>
             <input type="hidden" name="_wp_http_referer" value="<?php menu_page_url( self::$page_title, true ); ?>">

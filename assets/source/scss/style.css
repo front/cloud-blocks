@@ -101,3 +101,9 @@
     border: #ebebeb solid 1px;
     background: #fafafa;
     border-radius: 3px; }
+
+.fgc-center-text {
+  text-align: center; }
+
+.upload-custom-block .block-install-help code {
+  font-size: 12px; }
