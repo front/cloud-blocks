@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-30 10:15+0100\n"
-"PO-Revision-Date: 2018-10-30 10:15+0100\n"
+"POT-Creation-Date: 2018-11-13 14:20+0100\n"
+"PO-Revision-Date: 2018-11-13 14:20+0100\n"
 "Last-Translator: Gianluca Rosi <gluca.rosi28@gmail.com>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -20,6 +20,41 @@ msgstr ""
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: core/Blocks/Explore.php:58
+msgid ""
+"The file you are trying to upload is not a supported file type. Please try "
+"again."
+msgstr ""
+"Il file che si sta tentando di caricare non è supportato tipo di file. Per "
+"favore riprova."
+
+#: core/Blocks/Explore.php:70
+#, php-format
+msgid "Your custom block <b>%s</b> installed successfully."
+msgstr "Blocco <b>%s</b> installato correttamente."
+
+#: core/Blocks/Explore.php:73
+msgid "There was a problem with the upload. Please try again."
+msgstr "Errore caricamento file. Riprovare."
+
+#: core/Blocks/Explore.php:109
+msgid "Upload block"
+msgstr "Carica blocco"
+
+#: core/Blocks/Explore.php:115
+msgid "If you have a custom Gutenberg block, you can upload it here."
+msgstr ""
+"Se si dispone di un blocco Gutenberg personalizzato, è possibile caricarlo "
+"qui."
+
+#: core/Blocks/Explore.php:119
+msgid "Zip file of block"
+msgstr "Carica blocco"
+
+#: core/Blocks/Explore.php:121
+msgid "Install now"
+msgstr "Installa ora"
 
 #: core/CloudBlocks.php:42
 msgid "Gutenberg is not enabled. Please try again after enabling."
@@ -202,3 +237,6 @@ msgstr "Frontkom"
 #. Author URI of the plugin/theme
 msgid "https://frontkom.no"
 msgstr "https://frontkom.no"
+
+#~ msgid "Blocks zip file"
+#~ msgstr "Blocca il file zip"

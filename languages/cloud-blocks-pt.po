@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-30 10:16+0100\n"
-"PO-Revision-Date: 2018-10-30 10:16+0100\n"
+"POT-Creation-Date: 2018-11-13 14:20+0100\n"
+"PO-Revision-Date: 2018-11-13 14:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -20,6 +20,38 @@ msgstr ""
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: core/Blocks/Explore.php:58
+msgid ""
+"The file you are trying to upload is not a supported file type. Please try "
+"again."
+msgstr "Erro ao carregar o ficheiro. Por favor, tente novamente."
+
+#: core/Blocks/Explore.php:70
+#, php-format
+msgid "Your custom block <b>%s</b> installed successfully."
+msgstr "Bloco <b> %s </b> instalado com êxito."
+
+#: core/Blocks/Explore.php:73
+msgid "There was a problem with the upload. Please try again."
+msgstr "Erro ao carregar o ficheiro. Por favor, tente novamente."
+
+#: core/Blocks/Explore.php:109
+msgid "Upload block"
+msgstr "Blocos da nuvem"
+
+#: core/Blocks/Explore.php:115
+msgid "If you have a custom Gutenberg block, you can upload it here."
+msgstr ""
+"Se você tem um bloco personalizado de Gutenberg, você pode carregá-lo aqui."
+
+#: core/Blocks/Explore.php:119
+msgid "Zip file of block"
+msgstr "Blocos da nuvem"
+
+#: core/Blocks/Explore.php:121
+msgid "Install now"
+msgstr "Instalado"
 
 #: core/CloudBlocks.php:42
 msgid "Gutenberg is not enabled. Please try again after enabling."
@@ -203,6 +235,9 @@ msgstr "Frontkom"
 #. Author URI of the plugin/theme
 msgid "https://frontkom.no"
 msgstr "https://frontkom.no"
+
+#~ msgid "Blocks zip file"
+#~ msgstr "Bloqueia o arquivo zip"
 
 #~ msgid "Frontkom - Fouad Yousefi"
 #~ msgstr "Frontkom-Fuad Yousefi"

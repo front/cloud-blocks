@@ -55,7 +55,7 @@ class Explore {
       
       $continue = strtolower( $name[1] ) == 'zip' ? true : false;
       if ( !$continue ) {
-        \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not supported file type. Please try again.', 'gutenberg-cloug' ), 'error' );
+        \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'gutenberg-cloug' ), 'error' );
       }
 
       \WP_Filesystem();
@@ -116,7 +116,7 @@ class Explore {
           <form method="post" enctype="multipart/form-data" class="wp-upload-form">
             <?php wp_nonce_field( 'fgc_upload_block' ); ?>
             <input type="hidden" name="_wp_http_referer" value="<?php menu_page_url( self::$page_title, true ); ?>">
-            <label class="screen-reader-text" for="blockzip"><?php _e( 'Blocks zip file', 'cloud-blocks' ); ?></label>
+            <label class="screen-reader-text" for="blockzip"><?php _e( 'Zip file of block', 'cloud-blocks' ); ?></label>
             <input type="file" id="blockzip" name="blockzip">
             <input type="submit" name="install-block-submit" id="install-block-submit" class="button" value="<?php _e( 'Install now', 'cloud-blocks' ); ?>" disabled="">
           </form>
