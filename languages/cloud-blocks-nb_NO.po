@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-11-13 14:19+0100\n"
-"PO-Revision-Date: 2018-11-13 14:20+0100\n"
+"POT-Creation-Date: 2018-11-13 15:04+0100\n"
+"PO-Revision-Date: 2018-11-13 15:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -45,11 +45,24 @@ msgid "If you have a custom Gutenberg block, you can upload it here."
 msgstr ""
 "Hvis du har en spesiallaget blokk for Gutenberg, kan den lastes opp her."
 
+#: core/Blocks/Explore.php:117
+#, php-format
+msgid ""
+"If using Git, we recommend adjusting your .gitignore and commit your block "
+"in <b>%s</b>"
+msgstr ""
+"Dersom du bruker Git, anbefaler vi å endre din .gitignore og plassere "
+"blokken i <b>%s</b>"
+
 #: core/Blocks/Explore.php:119
+msgid "See documentation: Private blocks."
+msgstr "Se dokumentasjon: Private blocks."
+
+#: core/Blocks/Explore.php:124
 msgid "Zip file of block"
 msgstr "Zip-fil av blokken"
 
-#: core/Blocks/Explore.php:121
+#: core/Blocks/Explore.php:126
 msgid "Install now"
 msgstr "Aktiver"
 
