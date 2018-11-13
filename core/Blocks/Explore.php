@@ -55,7 +55,7 @@ class Explore {
       
       $continue = strtolower( $name[1] ) == 'zip' ? true : false;
       if ( !$continue ) {
-        \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'gutenberg-cloug' ), 'error' );
+        \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'cloud-blocks' ), 'error' );
       }
 
       \WP_Filesystem();
@@ -67,10 +67,10 @@ class Explore {
         $unzipfile = unzip_file( $destination_path . $filename , $destination_path);
         if ( $unzipfile ) {
           wp_delete_file( $destination_path . $filename );
-          \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully.', 'gutenberg-cloug'), $name[1] ), 'success' );
+          \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully.', 'cloud-blocks'), $name[1] ), 'success' );
         }
       } else {
-        \CloudBlocks\Settings\Tools::add_notice( __( 'There was a problem with the upload. Please try again.', 'gutenberg-cloug' ), 'error' );
+        \CloudBlocks\Settings\Tools::add_notice( __( 'There was a problem with the upload. Please try again.', 'cloud-blocks' ), 'error' );
       }
     }
   }
@@ -114,7 +114,7 @@ class Explore {
         <div class="upload-plugin upload-custom-block">
           <p class="install-help"><?php _e( 'If you have a custom Gutenberg block, you can upload it here.', 'cloud-blocks' ); ?></p>
           <p class="fgc-center-text block-install-help">
-            <?php echo sprintf( __( 'If using Git, we recommend adjusting your .gitignore and commit your block in <b>%s</b>', 'gutenberg-cloug' ), '<code>/wp-content/uploads/gutenberg-blocks/*</code>' ); ?>
+            <?php echo sprintf( __( 'If using Git, we recommend adjusting your .gitignore and commit your block in <b>%s</b>', 'cloud-blocks' ), '<code>/wp-content/uploads/gutenberg-blocks/*</code>' ); ?>
             <br />
             <a href="https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md"><?php _e( 'See documentation: Private blocks.', 'cloud-blocks' ); ?></a>
           </p>
