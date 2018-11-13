@@ -116,7 +116,7 @@ class Explore {
           <p class="fgc-center-text block-install-help">
             <?php echo sprintf( __( 'If using Git, we recommend adjusting your .gitignore and commit your block in <b>%s</b>', 'cloud-blocks' ), '<code>/wp-content/uploads/gutenberg-blocks/*</code>' ); ?>
             <br />
-            <a href="https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md"><?php _e( 'See documentation: Private blocks.', 'cloud-blocks' ); ?></a>
+            <a href="https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md" target="_blank"><?php _e( 'See documentation: Private blocks.', 'cloud-blocks' ); ?></a>
           </p>
           <form method="post" enctype="multipart/form-data" class="wp-upload-form">
             <?php wp_nonce_field( 'fgc_upload_block' ); ?>
