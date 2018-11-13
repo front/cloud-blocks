@@ -32,22 +32,32 @@ To install individual blocks, look for the cloud icon in the left side menu. Cli
 
 ## Frequently Asked Questions
 
-### How do I migrate a block collection plugin to Gutenberg Cloud?
-Glad you asked! This simply means removing some PHP, adding some meta data and publishing on NPM. [Follow these simple steps](https://github.com/front/cloud-blocks/blob/master/docs/migrate-block.md).
+**Is it secure to run blocks from other people?**
 
-### How do I create a custom block for Gutenberg Cloud?
+The team checks submitted blocks on NPM, and will blacklist bad ones. As the number of blocks increases, we might switch to whitelisting each block upon request, rather than blacklisting.
+
+**How do I migrate a block collection plugin to Gutenberg Cloud?**
+
+This simply means removing some PHP, adding some meta data and publishing on NPM. [Follow these simple steps](https://github.com/front/cloud-blocks/blob/master/docs/migrate-block.md).
+
+**How do I create a custom block for Gutenberg Cloud?**
+
 Gutenberg Cloud blocks are really just normal Gutenberg blocks, without the PHP. [Follow these steps to do it](https://github.com/front/cloud-blocks/blob/master/docs/create-block.md)!
 
-### How do I disable CSS for a single block?
+**How do I disable CSS for a single block?**
+
 This is useful for letting your theme control your block styles. There’s a hook for this, [documented here](https://github.com/front/cloud-blocks/blob/master/docs/hooks.md).
 
-### Why is the plugin called Cloud Blocks?
+**Why is the plugin called Cloud Blocks?**
+
 We wanted to name it Gutenberg Cloud, but since it’s not possible to name a plugin starting with the name of another plugin (i.e. Gutenberg), we ended up calling it Cloud Blocks. Makes sense though, doesn’t it?
 
-### Are the blocks really served from "the cloud"?
+**Are the blocks really served from "the cloud"?**
+
 Indeed, they are! The source code for each block is on NPM, but the JS/CSS is served by a CDN. No local downloads!
 
-### Can I add private custom blocks?
+**Can I add private custom blocks?**
+
 Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
