@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-11-13 14:20+0100\n"
-"PO-Revision-Date: 2018-11-13 14:20+0100\n"
+"POT-Creation-Date: 2018-11-13 15:05+0100\n"
+"PO-Revision-Date: 2018-11-13 15:05+0100\n"
 "Last-Translator: Gianluca Rosi <gluca.rosi28@gmail.com>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -48,11 +48,24 @@ msgstr ""
 "Se si dispone di un blocco Gutenberg personalizzato, è possibile caricarlo "
 "qui."
 
+#: core/Blocks/Explore.php:117
+#, php-format
+msgid ""
+"If using Git, we recommend adjusting your .gitignore and commit your block "
+"in <b>%s</b>"
+msgstr ""
+"Se si utilizza Git, si consiglia di regolare il. gitignore e commit il "
+"blocco in <b> %s </b>"
+
 #: core/Blocks/Explore.php:119
+msgid "See documentation: Private blocks."
+msgstr "Vedere documentazione: blocchi privati."
+
+#: core/Blocks/Explore.php:124
 msgid "Zip file of block"
 msgstr "Carica blocco"
 
-#: core/Blocks/Explore.php:121
+#: core/Blocks/Explore.php:126
 msgid "Install now"
 msgstr "Installa ora"
 
