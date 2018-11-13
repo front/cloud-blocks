@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-10-30 10:16+0100\n"
-"PO-Revision-Date: 2018-10-30 10:16+0100\n"
+"POT-Creation-Date: 2018-11-13 15:06+0100\n"
+"PO-Revision-Date: 2018-11-13 15:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -20,6 +20,55 @@ msgstr ""
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: core/Blocks/Explore.php:58
+msgid ""
+"The file you are trying to upload is not a supported file type. Please try "
+"again."
+msgstr "Tipo de ficheiro não suportado. Por favor, tente novamente."
+
+#: core/Blocks/Explore.php:70
+#, php-format
+#| msgid "Block <b>%s</b> installed successfully."
+msgid "Your custom block <b>%s</b> installed successfully."
+msgstr "Your custom block <b>%s</b> installed successfully."
+
+#: core/Blocks/Explore.php:73
+#| msgid "Error uploading file. Please try again."
+msgid "There was a problem with the upload. Please try again."
+msgstr ""
+"Ocorreu um problema durante o carregamento. Por favor, tente novamente."
+
+#: core/Blocks/Explore.php:109
+msgid "Upload block"
+msgstr "Carregar bloco"
+
+#: core/Blocks/Explore.php:115
+msgid "If you have a custom Gutenberg block, you can upload it here."
+msgstr ""
+"Se tem um bloco Gutenberg personalizado no formato .zip pode instalá-lo "
+"carregando-o aqui."
+
+#: core/Blocks/Explore.php:117
+#, php-format
+msgid ""
+"If using Git, we recommend adjusting your .gitignore and commit your block "
+"in <b>%s</b>"
+msgstr ""
+"Se usa o Git, recomendamos que altere o seu .gitignore e coloque o seu "
+"bloco na diretoria <b>%s</b>"
+
+#: core/Blocks/Explore.php:119
+msgid "See documentation: Private blocks."
+msgstr "Ver documentação: blocos privados"
+
+#: core/Blocks/Explore.php:124
+msgid "Zip file of block"
+msgstr "Ficheiro zip do bloco"
+
+#: core/Blocks/Explore.php:126
+msgid "Install now"
+msgstr "Instalar agora"
 
 #: core/CloudBlocks.php:42
 msgid "Gutenberg is not enabled. Please try again after enabling."
