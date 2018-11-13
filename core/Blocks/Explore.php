@@ -56,21 +56,23 @@ class Explore {
       $continue = strtolower( $name[1] ) == 'zip' ? true : false;
       if ( !$continue ) {
         \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'cloud-blocks' ), 'error' );
-      }
-
-      \WP_Filesystem();
-      $destination = wp_upload_dir();
-      $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
-      // Here the magic happens.
-      if ( move_uploaded_file( $source, $destination_path . $filename ) ) {
-        // Unzip
-        $unzipfile = unzip_file( $destination_path . $filename , $destination_path);
-        if ( $unzipfile ) {
-          wp_delete_file( $destination_path . $filename );
-          \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully.', 'cloud-blocks'), $name[1] ), 'success' );
-        }
       } else {
-        \CloudBlocks\Settings\Tools::add_notice( __( 'There was a problem with the upload. Please try again.', 'cloud-blocks' ), 'error' );
+        \WP_Filesystem();
+        $destination = wp_upload_dir();
+        $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
+        $create_folder = wp_mkdir_p( $destination_path );
+        
+        // Here the magic happens.
+        if ( move_uploaded_file( $source, $destination_path . $filename ) ) {
+          // Unzip
+          $unzipfile = unzip_file( $destination_path . $filename , $destination_path);
+          if ( $unzipfile ) {
+            wp_delete_file( $destination_path . $filename );
+            \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully.', 'cloud-blocks'), $name[1] ), 'success' );
+          }
+        } else {
+          \CloudBlocks\Settings\Tools::add_notice( __( 'There was a problem with the upload. Please try again.', 'cloud-blocks' ), 'error' );
+        }
       }
     }
   }
