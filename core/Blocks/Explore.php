@@ -26,6 +26,53 @@ class Explore {
     self::$menu_slug = FGC_NAME;
     // Add menu 
     add_action( 'admin_menu', array( __class__, 'add_menu') );
+    // Handle uploading custom blocks as zip files
+    add_action( 'init', array( __CLASS__, 'upload_block' ) );
+  }
+
+  /**
+   * Handle uploading custom blocks via zip file.
+   *
+   * @since 1.0.7
+   * @param
+   * @return
+   */
+  public static function upload_block() {
+    if ( isset( $_REQUEST ) && isset( $_REQUEST['_wpnonce'] ) && \wp_verify_nonce( $_REQUEST['_wpnonce'], 'fgc_upload_block' ) == 1 && $_FILES['blockzip']['name'] ) {
+      // Define some variables that we need down the road
+      $filename = $_FILES["blockzip"]["name"];
+      $source = $_FILES["blockzip"]["tmp_name"];
+      $type = $_FILES["blockzip"]["type"];
+      $name = explode(".", $filename);
+      // Here is accepted file types
+      $accepted_types = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
+      foreach($accepted_types as $mime_type) {
+        if($mime_type == $type) {
+          $okay = true;
+          break;
+        } 
+      }
+      
+      $continue = strtolower( $name[1] ) == 'zip' ? true : false;
+      if ( !$continue ) {
+        \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not supported file type. Please try again.', 'gutenberg-cloug' ), 'error' );
+      }
+
+      \WP_Filesystem();
+      $destination = wp_upload_dir();
+      $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
+      // Here the magic happens.
+      if ( move_uploaded_file( $source, $destination_path . $filename ) ) {
+        // Unzip
+        $unzipfile = unzip_file( $destination_path . $filename , $destination_path);
+        if ( $unzipfile ) {
+          wp_delete_file( $destination_path . $filename );
+          \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully.', 'gutenberg-cloug'), $name[1] ), 'success' );
+        }
+      } else {
+        \CloudBlocks\Settings\Tools::add_notice( __( 'There was a problem with the upload. Please try again.', 'gutenberg-cloug' ), 'error' );
+      }
+    }
   }
 
   /**
@@ -57,7 +104,25 @@ class Explore {
   public static function cloud_explorer() {
     ?>
     <div class="wrap" id="blockExplorer">
-      <h1><?php esc_html_e( self::$page_title, 'cloud-blocks' ); ?></h1>
+      <h1 class="wp-heading-inline"><?php esc_html_e( self::$page_title, 'cloud-blocks' ); ?></h1>
+      <a href="#" @click.prevent="showUploader" class="upload-view-toggle page-title-action">
+        <span class="upload"><?php _e( 'Upload block', 'cloud-blocks' ); ?></span>
+      </a>
+      <hr class="wp-header-end">
+
+      <div class="upload-plugin-wrap">
+        <div class="upload-plugin">
+          <p class="install-help"><?php _e( 'If you have a custom Gutenberg block, you can upload it here.', 'cloud-blocks' ); ?></p>
+          <form method="post" enctype="multipart/form-data" class="wp-upload-form">
+            <?php wp_nonce_field( 'fgc_upload_block' ); ?>
+            <input type="hidden" name="_wp_http_referer" value="<?php menu_page_url( self::$page_title, true ); ?>">
+            <label class="screen-reader-text" for="blockzip"><?php _e( 'Blocks zip file', 'cloud-blocks' ); ?></label>
+            <input type="file" id="blockzip" name="blockzip">
+            <input type="submit" name="install-block-submit" id="install-block-submit" class="button" value="<?php _e( 'Install now', 'cloud-blocks' ); ?>" disabled="">
+          </form>
+        </div>
+      </div>
+        
       <admin-notice></admin-notice>
       <explorer-filter></explorer-filter>
       

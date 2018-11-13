@@ -663,6 +663,9 @@ var app = new Vue({
       if (!results) return null
       if (!results[2]) return ''
       return decodeURIComponent(results[2].replace(/\+/g, ' '))
+    },
+    showUploader() {
+      document.body.classList.toggle('show-upload-view')
     }
   },
   computed: {
