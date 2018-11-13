@@ -105,7 +105,7 @@ var app = new Vue({
     getBlocks(query) {
       let blocks = []
       let queryString = ''
-      if (query.q !== null) {
+      if (query.q && query.q !== null) {
         queryString = `q=${query.q}`
       }
       if (query.state !== null) {
