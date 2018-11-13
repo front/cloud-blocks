@@ -67,6 +67,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 * **Change:** Private custom blocks now should be under **wp-content/uploads/gutenberg-blocks/**.
 * **Add:** Implement UI to upload zip file with custom block [issue #3](https://github.com/front/cloud-blocks/issues/3)
 * **Fix:** Fix a bug about enqueue custom blocks assets [issue #4](https://github.com/front/cloud-blocks/issues/4)
+* **Fix:** Fix an issue with javascript if search query is empty
 
 #### 1.0.6
 * **Add:** Implement order for blocks (Latest or Popular)
