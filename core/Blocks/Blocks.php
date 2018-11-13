@@ -174,6 +174,11 @@ class Blocks {
       $block_name = str_replace('/', '', $block_name);
       // And list js and css files.
       $block_files = list_files($block . 'build', 1);
+
+      // Reset script and styles of the block
+      $block_style = null;
+      $editor_style = null;
+      $block_script = null;
       
       // Extract block js and css files
       foreach ($block_files as $file) {
