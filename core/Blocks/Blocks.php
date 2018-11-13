@@ -166,7 +166,7 @@ class Blocks {
       include_once ABSPATH . '/wp-admin/includes/file.php';
     }
     // list all blocks (The sub-directory of /gutenberg-blocks/).
-    $gutenberg_blocks_dir = WP_CONTENT_DIR . '/gutenberg-blocks/';
+    $gutenberg_blocks_dir = wp_upload_dir()['basedir'] . '/gutenberg-blocks/';
     $gutenberg_blocks = list_files($gutenberg_blocks_dir, 1);
     // Then loop through blocks.
     foreach ($gutenberg_blocks as $block) {
@@ -178,13 +178,13 @@ class Blocks {
       // Extract block js and css files
       foreach ($block_files as $file) {
         if ( preg_match('/style.css$/i', $file) ) {
-          preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_style );
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_style );
         }
         if ( preg_match('/editor.css$/i', $file) ) {
-          preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $editor_style );
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $editor_style );
         }
         if ( preg_match('/index.js$/i', $file) ) {
-          preg_match( '/wp-content\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
         }
       }
       global $pagenow;
