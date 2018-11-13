@@ -72,10 +72,15 @@ Indeed, they are! The source code for each block is on NPM, but the JS/CSS is se
 
 **Can I add private custom blocks?**
 
-Sure! Just add your custom blocks into **wp-content/gutenberg-blocks/** folder. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
+Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
 == Changelog ==
+
+== 1.0.7 ==
+* Change: Private custom blocks now should be under **wp-content/uploads/gutenberg-blocks/**
+* Add: Implement UI to upload zip file with custom block [issue #3](https://github.com/front/cloud-blocks/issues/3)
+* Fix: Fix a bug about enqueue custom blocks assets [issue #4](https://github.com/front/cloud-blocks/issues/4)
 
 = 1.0.6 =
 * Add: Implement order for blocks (Latest or Popular)
