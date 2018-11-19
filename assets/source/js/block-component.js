@@ -142,7 +142,8 @@ Vue.component('block-card', {
     },
     incrementInstalls(packageName) {
       jQuery.ajax({
-        type: 'PUT',
+        type: 'POST',
+        data: { increment: 1 },
         url: `https://api.gutenbergcloud.org/blocks/${packageName}`
       })
         .done(() => {
@@ -154,7 +155,8 @@ Vue.component('block-card', {
     },
     decrementInstalls(packageName) {
       jQuery.ajax({
-        type: 'DELETE',
+        type: 'POST',
+        data: { increment: -1 },
         url: `https://api.gutenbergcloud.org/blocks/${packageName}`
       })
         .done(() => {
