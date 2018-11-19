@@ -5,7 +5,7 @@ Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
 Tested up to: 5
 Requires PHP: 5
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -76,6 +76,9 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 
 == Changelog ==
+
+== 1.0.9 ==
+* Change: Change increase and decrease number of installations of a block
 
 == 1.0.8 ==
 * Fix: Fix some issues in previous version release
