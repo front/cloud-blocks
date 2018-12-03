@@ -3,8 +3,8 @@ Contributors: frontkom, foadyousefi, ssousa
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
-Tested up to: 5
-Requires PHP: 5
+Tested up to: 5.0
+Requires PHP: 5.2.4
 Stable tag: 1.0.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
