@@ -77,16 +77,16 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 == Changelog ==
 
-#### 1.0.10
+= 1.0.10 =
 * Fix: Fix block js dependency introduced in Gutenberg 4.5.1
 
-== 1.0.9 ==
+= 1.0.9 =
 * Change: Change increase and decrease number of installations of a block
 
-== 1.0.8 ==
+= 1.0.8 =
 * Fix: Fix some issues in previous version release
 
-== 1.0.7 ==
+= 1.0.7 =
 * Change: Private custom blocks now should be under **wp-content/uploads/gutenberg-blocks/**
 * Add: Implement UI to upload zip file with custom block [issue #3](https://github.com/front/cloud-blocks/issues/3)
 * Fix: Fix a bug about enqueue custom blocks assets [issue #4](https://github.com/front/cloud-blocks/issues/4)
