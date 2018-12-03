@@ -194,7 +194,7 @@ class Blocks {
       }
       global $pagenow;
       if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) && isset( $block_script ) && !empty( $block_script ) ) {
-        wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-i18n' ), FGC_VERSION, true);
+        wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-editor', 'wp-blocks', 'wp-element', 'wp-i18n' ), FGC_VERSION, true);
       }
       if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) && isset( $block_style ) && !empty( $block_style ) ) {
         wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), FGC_VERSION);
@@ -210,7 +210,7 @@ class Blocks {
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
       foreach ($blocks as $block) {
-        wp_register_script( str_replace( ' ', '-', $block->block_name ) , $block->js_url, array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-i18n' ), $block->block_version , true);
+        wp_register_script( str_replace( ' ', '-', $block->block_name ) , $block->js_url, array( 'wp-editor', 'wp-blocks', 'wp-element', 'wp-i18n' ), $block->block_version , true);
         wp_enqueue_script( str_replace( ' ', '-', $block->block_name ) );
       }
     }

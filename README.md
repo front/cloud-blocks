@@ -63,6 +63,9 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 ## Changelog
 
+#### 1.0.10
+* **Fix**: Fix block js dependency introduced in Gutenberg 4.5.1
+
 #### 1.0.9
 * **Change**: Change increase and decrease number of installations of a block
 
