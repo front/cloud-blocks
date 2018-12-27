@@ -22,7 +22,10 @@ class Blocks {
     add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
 
-    add_action( 'init', array( $this, 'custom_blocks' ) );
+    add_action( 'wp_ajax_fgc_local_blocks', array( $this, 'local_blocks' ) );
+    add_action( 'wp_ajax_nopriv_fgc_local_blocks', array( $this, 'local_blocks' ) );
+    
+    // add_action( 'init', array( $this, 'custom_blocks' ) );
   }
 
 
@@ -203,6 +206,100 @@ class Blocks {
         }
       }
     }
+  }
+
+  /**
+   * Get local blocks.
+   * Custom blocks can be uploaded to /wp-content/gutenberg-blocks/
+   * They must follow file structure like:
+   * -package.json
+   * -/block-dir/
+   * --/style.css
+   * --/editor.css
+   * --/script.js
+   * --/thumbnail.(jpg|png|gif)
+   *
+   * @since 1.0.11
+   * @param
+   * @return
+   */
+  public function local_blocks() {
+    // First we must make sure files.php loaded
+    if ( ! function_exists( 'get_home_path' ) ) {
+      include_once ABSPATH . '/wp-admin/includes/file.php';
+    }
+    // list all blocks (The sub-directory of /gutenberg-blocks/).
+    $gutenberg_blocks_dir = wp_upload_dir()['basedir'] . '/gutenberg-blocks/';
+    $gutenberg_blocks = list_files($gutenberg_blocks_dir, 1);
+
+    $local_blocks = array();
+    // Then loop through blocks.
+    foreach ($gutenberg_blocks as $block) {
+      preg_match( '/([a-zA-Z-_]*(:?\/))$/i', $block, $block_name);
+      $block_name = str_replace('/', '', $block_name);
+      // And list js and css files.
+      $block_files = list_files($block . 'build', 1);
+
+      // Reset script and styles of the block
+      $block_style = null;
+      $editor_style = null;
+      $block_script = null;
+      $block_thumbnail = null;
+      
+      // Extract block js and css files
+      foreach ($block_files as $file) {
+        if ( preg_match('/style.css$/i', $file) ) {
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_style );
+        }
+        if ( preg_match('/editor.css$/i', $file) ) {
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $editor_style );
+        }
+        if ( preg_match('/index.js$/i', $file) ) {
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
+        }
+        if ( preg_match('/thumbnail/i', $file) ) {
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_thumbnail );
+        }
+      }
+
+      // Read block manifest
+      $package_json = array();
+      $block_manifest = array();
+
+      if ( file_exists( $block . 'package.json' ) ) {
+        $package_json = file_get_contents($block . 'package.json');
+        $package_json = json_decode( $package_json );
+
+        $block_manifest = array(
+          'name'            => isset( $package_json->name ) ? $package_json->name : '',
+          'version'         => isset( $package_json->version ) ? $package_json->version : '',
+          'description'     => isset( $package_json->description ) ? $package_json->description : '',
+          'main'            => isset( $package_json->main ) ? $package_json->main : '',
+          'author'          => isset( $package_json->author ) ? $package_json->author : '',
+          'license'         => isset( $package_json->license ) ? $package_json->license : '',
+          'repository'      => isset( $package_json->repository ) ? $package_json->repository : '',
+          'homepage'        => isset( $package_json->homepage ) ? $package_json->homepage : '',
+          'keywords'        => isset( $package_json->keywords ) ? $package_json->keywords : '',
+          'isLocal'         => true
+        );
+      }
+
+      $local_blocks[] = array(
+        'name'            => isset( $package_json->gutenbergCloud->name ) ? $package_json->gutenbergCloud->name : $package_json->name,
+        'packageName'     => isset( $package_json->name ) ? $package_json->name : '',
+        'jsUrl'           => ( isset( $block_script ) && !empty( $block_script ) ) ? site_url() . '/' . $block_script[0] : $package_json->gutenbergCloud->js,
+        'cssUrl'          => ( isset( $block_style ) && !empty( $block_style ) ) ? site_url() . '/' . $block_style[0] : $package_json->gutenbergCloud->css,
+        'editorCss'       => ( isset( $editor_style ) && !empty( $editor_style ) ) ? site_url() . '/' . $editor_style[0] : $package_json->gutenbergCloud->editor,
+        'infoUrl'         => 'https://www.npmjs.com/package/' . $package_json->name,
+        'imageUrl'        => ( isset( $block_thumbnail ) && !empty( $block_thumbnail ) ) ? site_url() . '/' . $block_thumbnail[0] : $package_json->gutenbergCloud->thumbnail,
+        'version'         => isset( $package_json->version ) ? $package_json->version : '',
+        'blockManifest'   => json_encode($block_manifest)
+      );
+
+      
+    }
+
+    wp_send_json_success( $local_blocks );
   }
 
   public function blocks_register_scripts($hook) {
