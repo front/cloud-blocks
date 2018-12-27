@@ -5,7 +5,8 @@ var store = new Vuex.Store({
     installedBlocks: fgcData.installedBlocks,
     searchQuery: null,
     opendOverlay: null,
-    blocksCount: 0
+    blocksCount: 0,
+    refetchBlocks: false
   },
   mutations: {
     setNotification(state, payload) {
@@ -25,6 +26,9 @@ var store = new Vuex.Store({
     },
     setBlocksCount(state, payload) {
       state.blocksCount = payload
+    },
+    setRefetchBlocks(state, payload) {
+      state.refetchBlocks = payload
     }
   },
   actions: {
@@ -92,6 +96,13 @@ var app = new Vue({
       if (newBlocksList.length != oldBlocksList.length && currentBrowseState == 'installed') {
         this.blocks = this.blocks.filter(block => newBlocksList.some(bl => bl.package_name == block.packageName))
       }
+    },
+    refetchBlocks() {
+      const currentBrowseState = this.getUrlParams('browse') ? this.getUrlParams('browse') : 'installed'
+      let query = {
+        state: currentBrowseState
+      }
+      this.getBlocks(query)
     }
   },
   methods: {
@@ -201,6 +212,9 @@ var app = new Vue({
     },
     openOverlay() {
       return window.store.state.opendOverlay
+    },
+    refetchBlocks() {
+      return window.store.state.refetchBlocks
     }
   }
 })

@@ -286,6 +286,7 @@ Vue.component('block-details', {
             <a v-if="alreadyInstaleld" @click.prevent="deleteBlock" class="button activate">{{fgcData.strings.delete}}</a>
             <a v-else @click.prevent="installBlock" class="button activate">{{fgcData.strings.install}}</a>
             <a :href="blockUrl" target="_blank" class="button button-primary load-customize hide-if-no-customize">{{fgcData.strings.visit_homepage}}</a>
+            <a v-if="isLocalBlock" class="button install-block-btn button-delete load-customize hide-if-no-customize" @click.prevent="removeBlock">{{fgcData.strings.delete_block}}</a>
           </div>
         </div>
       </div>
@@ -355,6 +356,31 @@ Vue.component('block-details', {
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
+        })
+        .fail(error => {
+          this.installing = false
+          console.log('There is some issues installing block: ', error);
+        })
+    },
+    removeBlock() {
+      let postData = {
+        block: this.block,
+        nonce: fgcData.ajaxNonce
+      }
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_remove_block",
+          data: postData
+        }
+      })
+        .done(res => {
+          window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
+          window.store.commit('setRefetchBlocks', true)
+          this.closeOverlay()
+          window.store.dispatch('getInstalledBlocks')
+          console.log('Block removed ', res.data)  
         })
         .fail(error => {
           this.installing = false
@@ -547,7 +573,8 @@ var store = new Vuex.Store({
     installedBlocks: fgcData.installedBlocks,
     searchQuery: null,
     opendOverlay: null,
-    blocksCount: 0
+    blocksCount: 0,
+    refetchBlocks: false
   },
   mutations: {
     setNotification(state, payload) {
@@ -567,6 +594,9 @@ var store = new Vuex.Store({
     },
     setBlocksCount(state, payload) {
       state.blocksCount = payload
+    },
+    setRefetchBlocks(state, payload) {
+      state.refetchBlocks = payload
     }
   },
   actions: {
@@ -634,6 +664,13 @@ var app = new Vue({
       if (newBlocksList.length != oldBlocksList.length && currentBrowseState == 'installed') {
         this.blocks = this.blocks.filter(block => newBlocksList.some(bl => bl.package_name == block.packageName))
       }
+    },
+    refetchBlocks() {
+      const currentBrowseState = this.getUrlParams('browse') ? this.getUrlParams('browse') : 'installed'
+      let query = {
+        state: currentBrowseState
+      }
+      this.getBlocks(query)
     }
   },
   methods: {
@@ -743,6 +780,9 @@ var app = new Vue({
     },
     openOverlay() {
       return window.store.state.opendOverlay
+    },
+    refetchBlocks() {
+      return window.store.state.refetchBlocks
     }
   }
 })
