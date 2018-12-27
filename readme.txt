@@ -4,7 +4,7 @@ Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
 Tested up to: 5.0
-Requires PHP: 5.2.4
+Requires PHP: 5.4
 Stable tag: 1.0.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -76,6 +76,14 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 
 == Changelog ==
+
+= 1.0.11 =
+* Fix: Change array dereferencing in activation hook
+* Fix: Show block in installed list even after block removed from Gutenberg Cloud
+* Fix: Don't display Installed notice on blocks in Installed tab
+* Add: Listing for local custom blocks, install and delete them
+* Change: Change minimum required php version
+* Change: Check for db structure update in upgrader_process_complete hook instead of init
 
 = 1.0.10 =
 * Fix: Fix block js dependency introduced in Gutenberg 4.5.1
