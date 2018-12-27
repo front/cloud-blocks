@@ -129,7 +129,6 @@ var app = new Vue({
           }
         }
       } else if (query.state == 'local') {
-        console.log('Local')
         this.localBlocks()
       } else {
         jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
@@ -180,7 +179,6 @@ var app = new Vue({
         }
       })
         .done(res => {
-          console.log('Block installed ', res.data)  
           this.blocks = res.data
         })
         .fail(error => {

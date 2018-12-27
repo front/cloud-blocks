@@ -302,6 +302,9 @@ Vue.component('block-details', {
       let manifest = JSON.parse(this.block.blockManifest)
       return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
     },
+    isLocalBlock() {
+      return (this.blockManifest && this.blockManifest.isLocal) || false
+    },
     blockUrl() {
       if (this.blockManifest.homepage) {
         return this.blockManifest.homepage
@@ -346,7 +349,9 @@ Vue.component('block-details', {
       })
         .done(res => {
           this.alreadyInstaleld = true
-          this.incrementInstalls(this.block.packageName)
+          if (!this.isLocalBlock) {
+            this.incrementInstalls(this.block.packageName)
+          }
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
@@ -368,7 +373,9 @@ Vue.component('block-details', {
       })
         .done(res => {
           this.alreadyInstaleld = false
-          this.decrementInstalls(this.block.packageName)
+          if (!this.isLocalBlock) {
+            this.decrementInstalls(this.block.packageName)
+          }
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
           console.log('Block uninstalled ', res.data)  
@@ -664,7 +671,6 @@ var app = new Vue({
           }
         }
       } else if (query.state == 'local') {
-        console.log('Local')
         this.localBlocks()
       } else {
         jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
@@ -715,7 +721,6 @@ var app = new Vue({
         }
       })
         .done(res => {
-          console.log('Block installed ', res.data)  
           this.blocks = res.data
         })
         .fail(error => {
