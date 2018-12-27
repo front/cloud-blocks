@@ -13,8 +13,6 @@ Your online library of Gutenberg blocks! Browse and discover new blocks, and ins
 
 == Description ==
 
-**IMPORTANT: THIS PLUGIN IS IN BETA UNTIL WP 5.0**
-
 **Gutenberg Cloud: Your online library of blocks!** Cloud Blocks is the only plugin you need to browse and install new blocks:
 
 - Discover and install custom blocks with a click
@@ -48,7 +46,7 @@ Install it just like any other plugin. It just works!
 
 **Is it secure to run blocks from other people?**
 
-The team checks submitted blocks on NPM, and will blacklist bad ones. As the number of blocks increases, we might switch to whitelisting each block upon request, rather than blacklisting.
+All blocks go through a manual code review before they are published. Waiting for a code review? Email perandre@front.no.
 
 **How do I migrate a block collection plugin to Gutenberg Cloud?**
 
