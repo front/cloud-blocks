@@ -179,6 +179,9 @@ var app = new Vue({
         }
       })
         .done(res => {
+          if (res.data.length) {
+            window.store.commit('setBlocksCount', res.data.length)
+          }
           this.blocks = res.data
         })
         .fail(error => {
