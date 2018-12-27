@@ -19,6 +19,9 @@ class Blocks {
     add_action( 'wp_ajax_fgc_delete_block', array( $this, 'delete' ) );
     add_action( 'wp_ajax_nopriv_fgc_delete_block', array( $this, 'delete' ) );
 
+    add_action( 'wp_ajax_fgc_remove_block', array( $this, 'delete_block_files' ) );
+    add_action( 'wp_ajax_nopriv_fgc_remove_block', array( $this, 'delete_block_files' ) );
+
     add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
 
@@ -300,6 +303,44 @@ class Blocks {
     }
 
     wp_send_json_success( $local_blocks );
+  }
+
+  /**
+   * Delete block files completely.
+   *
+   * @since 1.0.11
+   * @param
+   * @return
+   */
+  public function delete_block_files() {
+    if ( isset( $_REQUEST ) && isset( $_REQUEST['data']['nonce'] ) && \wp_verify_nonce( $_REQUEST['data']['nonce'], 'fgc_ajax_nonce' ) == 1 ) {
+
+      require_once(ABSPATH . 'wp-admin/includes/file.php');
+      \WP_Filesystem();
+      $destination = wp_upload_dir();
+      $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
+      $block = $_REQUEST['data']['block']['jsUrl'];
+
+      $block = str_replace( $destination['baseurl'] . '/gutenberg-blocks/', '', $block );
+      preg_match( '/[a-zA-Z0-9-_]*(?!:\/)/i', $block, $block_dir );
+      
+      $filesystem = new \WP_Filesystem_Direct(array());
+      $removed = $filesystem->delete( $destination_path . $block_dir[0], true );
+
+      if ( $removed ) {
+        $response = array(
+          'code'      => 200,
+          'message'   => 'Block directory removed totally'
+        );
+        wp_send_json_success( $response );
+      }
+
+    }
+    wp_send_json_error(array(
+      'code'      => 500,
+      'message'   => 'Block directory can not be deleted'
+    ));
+
   }
 
   public function blocks_register_scripts($hook) {
