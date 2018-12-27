@@ -128,6 +128,9 @@ var app = new Vue({
             blocks.push(theBlock)
           }
         }
+      } else if (query.state == 'local') {
+        console.log('Local')
+        this.localBlocks()
       } else {
         jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
           if (res.count) {
@@ -167,7 +170,23 @@ var app = new Vue({
     },
     showUploader() {
       document.body.classList.toggle('show-upload-view')
-    }
+    },
+    localBlocks() {
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_local_blocks"
+        }
+      })
+        .done(res => {
+          console.log('Block installed ', res.data)  
+          this.blocks = res.data
+        })
+        .fail(error => {
+          console.log('There is some issues getting local blocks: ', error);
+        })
+    },
   },
   computed: {
     currentBrowseFilter() {

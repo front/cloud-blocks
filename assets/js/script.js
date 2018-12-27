@@ -122,7 +122,9 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = true
-          this.incrementInstalls(this.block.packageName)
+          if (!this.isLocalBlock) {
+            this.incrementInstalls(this.block.packageName)
+          }
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
@@ -146,7 +148,9 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = false
-          this.decrementInstalls(this.block.packageName)
+          if (!this.isLocalBlock) {
+            this.decrementInstalls(this.block.packageName)
+          }
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
           console.log('Block uninstalled ', res.data)  
@@ -217,6 +221,9 @@ Vue.component('block-card', {
     blockManifest() {
       let manifest = JSON.parse(this.block.blockManifest)
       return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
+    },
+    isLocalBlock() {
+      return (this.blockManifest && this.blockManifest.isLocal) || false
     },
     blockUrl() {
       if (this.blockManifest.homepage) {
@@ -413,6 +420,10 @@ Vue.component('explorer-filter', {
         {
           name: fgcData.strings.latest,
           slug: 'latest'
+        },
+        {
+          name: fgcData.strings.local,
+          slug: 'local'
         }
       ]
     }
@@ -650,6 +661,9 @@ var app = new Vue({
             blocks.push(theBlock)
           }
         }
+      } else if (query.state == 'local') {
+        console.log('Local')
+        this.localBlocks()
       } else {
         jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
           if (res.count) {
@@ -689,7 +703,23 @@ var app = new Vue({
     },
     showUploader() {
       document.body.classList.toggle('show-upload-view')
-    }
+    },
+    localBlocks() {
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_local_blocks"
+        }
+      })
+        .done(res => {
+          console.log('Block installed ', res.data)  
+          this.blocks = res.data
+        })
+        .fail(error => {
+          console.log('There is some issues getting local blocks: ', error);
+        })
+    },
   },
   computed: {
     currentBrowseFilter() {

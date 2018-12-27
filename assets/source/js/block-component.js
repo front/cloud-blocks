@@ -82,7 +82,9 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = true
-          this.incrementInstalls(this.block.packageName)
+          if (!this.isLocalBlock) {
+            this.incrementInstalls(this.block.packageName)
+          }
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
           console.log('Block installed ', res.data)  
@@ -106,7 +108,9 @@ Vue.component('block-card', {
         .done(res => {
           this.installing = false
           this.alreadyInstaleld = false
-          this.decrementInstalls(this.block.packageName)
+          if (!this.isLocalBlock) {
+            this.decrementInstalls(this.block.packageName)
+          }
           window.store.dispatch('getInstalledBlocks')
           window.store.commit('setNotification', { text: `${fgcData.strings.block} <b>${this.block.name}</b> ${fgcData.strings.block_uninstalled}`, class: 'show success' })
           console.log('Block uninstalled ', res.data)  
@@ -177,6 +181,9 @@ Vue.component('block-card', {
     blockManifest() {
       let manifest = JSON.parse(this.block.blockManifest)
       return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
+    },
+    isLocalBlock() {
+      return (this.blockManifest && this.blockManifest.isLocal) || false
     },
     blockUrl() {
       if (this.blockManifest.homepage) {

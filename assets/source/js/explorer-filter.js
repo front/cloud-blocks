@@ -16,6 +16,10 @@ Vue.component('explorer-filter', {
         {
           name: fgcData.strings.latest,
           slug: 'latest'
+        },
+        {
+          name: fgcData.strings.local,
+          slug: 'local'
         }
       ]
     }
