@@ -66,7 +66,7 @@ class CloudBlocks {
     Tools::init();
 
     // check for available db structure update
-    add_action( 'init', array( 'CloudBlocks\Activator', 'update_db' ) );
+    add_action( 'upgrader_process_complete', array( 'CloudBlocks\Activator', 'update_db' ) );
   }
 
   /**
