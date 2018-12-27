@@ -25,7 +25,7 @@ Vue.component('block-card', {
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span v-if="blockManifest.author" class="block-author">{{fgcData.strings.by}}: 
+        <span v-if="blockManifest && blockManifest.author" class="block-author">{{fgcData.strings.by}}: 
           <span v-if="typeof blockManifest.author == 'object'">
             {{ blockManifest.author.name }}
           </span>
@@ -175,7 +175,8 @@ Vue.component('block-card', {
       return window.store.state.browseState
     },
     blockManifest() {
-      return JSON.parse(this.block.blockManifest)
+      let manifest = JSON.parse(this.block.blockManifest)
+      return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
     },
     blockUrl() {
       if (this.blockManifest.homepage) {

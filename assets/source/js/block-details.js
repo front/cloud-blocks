@@ -58,7 +58,8 @@ Vue.component('block-details', {
   },
   computed: {
     blockManifest() {
-      return JSON.parse(this.block.blockManifest)
+      let manifest = JSON.parse(this.block.blockManifest)
+      return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
     },
     blockUrl() {
       if (this.blockManifest.homepage) {
@@ -79,7 +80,7 @@ Vue.component('block-details', {
       }
     },
     blockTags() {
-      return this.blockManifest.keywords.join(', ')
+      return this.blockManifest ? this.blockManifest.keywords.join(', ') : ''
     }
   },
   methods: {

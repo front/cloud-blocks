@@ -65,7 +65,7 @@ Vue.component('block-card', {
 
       <div class="theme-id-container">
         <h3 class="theme-name">{{ block.name }}</h3>
-        <span v-if="blockManifest.author" class="block-author">{{fgcData.strings.by}}: 
+        <span v-if="blockManifest && blockManifest.author" class="block-author">{{fgcData.strings.by}}: 
           <span v-if="typeof blockManifest.author == 'object'">
             {{ blockManifest.author.name }}
           </span>
@@ -215,7 +215,8 @@ Vue.component('block-card', {
       return window.store.state.browseState
     },
     blockManifest() {
-      return JSON.parse(this.block.blockManifest)
+      let manifest = JSON.parse(this.block.blockManifest)
+      return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
     },
     blockUrl() {
       if (this.blockManifest.homepage) {
@@ -289,7 +290,8 @@ Vue.component('block-details', {
   },
   computed: {
     blockManifest() {
-      return JSON.parse(this.block.blockManifest)
+      let manifest = JSON.parse(this.block.blockManifest)
+      return (typeof manifest == 'string' && manifest != '') ? JSON.parse(manifest) : manifest
     },
     blockUrl() {
       if (this.blockManifest.homepage) {
@@ -310,7 +312,7 @@ Vue.component('block-details', {
       }
     },
     blockTags() {
-      return this.blockManifest.keywords.join(', ')
+      return this.blockManifest ? this.blockManifest.keywords.join(', ') : ''
     }
   },
   methods: {
@@ -631,30 +633,49 @@ var app = new Vue({
       if (query.state !== null) {
         queryString += `&order=${query.state}`
       }
-      jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
-        if (res.count) {
-          window.store.commit('setBlocksCount', res.count)
-        }
-        for (const block of res.rows) {
-          const theBlock = {}
-          theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
-          theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
-          theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
-          theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
-          theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
-          theBlock.name = block.config.name
-          theBlock.blockManifest = JSON.stringify(block.package)
-          theBlock.version = block.version
-          theBlock.packageName = block.name
-          if (query.state == null || query.state == 'installed') {
-            if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
-              blocks.push(theBlock)
-            }
-          } else {
+      if (query.state == null || query.state == 'installed') {
+        if (this.installedBlocks.length) {
+          for (const block of this.installedBlocks) {
+            const theBlock = {}
+            theBlock.jsUrl = block.js_url
+            theBlock.cssUrl = block.css_url
+            theBlock.editorCss = block.editor_css
+            theBlock.infoUrl = block.info_url
+            theBlock.imageUrl = block.thumbnail
+            theBlock.name = block.block_name
+            theBlock.blockManifest = '\"' + block.block_manifest + '\"'
+            theBlock.version = block.block_version
+            theBlock.packageName = block.package_name
+            
             blocks.push(theBlock)
           }
         }
-      })
+      } else {
+        jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
+          if (res.count) {
+            window.store.commit('setBlocksCount', res.count)
+          }
+          for (const block of res.rows) {
+            const theBlock = {}
+            theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+            theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+            theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
+            theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+            theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+            theBlock.name = block.config.name
+            theBlock.blockManifest = JSON.stringify(block.package)
+            theBlock.version = block.version
+            theBlock.packageName = block.name
+            if (query.state == null || query.state == 'installed') {
+              if (this.installedBlocks.length && this.installedBlocks.filter(b => b.package_name == theBlock.packageName).length) {
+                blocks.push(theBlock)
+              }
+            } else {
+              blocks.push(theBlock)
+            }
+          }
+        })
+      }
       this.blocks = blocks
     },
     getUrlParams(name, url) {
