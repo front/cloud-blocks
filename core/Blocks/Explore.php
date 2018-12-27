@@ -57,6 +57,7 @@ class Explore {
       if ( !$continue ) {
         \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'cloud-blocks' ), 'error' );
       } else {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
         \WP_Filesystem();
         $destination = wp_upload_dir();
         $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
