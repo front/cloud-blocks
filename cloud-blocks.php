@@ -42,7 +42,7 @@ function fgc_register_textdomain() {
 }
 
 // Register activation hook
-register_activation_hook( __FILE__, [ 'CloudBlocks\Activator', 'init' ] );
+register_activation_hook( __FILE__, array( 'CloudBlocks\Activator', 'init' ) );
 
 // Initiate plugin
 new CloudBlocks\CloudBlocks;
