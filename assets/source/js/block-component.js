@@ -17,6 +17,8 @@ Vue.component('block-card', {
 
       <div v-if="currentBrowseState != 'installed' && alreadyInstaleld" class="notice inline notice-success notice-alt"><p>{{fgcData.strings.installed}}</p></div>
 
+      <div v-if="currentBrowseState == 'installed' && isLocalBlock" class="notice inline notice-info notice-alt"><p>{{fgcData.strings.local_block}}</p></div>
+
       <div v-if="updateAvailable" class="update-message notice inline notice-warning notice-alt">
         <p>{{fgcData.strings.update_available}} <button class="button-link" type="button" @click="updateBlock">{{fgcData.strings.update_now}}</button></p>
       </div>
