@@ -192,6 +192,7 @@ var app = new Vue({
         .done(res => {
           if (res.data.length) {
             window.store.commit('setBlocksCount', res.data.length)
+            window.store.commit('setRefetchBlocks', false)
           }
           this.blocks = res.data
         })
