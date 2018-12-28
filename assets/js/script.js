@@ -376,7 +376,7 @@ Vue.component('block-details', {
         }
       })
         .done(res => {
-          window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_installed}`, class: 'show success' })
+          window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_deleted}`, class: 'show success' })
           window.store.commit('setRefetchBlocks', true)
           this.closeOverlay()
           window.store.dispatch('getInstalledBlocks')

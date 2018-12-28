@@ -36,7 +36,7 @@ class Translations {
       'more_details'            => __( 'More details', 'cloud-blocks' ),
       'block_installed'         => __( 'have been installed successfully.', 'cloud-blocks' ),
       'block_uninstalled'       => __( 'have been uninstalled successfully.', 'cloud-blocks' ),
-      'block_removed'           => __( 'have been deleted successfully.', 'cloud-blocks' ),
+      'block_deleted'           => __( 'have been deleted successfully.', 'cloud-blocks' ),
       'block_updated'           => __( 'have been updated successfully.', 'cloud-blocks' ),
       'update_available'        => __( 'New version available.', 'cloud-blocks' ),
       'version'                 => __( 'Version', 'cloud-blocks' ),
