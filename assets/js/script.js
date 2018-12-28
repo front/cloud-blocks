@@ -363,6 +363,10 @@ Vue.component('block-details', {
         })
     },
     deleteBlock() {
+      // First we need to uninstall the block if already installed
+      if (this.alreadyInstaleld) {
+        this.uninstallBlock()
+      }
       let postData = {
         block: this.block,
         nonce: fgcData.ajaxNonce
