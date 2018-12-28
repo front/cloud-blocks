@@ -69,7 +69,7 @@ class Explore {
           $unzipfile = unzip_file( $destination_path . $filename , $destination_path);
           if ( $unzipfile ) {
             wp_delete_file( $destination_path . $filename );
-            \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully.', 'cloud-blocks'), $name[0] ), 'success' );
+            \CloudBlocks\Settings\Tools::add_notice( sprintf(__('Your custom block <b>%s</b> installed successfully. You must activate it in local tab.', 'cloud-blocks'), $name[0] ), 'success' );
           }
         } else {
           \CloudBlocks\Settings\Tools::add_notice( __( 'There was a problem with the upload. Please try again.', 'cloud-blocks' ), 'error' );
