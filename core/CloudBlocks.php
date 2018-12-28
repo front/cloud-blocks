@@ -84,6 +84,7 @@ class CloudBlocks {
       'installedBlocks' => Options::get_all(),
       'strings'         => Translations::strings(),
       'ajaxNonce'       => wp_create_nonce('fgc_ajax_nonce'),
+      'defaultThumbnail'=> FGC_URL. 'assets/thumbnail.png',
 		);
     wp_localize_script( 'gutenberg_cloud_admin_js', 'fgcData', $localized_data );
     wp_enqueue_style( 'gutenberg_cloud_admin_styles', FGC_URL . 'assets/css/style.css', false, FGC_VERSION );

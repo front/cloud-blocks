@@ -11,7 +11,7 @@ Vue.component('block-card', {
   template: `
     <div class="theme">
       <div class="theme-screenshot" @click="openMoreDetails">
-        <img :src="block.imageUrl" :alt="block.name">
+        <img :src="block.imageUrl || fgcData.defaultThumbnail" :alt="block.name">
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
 

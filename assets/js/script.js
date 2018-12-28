@@ -51,7 +51,7 @@ Vue.component('block-card', {
   template: `
     <div class="theme">
       <div class="theme-screenshot" @click="openMoreDetails">
-        <img :src="block.imageUrl" :alt="block.name">
+        <img :src="block.imageUrl || fgcData.defaultThumbnail" :alt="block.name">
         <div class="spinner installing-block" v-if="installing"></div>
       </div>
 
@@ -257,7 +257,7 @@ Vue.component('block-details', {
         <div class="theme-about wp-clearfix">
           <div class="theme-screenshots">
             <div class="screenshot">
-              <img :src="block.imageUrl" :alt="block.name">
+              <img :src="block.imageUrl || fgcData.defaultThumbnail" :alt="block.name">
             </div>
           </div>
 
