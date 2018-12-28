@@ -45,7 +45,7 @@ Vue.component('block-card', {
           </button>
           <button class="button theme-install install-block-btn"
               v-else
-              @click.prevent="deleteBlock">
+              @click.prevent="uninstallBlock">
               {{fgcData.strings.delete}}
           </button>
           <a class="button button-primary" :href="blockUrl" target="_blank">{{fgcData.strings.homepage}}</a>
@@ -96,14 +96,14 @@ Vue.component('block-card', {
           console.log('There is some issues installing block: ', error);
         })
     },
-    deleteBlock() {
+    uninstallBlock() {
       this.installing = true
       let postData = this.block
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
         data: {
-          action: "fgc_delete_block",
+          action: "fgc_uninstall_block",
           data: postData
         }
       })

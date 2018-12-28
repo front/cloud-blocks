@@ -16,11 +16,11 @@ class Blocks {
     add_action( 'wp_ajax_fgc_get_all_blocks', array( $this, 'get_all' ) );
     add_action( 'wp_ajax_nopriv_fgc_get_all_blocks', array( $this, 'get_all' ) );
 
-    add_action( 'wp_ajax_fgc_delete_block', array( $this, 'delete' ) );
-    add_action( 'wp_ajax_nopriv_fgc_delete_block', array( $this, 'delete' ) );
+    add_action( 'wp_ajax_fgc_uninstall_block', array( $this, 'uninstall' ) );
+    add_action( 'wp_ajax_nopriv_fgc_uninstall_block', array( $this, 'uninstall' ) );
 
-    add_action( 'wp_ajax_fgc_remove_block', array( $this, 'delete_block_files' ) );
-    add_action( 'wp_ajax_nopriv_fgc_remove_block', array( $this, 'delete_block_files' ) );
+    add_action( 'wp_ajax_fgc_delete_block', array( $this, 'delete_block' ) );
+    add_action( 'wp_ajax_nopriv_fgc_delete_block', array( $this, 'delete_block' ) );
 
     add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
@@ -88,7 +88,7 @@ class Blocks {
    * @param
    * @return
    */
-  public function delete() {
+  public function uninstall() {
     $block = $_REQUEST['data'];
     if ( isset( $block ) ) {
       $package_name = isset( $block['packageName'] ) ? $block['packageName'] : '';
@@ -312,7 +312,7 @@ class Blocks {
    * @param
    * @return
    */
-  public function delete_block_files() {
+  public function delete_block() {
     if ( isset( $_REQUEST ) && isset( $_REQUEST['data']['nonce'] ) && \wp_verify_nonce( $_REQUEST['data']['nonce'], 'fgc_ajax_nonce' ) == 1 ) {
 
       require_once(ABSPATH . 'wp-admin/includes/file.php');

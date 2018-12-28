@@ -42,10 +42,10 @@ Vue.component('block-details', {
 
         <div class="theme-actions">
           <div class="inactive-theme">
-            <a v-if="alreadyInstaleld" @click.prevent="deleteBlock" class="button activate">{{fgcData.strings.delete}}</a>
+            <a v-if="alreadyInstaleld" @click.prevent="uninstallBlock" class="button activate">{{fgcData.strings.delete}}</a>
             <a v-else @click.prevent="installBlock" class="button activate">{{fgcData.strings.install}}</a>
             <a :href="blockUrl" target="_blank" class="button button-primary load-customize hide-if-no-customize">{{fgcData.strings.visit_homepage}}</a>
-            <a v-if="isLocalBlock" class="button install-block-btn button-delete load-customize hide-if-no-customize" @click.prevent="removeBlock">{{fgcData.strings.delete_block}}</a>
+            <a v-if="isLocalBlock" class="button install-block-btn button-delete load-customize hide-if-no-customize" @click.prevent="deleteBlock">{{fgcData.strings.delete_block}}</a>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ Vue.component('block-details', {
           console.log('There is some issues installing block: ', error);
         })
     },
-    removeBlock() {
+    deleteBlock() {
       let postData = {
         block: this.block,
         nonce: fgcData.ajaxNonce
@@ -130,7 +130,7 @@ Vue.component('block-details', {
         type: 'POST',
         url: fgcData.ajaxUrl,
         data: {
-          action: "fgc_remove_block",
+          action: "fgc_delete_block",
           data: postData
         }
       })
@@ -146,13 +146,13 @@ Vue.component('block-details', {
           console.log('There is some issues installing block: ', error);
         })
     },
-    deleteBlock() {
+    uninstallBlock() {
       let postData = this.block
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
         data: {
-          action: "fgc_delete_block",
+          action: "fgc_uninstall_block",
           data: postData
         }
       })
