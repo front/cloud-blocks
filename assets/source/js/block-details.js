@@ -25,7 +25,7 @@ Vue.component('block-details', {
               {{ block.name }}
                 <span class="theme-version">{{fgcData.strings.version}}: {{ block.version }}</span>
             </h2>
-            <p v-if="blockAuthor && blockUrl" class="theme-author">{{fgcData.strings.by}} <a :href="blockUrl" target="_blank">{{ blockAuthor }} </a></p>
+            <p v-if="blockAuthor && authorUrl" class="theme-author">{{fgcData.strings.by}} <a :href="authorUrl" target="_blank">{{ blockAuthor }} </a></p>
             <p v-else-if="blockAuthor" class="theme-author">{{fgcData.strings.by}} {{ blockAuthor }}</p>
 
             
@@ -70,6 +70,15 @@ Vue.component('block-details', {
         return this.blockManifest.homepage
       } else if (this.blockManifest.author && typeof this.blockManifest.author == 'object' && this.blockManifest.author.url) {
         return this.blockManifest.author.url
+      } else {
+        return `https://www.npmjs.com/package/${this.block.packageName}`
+      }
+    },
+    authorUrl() {
+      if (this.blockManifest.author && typeof this.blockManifest.author == 'object' && this.blockManifest.author.url) {
+        return this.blockManifest.author.url
+      } else if (this.blockManifest.homepage) {
+        return this.blockManifest.homepage
       } else {
         return `https://www.npmjs.com/package/${this.block.packageName}`
       }
