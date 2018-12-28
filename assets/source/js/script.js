@@ -136,11 +136,13 @@ var app = new Vue({
             theBlock.version = block.block_version
             theBlock.packageName = block.package_name
             
-            blocks.push(theBlock)
+            if ((query.q && query.q !== null && (theBlock.name.toLowerCase().indexOf(query.q.toLowerCase()) > -1 || theBlock.packageName.toLowerCase().indexOf(query.q.toLowerCase()) > -1)) || !query.q ) {
+              blocks.push(theBlock)
+            }
           }
         }
       } else if (query.state == 'local') {
-        this.localBlocks()
+        this.localBlocks(query)
       } else {
         jQuery.get(`https://api.gutenbergcloud.org/blocks?${queryString}`, (res) => {
           if (res.count) {
@@ -181,7 +183,7 @@ var app = new Vue({
     showUploader() {
       document.body.classList.toggle('show-upload-view')
     },
-    localBlocks() {
+    localBlocks(query) {
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
@@ -196,7 +198,11 @@ var app = new Vue({
           } else {
             window.store.commit('setBlocksCount', 0)
           }
-          this.blocks = res.data
+          if (query.q && query.q !== null) {
+            this.blocks = res.data.filter(block => block.name.toLowerCase().indexOf(query.q.toLowerCase()) > -1 || block.packageName.toLowerCase().indexOf(query.q.toLowerCase()) > -1)
+          } else {
+            this.blocks = res.data
+          }
         })
         .fail(error => {
           console.log('There is some issues getting local blocks: ', error);
