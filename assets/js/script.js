@@ -485,7 +485,7 @@ Vue.component('explorer-filter', {
     </div>
   `,
   mounted() {
-    if (!window.store.state.installedBlocks.length) {
+    if (!window.store.state.installedBlocks.length && window.store.state.browseState != 'local') {
       this.filterLink('popular')
     }
   },
@@ -632,8 +632,6 @@ var app = new Vue({
   },
   created() {
     window.store.dispatch('getInstalledBlocks')
-  },
-  mounted() {
     const currentBrowseState = this.getUrlParams('browse') ? this.getUrlParams('browse') : 'installed'
     const q = this.getUrlParams('q') ? this.getUrlParams('q') : ''
     let query = {
@@ -642,6 +640,8 @@ var app = new Vue({
     }
     this.getBlocks(query)
     window.store.commit('setBrowseState', currentBrowseState)
+  },
+  mounted() {
     window.addEventListener('popstate', this.fetchBlocks)
   },
   watch: {

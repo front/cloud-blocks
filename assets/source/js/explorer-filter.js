@@ -42,7 +42,7 @@ Vue.component('explorer-filter', {
     </div>
   `,
   mounted() {
-    if (!window.store.state.installedBlocks.length) {
+    if (!window.store.state.installedBlocks.length && window.store.state.browseState != 'local') {
       this.filterLink('popular')
     }
   },
