@@ -64,7 +64,7 @@ Vue.component('explorer-filter', {
   },
   computed: {
     blocksCount() {
-      if (window.store.state.browseState === 'installed' && window.store.state.installedBlocks.length) {
+      if (window.store.state.browseState === 'installed') {
         return window.store.state.installedBlocks.length
       } else {
         return window.store.state.blocksCount
