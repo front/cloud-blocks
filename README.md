@@ -61,11 +61,13 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 ## Changelog
 
-#### 1.0.11
+#### 1.1.0
 * **Fix**: Change array dereferencing in activation hook
 * **Fix**: Show block in installed list even after block removed from Gutenberg Cloud
 * **Fix**: Don't display Installed notice on blocks in Installed tab
+* **Fix**: Search blocks in installed and local blocks
 * **Add**: Listing for local custom blocks, install and delete them
+* **Add**: Default block screenshot
 * **Change**: Change minimum required php version
 * **Change**: Check for db structure update in upgrader_process_complete hook instead of init
 

@@ -222,7 +222,7 @@ class Blocks {
    * --/script.js
    * --/thumbnail.(jpg|png|gif)
    *
-   * @since 1.0.11
+   * @since 1.1.0
    * @param
    * @return
    */
@@ -308,7 +308,7 @@ class Blocks {
   /**
    * Delete block files completely.
    *
-   * @since 1.0.11
+   * @since 1.1.0
    * @param
    * @return
    */
