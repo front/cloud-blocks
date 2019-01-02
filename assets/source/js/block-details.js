@@ -2,7 +2,8 @@ Vue.component('block-details', {
   props: ['block'],
   data() {
     return {
-      alreadyInstaleld: false
+      alreadyInstaleld: false,
+      spinnerLoaded: false
     }
   },
   template: `
@@ -17,6 +18,7 @@ Vue.component('block-details', {
           <div class="theme-screenshots">
             <div class="screenshot">
               <img :src="block.imageUrl || fgcData.defaultThumbnail" :alt="block.name">
+              <div class="spinner installing-block" v-if="spinnerLoaded"></div>
             </div>
           </div>
 
@@ -106,6 +108,7 @@ Vue.component('block-details', {
       window.store.commit('openOverlay', null)
     },
     installBlock() {
+      this.spinnerLoaded = true
       let postData = this.block
       console.log('Install block', postData)
       jQuery.ajax({
@@ -118,6 +121,7 @@ Vue.component('block-details', {
       })
         .done(res => {
           this.alreadyInstaleld = true
+          this.spinnerLoaded = false
           if (!this.isLocalBlock) {
             this.incrementInstalls(this.block.packageName)
           }
@@ -131,6 +135,7 @@ Vue.component('block-details', {
         })
     },
     deleteBlock() {
+      this.spinnerLoaded = true
       // First we need to uninstall the block if already installed
       if (this.alreadyInstaleld) {
         this.uninstallBlock()
@@ -151,6 +156,7 @@ Vue.component('block-details', {
           window.store.commit('setNotification', { text: `${fgcData.strings.the_block} <b>${this.block.name}</b> ${fgcData.strings.block_deleted}`, class: 'show success' })
           window.store.commit('setRefetchBlocks', true)
           this.closeOverlay()
+          this.spinnerLoaded = false
           window.store.dispatch('getInstalledBlocks')
           console.log('Block removed ', res.data)  
         })
