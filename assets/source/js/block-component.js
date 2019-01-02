@@ -46,7 +46,7 @@ Vue.component('block-card', {
           <button class="button theme-install install-block-btn"
               v-else
               @click.prevent="uninstallBlock">
-              {{fgcData.strings.delete}}
+              {{fgcData.strings.uninstall}}
           </button>
           <a class="button button-primary" :href="blockUrl" target="_blank">{{fgcData.strings.homepage}}</a>
         </div>

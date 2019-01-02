@@ -20,6 +20,7 @@ class Translations {
       'delete'                  => __( 'Delete', 'cloud-blocks' ),
       'delete_block'            => __( 'Delete block', 'cloud-blocks' ),
       'install'                 => __( 'Install', 'cloud-blocks' ),
+      'uninstall'               => __( 'Uninstall', 'cloud-blocks' ),
       'local'                   => __( 'Local', 'cloud-blocks' ),
       'local_block'             => __( 'Local block', 'cloud-blocks' ),
       'by'                      => __( 'By', 'cloud-blocks' ),
