@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-11-13 15:04+0100\n"
-"PO-Revision-Date: 2018-11-13 15:04+0100\n"
+"POT-Creation-Date: 2019-01-02 10:03+0100\n"
+"PO-Revision-Date: 2019-01-02 10:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -27,25 +27,29 @@ msgid ""
 "again."
 msgstr "Filen du lastet har feil format. Vennligst prøv igjen."
 
-#: core/Blocks/Explore.php:70
+#: core/Blocks/Explore.php:72
 #, php-format
-msgid "Your custom block <b>%s</b> installed successfully."
-msgstr "Din blokk <b>%s</b> er nå installert."
+msgid ""
+"Your custom block <b>%s</b> installed successfully. You must activate it in "
+"local tab."
+msgstr ""
+"Din custom blokk <b>%s</b> er nå installert. Du må aktivere den under fanen "
+"for lokale blokker."
 
-#: core/Blocks/Explore.php:73
+#: core/Blocks/Explore.php:75
 msgid "There was a problem with the upload. Please try again."
 msgstr "Noe gikk galt med opplastingen. Vennligst prøv igjen."
 
-#: core/Blocks/Explore.php:109
+#: core/Blocks/Explore.php:112
 msgid "Upload block"
 msgstr "Last opp blokk"
 
-#: core/Blocks/Explore.php:115
+#: core/Blocks/Explore.php:118
 msgid "If you have a custom Gutenberg block, you can upload it here."
 msgstr ""
 "Hvis du har en spesiallaget blokk for Gutenberg, kan den lastes opp her."
 
-#: core/Blocks/Explore.php:117
+#: core/Blocks/Explore.php:120
 #, php-format
 msgid ""
 "If using Git, we recommend adjusting your .gitignore and commit your block "
@@ -54,15 +58,15 @@ msgstr ""
 "Dersom du bruker Git, anbefaler vi å endre din .gitignore og plassere "
 "blokken i <b>%s</b>"
 
-#: core/Blocks/Explore.php:119
+#: core/Blocks/Explore.php:122
 msgid "See documentation: Private blocks."
 msgstr "Se dokumentasjon: Private blocks."
 
-#: core/Blocks/Explore.php:124
+#: core/Blocks/Explore.php:127
 msgid "Zip file of block"
 msgstr "Zip-fil av blokken"
 
-#: core/Blocks/Explore.php:126
+#: core/Blocks/Explore.php:129
 msgid "Install now"
 msgstr "Aktiver"
 
@@ -149,82 +153,102 @@ msgid "Delete"
 msgstr "Slett"
 
 #: core/Settings/Translations.php:21
+msgid "Delete block"
+msgstr "Slett blokk"
+
+#: core/Settings/Translations.php:22
 msgid "Install"
 msgstr "Aktiver"
 
-#: core/Settings/Translations.php:22
+#: core/Settings/Translations.php:23
+msgid "Uninstall"
+msgstr "Avinstaller"
+
+#: core/Settings/Translations.php:24
+msgid "Local"
+msgstr "Lokal"
+
+#: core/Settings/Translations.php:25
+msgid "Local block"
+msgstr "Local blokk"
+
+#: core/Settings/Translations.php:26
 msgid "By"
 msgstr "Av"
 
-#: core/Settings/Translations.php:23
+#: core/Settings/Translations.php:27
 msgid "Tags"
 msgstr "Stikkord"
 
-#: core/Settings/Translations.php:24
+#: core/Settings/Translations.php:28
 msgid "Installed"
 msgstr "Installert"
 
-#: core/Settings/Translations.php:25
+#: core/Settings/Translations.php:29
 msgid "Popular"
 msgstr "Populær"
 
-#: core/Settings/Translations.php:26
+#: core/Settings/Translations.php:30
 msgid "Latest"
 msgstr "Nyeste"
 
-#: core/Settings/Translations.php:27
+#: core/Settings/Translations.php:31
 msgid "Most used"
 msgstr "Mest brukt"
 
-#: core/Settings/Translations.php:28
+#: core/Settings/Translations.php:32
 msgid "Search for blocks"
 msgstr "Søk etter blokker"
 
-#: core/Settings/Translations.php:29
+#: core/Settings/Translations.php:33
 msgid "Search blocks..."
 msgstr "Søk blokker..."
 
-#: core/Settings/Translations.php:30
+#: core/Settings/Translations.php:34
 msgid "Filter"
 msgstr "Filter"
 
-#: core/Settings/Translations.php:31
+#: core/Settings/Translations.php:35
 msgid "Update now"
 msgstr "Uppdater nå"
 
-#: core/Settings/Translations.php:32
+#: core/Settings/Translations.php:36
 msgid "Show more details"
 msgstr "Vis flere detaljer"
 
-#: core/Settings/Translations.php:33
+#: core/Settings/Translations.php:37
 msgid "More details"
 msgstr "Flere detaljer"
 
-#: core/Settings/Translations.php:34
+#: core/Settings/Translations.php:38
 msgid "have been installed successfully."
 msgstr "er installert."
 
-#: core/Settings/Translations.php:35
+#: core/Settings/Translations.php:39
 msgid "have been uninstalled successfully."
 msgstr "er avinstallert.."
 
-#: core/Settings/Translations.php:36
+#: core/Settings/Translations.php:40
+msgid "have been deleted successfully."
+msgstr "er nå slettet."
+
+#: core/Settings/Translations.php:41
 msgid "have been updated successfully."
 msgstr "er oppdatert."
 
-#: core/Settings/Translations.php:37
+#: core/Settings/Translations.php:42
 msgid "New version available."
 msgstr "Ny versjon tilgjengelig."
 
-#: core/Settings/Translations.php:38
+#: core/Settings/Translations.php:43
 msgid "Version"
 msgstr "Versjon"
 
-#: core/Settings/Translations.php:39
+#: core/Settings/Translations.php:44
 msgid "Visit homepage"
 msgstr "Besøk hjemmeside"
 
-#: core/Settings/Translations.php:40
+#: core/Settings/Translations.php:45
 msgid "Homepage"
 msgstr "Hjemmeside"
 

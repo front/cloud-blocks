@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cloud Blocks\n"
-"POT-Creation-Date: 2018-11-13 15:05+0100\n"
-"PO-Revision-Date: 2018-11-13 15:05+0100\n"
+"POT-Creation-Date: 2019-01-02 10:09+0100\n"
+"PO-Revision-Date: 2019-01-02 10:09+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -27,25 +27,28 @@ msgid ""
 "again."
 msgstr "Erro ao carregar o ficheiro. Por favor, tente novamente."
 
-#: core/Blocks/Explore.php:70
+#: core/Blocks/Explore.php:72
 #, php-format
-msgid "Your custom block <b>%s</b> installed successfully."
-msgstr "Bloco <b> %s </b> instalado com êxito."
+msgid ""
+"Your custom block <b>%s</b> installed successfully. You must activate it in "
+"local tab."
+msgstr ""
+"Bloco <b> %s </b> instalado com êxito. Você deve ativá-lo na guia local."
 
-#: core/Blocks/Explore.php:73
+#: core/Blocks/Explore.php:75
 msgid "There was a problem with the upload. Please try again."
 msgstr "Erro ao carregar o ficheiro. Por favor, tente novamente."
 
-#: core/Blocks/Explore.php:109
+#: core/Blocks/Explore.php:112
 msgid "Upload block"
 msgstr "Blocos da nuvem"
 
-#: core/Blocks/Explore.php:115
+#: core/Blocks/Explore.php:118
 msgid "If you have a custom Gutenberg block, you can upload it here."
 msgstr ""
 "Se você tem um bloco personalizado de Gutenberg, você pode carregá-lo aqui."
 
-#: core/Blocks/Explore.php:117
+#: core/Blocks/Explore.php:120
 #, php-format
 msgid ""
 "If using Git, we recommend adjusting your .gitignore and commit your block "
@@ -54,15 +57,15 @@ msgstr ""
 "Se estiver usando o Git, recomendamos ajustar o seu. gitignore e confirmar "
 "seu bloco em <b> %s </b>"
 
-#: core/Blocks/Explore.php:119
+#: core/Blocks/Explore.php:122
 msgid "See documentation: Private blocks."
 msgstr "Consulte a documentação: blocos privados."
 
-#: core/Blocks/Explore.php:124
+#: core/Blocks/Explore.php:127
 msgid "Zip file of block"
 msgstr "Blocos da nuvem"
 
-#: core/Blocks/Explore.php:126
+#: core/Blocks/Explore.php:129
 msgid "Install now"
 msgstr "Instalado"
 
@@ -150,82 +153,102 @@ msgid "Delete"
 msgstr "Excluir"
 
 #: core/Settings/Translations.php:21
+msgid "Delete block"
+msgstr "Excluir bloco"
+
+#: core/Settings/Translations.php:22
 msgid "Install"
 msgstr "Instalado"
 
-#: core/Settings/Translations.php:22
+#: core/Settings/Translations.php:23
+msgid "Uninstall"
+msgstr "Desinstalar"
+
+#: core/Settings/Translations.php:24
+msgid "Local"
+msgstr "Local"
+
+#: core/Settings/Translations.php:25
+msgid "Local block"
+msgstr "Bloco local"
+
+#: core/Settings/Translations.php:26
 msgid "By"
 msgstr "Por"
 
-#: core/Settings/Translations.php:23
+#: core/Settings/Translations.php:27
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: core/Settings/Translations.php:24
+#: core/Settings/Translations.php:28
 msgid "Installed"
 msgstr "Instalado"
 
-#: core/Settings/Translations.php:25
+#: core/Settings/Translations.php:29
 msgid "Popular"
 msgstr "Popular"
 
-#: core/Settings/Translations.php:26
+#: core/Settings/Translations.php:30
 msgid "Latest"
 msgstr "Mais recentes"
 
-#: core/Settings/Translations.php:27
+#: core/Settings/Translations.php:31
 msgid "Most used"
 msgstr "Mais utilizados"
 
-#: core/Settings/Translations.php:28
+#: core/Settings/Translations.php:32
 msgid "Search for blocks"
 msgstr "Procurar blocos"
 
-#: core/Settings/Translations.php:29
+#: core/Settings/Translations.php:33
 msgid "Search blocks..."
 msgstr "Blocos de busca..."
 
-#: core/Settings/Translations.php:30
+#: core/Settings/Translations.php:34
 msgid "Filter"
 msgstr "Filtro"
 
-#: core/Settings/Translations.php:31
+#: core/Settings/Translations.php:35
 msgid "Update now"
 msgstr "Atualizar agora"
 
-#: core/Settings/Translations.php:32
+#: core/Settings/Translations.php:36
 msgid "Show more details"
 msgstr "Mostrar mais detalhes"
 
-#: core/Settings/Translations.php:33
+#: core/Settings/Translations.php:37
 msgid "More details"
 msgstr "Mais detalhes"
 
-#: core/Settings/Translations.php:34
+#: core/Settings/Translations.php:38
 msgid "have been installed successfully."
 msgstr "foram instalados com êxito."
 
-#: core/Settings/Translations.php:35
+#: core/Settings/Translations.php:39
 msgid "have been uninstalled successfully."
 msgstr "foram desinstaladas com êxito."
 
-#: core/Settings/Translations.php:36
+#: core/Settings/Translations.php:40
+msgid "have been deleted successfully."
+msgstr "foram eliminados com êxito."
+
+#: core/Settings/Translations.php:41
 msgid "have been updated successfully."
 msgstr "foram atualizados com sucesso."
 
-#: core/Settings/Translations.php:37
+#: core/Settings/Translations.php:42
 msgid "New version available."
 msgstr "Nova versão disponível."
 
-#: core/Settings/Translations.php:38
+#: core/Settings/Translations.php:43
 msgid "Version"
 msgstr "Versão"
 
-#: core/Settings/Translations.php:39
+#: core/Settings/Translations.php:44
 msgid "Visit homepage"
 msgstr "Visite a homepage"
 
-#: core/Settings/Translations.php:40
+#: core/Settings/Translations.php:45
 msgid "Homepage"
 msgstr "Homepage"
 
