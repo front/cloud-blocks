@@ -45,7 +45,8 @@ Vue.component('block-card', {
       installing: false,
       alreadyInstaleld: false,
       updateAvailable: false,
-      currentVersion: null
+      currentVersion: null,
+      fromCloud: null
     }
   },
   template: `
@@ -99,11 +100,29 @@ Vue.component('block-card', {
     if (!!window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName).length) {
       this.alreadyInstaleld = this.currentBrowseState != 'installed'
       if (this.currentBrowseState == 'installed') {
-        this.updateAvailable = !!window.store.state.installedBlocks.filter(b => {
+        window.store.state.installedBlocks.map(b => {
           if (b.package_name == this.block.packageName) {
-            return b.block_version < this.block.version
+            jQuery.get(`https://api.gutenbergcloud.org/blocks/${b.package_name}`, (res) => {
+              if (res) {
+                let block = res
+                const theBlock = {}
+                theBlock.jsUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.js}`
+                theBlock.cssUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.css}`
+                theBlock.editorCss = block.config.editor ? `https://unpkg.com/${block.name}@${block.version}/${block.config.editor}` : null
+                theBlock.infoUrl = `https://www.npmjs.com/package/${block.name}`
+                theBlock.imageUrl = `https://unpkg.com/${block.name}@${block.version}/${block.config.screenshot}`
+                theBlock.name = block.config.name
+                theBlock.blockManifest = JSON.stringify(block.package)
+                theBlock.version = block.version
+                theBlock.packageName = block.name
+                this.fromCloud = theBlock
+              }
+              if (res && res.version && b.block_version < res.version) {
+                this.updateAvailable = true
+              }
+            })
           }
-        }).length
+        })
         this.currentVersion = window.store.state.installedBlocks.filter(b => b.package_name == this.block.packageName)[0].block_version
       }
     }
@@ -164,7 +183,7 @@ Vue.component('block-card', {
     },
     updateBlock() {
       this.installing = true
-      let postData = this.block
+      let postData = this.fromCloud
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
