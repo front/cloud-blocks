@@ -63,6 +63,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 #### 1.1.1
 * **Fix**: Update blocks if new version available on the cloud
+* **Enhancement**: Improvement in local block screenshots. The filename can be both screenshot or thumbnail and it could be in blocks root directory or build folder
 
 #### 1.1.0
 * **Fix**: Change array dereferencing in activation hook

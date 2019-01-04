@@ -78,6 +78,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 = 1.1.1 =
 * Fix: Update blocks if new version available on the cloud
 
+
 = 1.1.0 =
 * Fix: Change array dereferencing in activation hook
 * Fix: Show block in installed list even after block removed from Gutenberg Cloud
