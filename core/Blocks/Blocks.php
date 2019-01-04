@@ -242,7 +242,8 @@ class Blocks {
       $block_name = str_replace('/', '', $block_name);
       // And list js and css files.
       $block_files = list_files($block . 'build', 1);
-
+      // Check for screenshot, it could be in blocks root directory or in build folder
+      $screenshot = list_files($block, 2, array('node_modules', 'src'));
       // Reset script and styles of the block
       $block_style = null;
       $editor_style = null;
@@ -260,8 +261,11 @@ class Blocks {
         if ( preg_match('/index.js$/i', $file) ) {
           preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
         }
-        if ( preg_match('/thumbnail/i', $file) ) {
-          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_thumbnail );
+      }
+      // Extract block screenshot 
+      foreach ($screenshot as $img) {
+        if ( preg_match('/thumbnail|screenshot/i', $img) ) {
+          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $img, $block_thumbnail );
         }
       }
 
