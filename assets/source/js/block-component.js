@@ -61,7 +61,7 @@ Vue.component('block-card', {
       this.alreadyInstaleld = this.currentBrowseState != 'installed'
       if (this.currentBrowseState == 'installed') {
         window.store.state.installedBlocks.map(b => {
-          if (b.package_name == this.block.packageName) {
+          if (b.package_name == this.block.packageName && !this.isLocalBlock) {
             jQuery.get(`https://api.gutenbergcloud.org/blocks/${b.package_name}`, (res) => {
               if (res) {
                 let block = res
