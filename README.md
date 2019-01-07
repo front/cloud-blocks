@@ -56,7 +56,7 @@ Indeed, they are! The source code for each block is on NPM, but the JS/CSS is se
 
 **Can I add private custom blocks?**
 
-Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
+Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder. All your private blocks will be listed under `Local` tab in block explorer which you can activate/deactivate them. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
 ## Changelog
@@ -70,7 +70,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 * **Fix**: Show block in installed list even after block removed from Gutenberg Cloud
 * **Fix**: Don't display Installed notice on blocks in Installed tab
 * **Fix**: Search blocks in installed and local blocks
-* **Add**: Listing for local custom blocks, install and delete them
+* **Add**: Listing for local custom blocks, install and delete them. (In previous versions, blocks were activated automatically, from now on, you need to explicitly activate/deactivate them in the `Local` tab.)
 * **Add**: Default block screenshot
 * **Change**: Change minimum required php version
 * **Change**: Check for db structure update in upgrader_process_complete hook instead of init

@@ -77,6 +77,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 = 1.1.1 =
 * Fix: Update blocks if new version available on the cloud
+* Enhancement: Improvement in local block screenshots. The filename can be both screenshot or thumbnail and it could be in blocks root directory or build folder
 
 
 = 1.1.0 =
@@ -84,7 +85,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 * Fix: Show block in installed list even after block removed from Gutenberg Cloud
 * Fix: Don't display Installed notice on blocks in Installed tab
 * Fix: Search blocks in installed and local blocks
-* Add: Listing for local custom blocks, install and delete them
+* Add: Listing for local custom blocks, install and delete them (In previous versions, blocks were activated automatically, from now on, you need to explicitly activate/deactivate them in the "Local" tab.)
 * Add: Default block screenshot
 * Change: Change minimum required php version
 * Change: Check for db structure update in upgrader_process_complete hook instead of init
