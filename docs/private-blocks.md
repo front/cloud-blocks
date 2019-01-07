@@ -33,7 +33,7 @@ wp-content/uploads/gutenberg-blocks
     "screenshot": "screenshot.png"
   }
 }
-
+```
 
 You can use any build tool you like, or simply write your blocks in plain css and vanilla javascript. But the block files must be under **/your-private-block/build/** folder and follow naming convention.
 
