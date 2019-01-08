@@ -304,7 +304,7 @@ Vue.component('block-details', {
 
         <div class="theme-actions">
           <div class="inactive-theme">
-            <a v-if="alreadyInstaleld" @click.prevent="uninstallBlock" class="button activate">{{fgcData.strings.delete}}</a>
+            <a v-if="alreadyInstaleld" @click.prevent="uninstallBlock" class="button activate">{{fgcData.strings.uninstall}}</a>
             <a v-else @click.prevent="installBlock" class="button activate">{{fgcData.strings.install}}</a>
             <a :href="blockUrl" target="_blank" class="button button-primary load-customize hide-if-no-customize">{{fgcData.strings.visit_homepage}}</a>
             <a v-if="isLocalBlock" class="button install-block-btn button-delete load-customize hide-if-no-customize" @click.prevent="deleteBlock">{{fgcData.strings.delete_block}}</a>
