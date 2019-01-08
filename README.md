@@ -61,6 +61,11 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 ## Changelog
 
+#### 1.1.2
+* **Fix**: Fix wrong label in block details [issue #9](https://github.com/front/cloud-blocks/issues/9)
+* **Add**: Polish translation. (Thanks to [ajotka](https://github.com/front/cloud-blocks/pull/8))
+
+
 #### 1.1.1
 * **Fix**: Update blocks if new version available on the cloud
 * **Enhancement**: Improvement in local block screenshots. The filename can be both screenshot or thumbnail and it could be in blocks root directory or build folder
