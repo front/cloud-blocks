@@ -162,15 +162,19 @@ class Explore {
 
     $installed_blocks = Options::get_all();
     foreach ($installed_blocks as $block) {
-      $args = array(
-        'method' => 'GET'
-      );
-      $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $block->package_name, $args );
-      $body = wp_remote_retrieve_body( $response );
-      $json = json_decode($body, true);
+      // We must check if block is not local block, then we check for new versino availability
+      $manifest = json_decode( stripslashes( $block->block_manifest ), true );
+      if ( !$manifest['isLocal'] ) {
+        $args = array(
+          'method' => 'GET'
+        );
+        $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $block->package_name, $args );
+        $body = wp_remote_retrieve_body( $response );
+        $json = json_decode($body, true);
 
-      if( !empty($json['version']) && $json['version'] !== $block->block_version) {
-        $counter++;
+        if( !empty($json['version']) && $json['version'] !== $block->block_version) {
+          $counter++;
+        }
       }
     }
 
