@@ -86,9 +86,13 @@ class Explore {
    * @return
    */
   public static function add_menu() {
-    add_menu_page( 
+
+      $update_count = self::count_updates();
+      $menu_label = sprintf( esc_html__( self::$page_title, 'cloud-blocks' ) . " %s", "<span class='update-plugins update-blocks count-$update_count' title='$update_count'><span class='update-count'>" . number_format_i18n($update_count) . "</span></span>" );
+
+      add_menu_page(
       esc_html__( self::$page_title, 'cloud-blocks' ),
-      esc_html__( self::$page_title, 'cloud-blocks' ),
+      $menu_label,
       'manage_options',
       self::$menu_slug,
       array( __class__, 'cloud_explorer' ),
@@ -143,6 +147,34 @@ class Explore {
 
     </div>
   <?php
+  }
+
+  /**
+   * Updates counter.
+   *
+   * @since 1.1.3
+   * @param
+   * @return $counter
+   */
+
+  public static function count_updates() {
+    $counter = 0;
+
+    $installed_blocks = Options::get_all();
+    foreach ($installed_blocks as $block) {
+      $args = array(
+        'method' => 'GET'
+      );
+      $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $block->package_name, $args );
+      $body = wp_remote_retrieve_body( $response );
+      $json = json_decode($body, true);
+
+      if( !empty($json['version']) && $json['version'] !== $block->block_version) {
+        $counter++;
+      }
+    }
+
+    return $counter;
   }
 
 }
