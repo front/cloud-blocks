@@ -152,7 +152,7 @@ class Explore {
   /**
    * Updates counter.
    *
-   * @since 1.1.3
+   * @since 1.1.2
    * @param
    * @return $counter
    */
