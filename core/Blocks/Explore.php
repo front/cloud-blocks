@@ -164,7 +164,7 @@ class Explore {
     foreach ($installed_blocks as $block) {
       // We must check if block is not local block, then we check for new versino availability
       $manifest = json_decode( stripslashes( $block->block_manifest ), true );
-      if ( !$manifest['isLocal'] ) {
+      if ( empty($manifest['isLocal']) ) {
         $args = array(
           'method' => 'GET'
         );

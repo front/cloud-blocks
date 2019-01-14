@@ -56,7 +56,7 @@ Indeed, they are! The source code for each block is on NPM, but the JS/CSS is se
 
 **Can I add private custom blocks?**
 
-Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder. All your private blocks will be listed under `Local` tab in block explorer which you can activate/deactivate them. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
+Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder. All your private blocks will be listed under `Local` tab in block explorer which you can activate/deactivate them. In order for your block to be active in the Gutenberg panel, it should be installed in Gutenberg Cloud. [This is what the folder structure should look like](https://github.com/front/cloud-blocks/blob/master/docs/private-blocks.md)!
 
 
 ## Changelog

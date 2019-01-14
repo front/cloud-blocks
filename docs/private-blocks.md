@@ -1,6 +1,6 @@
 ### How can I add private custom blocks?
 
-Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder.
+Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** folder and install in Gutenberg Cloud.
 
 File structure must look like following:
 
