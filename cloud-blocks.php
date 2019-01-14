@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Cloud Blocks
-Version: 1.1.1
+Version: 1.1.2
 Description: Your library of Gutenberg blocks in the cloud
 Author: Frontkom
 Author URI: https://frontkom.no
@@ -29,7 +29,7 @@ if ( ! defined( 'FGC_NAME' ) ) {
 }
 // Plugin version .
 if ( ! defined( 'FGC_VERSION' ) ) {
-	define( 'FGC_VERSION', '1.1.1' );
+	define( 'FGC_VERSION', '1.1.2' );
 }
 
 // Require autoload
