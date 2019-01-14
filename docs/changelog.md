@@ -2,6 +2,7 @@
 
 #### 1.1.2
 * **Fix**: Fix wrong label in block details [issue #9](https://github.com/front/cloud-blocks/issues/9)
+* **Fix**: Fix network activation issue [issue #11](https://github.com/front/cloud-blocks/issues/11)
 * **Add**: Polish translation. (Thanks to [ajotka](https://github.com/front/cloud-blocks/pull/8))
 * **Add**: Update counter & label in menu. (Thanks to [ajotka](https://github.com/front/cloud-blocks/pull/10))
 
