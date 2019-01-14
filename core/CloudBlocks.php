@@ -54,8 +54,7 @@ class CloudBlocks {
   * @return
   */
   public function init() {
-    global $pagenow;
-    if ( ( $pagenow == 'admin.php' ) && ( $_GET['page'] == FGC_NAME || $_GET['page'] == 'gutenberg-cloud-tools' ) ) {
+    if ( ( is_admin() ) && ( isset( $_GET['page'] ) && ( $_GET['page'] == FGC_NAME || $_GET['page'] == 'gutenberg-cloud-tools' ) ) ) {
       add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
     }
     // Initiate Blocks class. Responsible for install, update, delete and ... of blocks
