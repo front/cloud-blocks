@@ -27,8 +27,6 @@ class Blocks {
 
     add_action( 'wp_ajax_fgc_local_blocks', array( $this, 'local_blocks' ) );
     add_action( 'wp_ajax_nopriv_fgc_local_blocks', array( $this, 'local_blocks' ) );
-    
-    // add_action( 'init', array( $this, 'custom_blocks' ) );
   }
 
 
@@ -152,63 +150,6 @@ class Blocks {
       'message'   => 'Block could not be updated!'
     );
     wp_send_json_success( $response );
-  }
-
-  /**
-   * Check for existence of custom blocks and load them.
-   * Custom blocks can be uploaded to /wp-content/gutenberg-blocks/
-   * They must follow file structure like:
-   * -/block-dir/
-   * --/style.css
-   * --/script.js
-   *
-   * @since 1.0.0
-   * @param
-   * @return
-   */
-  public function custom_blocks() {
-    // First we must make sure files.php loaded
-    if ( ! function_exists( 'get_home_path' ) ) {
-      include_once ABSPATH . '/wp-admin/includes/file.php';
-    }
-    // list all blocks (The sub-directory of /gutenberg-blocks/).
-    $gutenberg_blocks_dir = wp_upload_dir()['basedir'] . '/gutenberg-blocks/';
-    $gutenberg_blocks = list_files($gutenberg_blocks_dir, 1);
-    // Then loop through blocks.
-    foreach ($gutenberg_blocks as $block) {
-      preg_match( '/([a-zA-Z-_]*(:?\/))$/i', $block, $block_name);
-      $block_name = str_replace('/', '', $block_name);
-      // And list js and css files.
-      $block_files = list_files($block . 'build', 1);
-
-      // Reset script and styles of the block
-      $block_style = null;
-      $editor_style = null;
-      $block_script = null;
-      
-      // Extract block js and css files
-      foreach ($block_files as $file) {
-        if ( preg_match('/style.css$/i', $file) ) {
-          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_style );
-        }
-        if ( preg_match('/editor.css$/i', $file) ) {
-          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $editor_style );
-        }
-        if ( preg_match('/index.js$/i', $file) ) {
-          preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
-        }
-      }
-      global $pagenow;
-      if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' ) && isset( $block_script ) && !empty( $block_script ) ) {
-        wp_enqueue_script( $block_name[0], '/' . $block_script[0], array( 'wp-editor', 'wp-blocks', 'wp-element', 'wp-i18n' ), FGC_VERSION, true);
-      }
-      if ( ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) && isset( $block_style ) && !empty( $block_style ) ) {
-        wp_enqueue_style( $block_name[0], '/' . $block_style[0], array(), FGC_VERSION);
-        if ( isset( $editor_style ) && !empty( $editor_style ) && is_admin() ) {
-          wp_enqueue_style( $block_name[0] . '-editor', '/' . $editor_style[0], array(), FGC_VERSION);
-        }
-      }
-    }
   }
 
   /**
