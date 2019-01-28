@@ -64,8 +64,12 @@ class CloudBlocks {
     // Initiate Plugin options page.
     Tools::init();
 
-    // check for available db structure update
-    add_action( 'upgrader_process_complete', array( 'CloudBlocks\Activator', 'update_db' ) );
+    /**
+     * check for available db structure update.
+     * This is also useful in case of multisites.
+     * If plugin Network Activated, this will create DB table for all sites.
+     */
+    add_action( 'admin_init', array( 'CloudBlocks\Activator', 'update_db' ) );
   }
 
   /**
