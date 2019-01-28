@@ -78,6 +78,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 = 1.1.3 =
 * Fix: Fix some translations
 * Fix: Fix database table issue if plugin network activated [issue #13](https://github.com/front/cloud-blocks/issues/13)
+* Cleanup: Remove custom_blocks method since its not used anymore. This method was for scanning local blocks inside /wp-content/gutenberg-blocks directory
 
 = 1.1.2 =
 * Fix: Fix wrong label in block details [issue #9](https://github.com/front/cloud-blocks/issues/9)
