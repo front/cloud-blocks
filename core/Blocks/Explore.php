@@ -190,7 +190,7 @@ class Explore {
   */
   public static function cron_schedule() {
     if ( !wp_next_scheduled( 'cron_check_updates' ) ) {
-        wp_schedule_event(time(), 'hourly', 'cron_check_updates');
+        wp_schedule_event(time(), 'daily', 'cron_check_updates');
     }
   }
 
