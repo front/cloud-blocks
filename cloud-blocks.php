@@ -36,8 +36,8 @@ if ( ! defined( 'FGC_VERSION' ) ) {
 require_once  __DIR__ . '/vendor/autoload.php';
 
 // Register text-domain for translations
-add_action( 'plugins_loaded', 'fgc_register_textdomain' );
-function fgc_register_textdomain() {
+add_action( 'plugins_loaded', 'fgc_register_translations' );
+function fgc_register_translations() {
 	load_plugin_textdomain( 'cloud-blocks', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }
 

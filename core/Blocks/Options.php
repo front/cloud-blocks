@@ -235,12 +235,12 @@ class Options {
   }
 
   /**
-  * Increate number of installs on api.gutenbergcloud.org
+  * Increase number of installs on api.gutenbergcloud.org
   * @since 1.0.0
   * @param string|null $package_name    npm package name
   * @return object|null $body           Request response
   */
-  public static function increate_installs( $package_name = null ) {
+  public static function increase_installs( $package_name = null ) {
     if ( empty( $package_name )  ) {
       return;
     }
