@@ -12,11 +12,17 @@
   },
   "babel": {
     "presets": [
-      ["@babel/env", {
-        "targets": {
-          "browsers": ["last 2 versions", "safari >= 7"]
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "safari >= 7"
+            ]
+          }
         }
-      }]
+      ]
     ]
   },
   "author": "Foad Yousefi",
