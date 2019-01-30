@@ -174,8 +174,6 @@ Vue.component('block-card', {
     },
     setAvalVersion() {
       let postData = this.fromCloud
-      console.log('poszlo')
-      console.log(postData)
       jQuery.ajax({
         type: 'POST',
         url: fgcData.ajaxUrl,
