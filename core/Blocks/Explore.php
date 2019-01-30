@@ -2,6 +2,9 @@
 
 namespace CloudBlocks\Blocks;
 
+use CloudBlocks\Blocks\Options;
+use CloudBlocks\Blocks\Blocks;
+
 class Explore {
  
 	/**
@@ -24,10 +27,16 @@ class Explore {
   public static function init() {
     self::$page_title = ucwords( str_replace( '-', ' ', FGC_NAME ) );
     self::$menu_slug = FGC_NAME;
-    // Add menu 
+
+    register_activation_hook( __FILE__, 'cron_schedule' );
+    register_deactivation_hook(__FILE__, 'cron_unschedule');
+
+    // Add menu
     add_action( 'admin_menu', array( __class__, 'add_menu') );
     // Handle uploading custom blocks as zip files
     add_action( 'init', array( __CLASS__, 'upload_block' ) );
+    // Schedule cron with check updates
+    add_action( 'cron_check_updates', 'check_updates' );
   }
 
   /**
@@ -171,6 +180,57 @@ class Explore {
 
     return $counter;
   }
+
+  /**
+  * CRON schedule.
+  *
+  * @since 1.1.4
+  * @param
+  * @return
+  */
+  public static function cron_schedule() {
+    if ( !wp_next_scheduled( 'cron_check_updates' ) ) {
+        wp_schedule_event(time(), 'hourly', 'cron_check_updates');
+    }
+  }
+
+  /**
+  * CRON unschedule.
+  *
+  * @since 1.1.4
+  * @param
+  * @return
+  */
+    public static function cron_unschedule() {
+    wp_clear_scheduled_hook('cron_check_updates');
+  }
+
+  /**
+  * CRON schedule.
+  *
+  * @since 1.1.4
+  * @param
+  * @return
+  */
+  public static function check_updates() {
+    $installed_blocks = Options::get_all();
+
+      foreach ( $installed_blocks as $block ) {
+        // We must check if block is not local block, then we check for new version availability
+        $manifest = json_decode( stripslashes( $block->block_manifest ), true );
+        if ( empty( $manifest['isLocal'] ) ) {
+          $args     = array(
+            'method' => 'GET'
+          );
+          $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $block->package_name, $args );
+          $body     = wp_remote_retrieve_body( $response );
+          $the_block  = json_decode( $body, true );
+
+          $_REQUEST['data'] = $the_block;
+          Blocks::update_version();
+        }
+      }
+    }
 
 }
 
