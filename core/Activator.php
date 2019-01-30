@@ -50,6 +50,7 @@ class Activator {
       block_manifest text DEFAULT '' NOT NULL,
       block_installed datetime DEFAULT CURRENT_TIMESTAMP,
       block_updated datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      available_version varchar(10) DEFAULT '' NOT NULL,
       PRIMARY KEY  (id)
     ) $charset_collate;";
   
@@ -87,6 +88,7 @@ class Activator {
         block_manifest text DEFAULT '' NOT NULL,
         block_installed datetime DEFAULT CURRENT_TIMESTAMP,
         block_updated datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        available_version varchar(10) DEFAULT '' NOT NULL,
         PRIMARY KEY  (id)
       ) $charset_collate;";
 

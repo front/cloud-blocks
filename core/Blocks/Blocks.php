@@ -25,6 +25,9 @@ class Blocks {
     add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
 
+    add_action( 'wp_ajax_fgc_update_version', array( $this, 'update_version' ) );
+    add_action( 'wp_ajax_nopriv_fgc_update_version', array( $this, 'update_version' ) );
+
     add_action( 'wp_ajax_fgc_local_blocks', array( $this, 'local_blocks' ) );
     add_action( 'wp_ajax_nopriv_fgc_local_blocks', array( $this, 'local_blocks' ) );
   }
@@ -61,7 +64,8 @@ class Blocks {
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : '',
-        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : ''
+        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : '',
+        'available_version'   => isset( $block['availVersion'] ) ? $block['availVersion'] : ''
       );
       Options::add( $new_block, true );
 
@@ -125,7 +129,8 @@ class Blocks {
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : '',
-        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : ''
+        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : '',
+        'available_version'   => isset( $block['availVersion'] ) ? $block['availVersion'] : ''
       );
 
       $existing_block = Options::get( $the_block['package_name'] );
@@ -148,6 +153,45 @@ class Blocks {
     $response = array(
       'code'      => 400,
       'message'   => 'Block could not be updated!'
+    );
+    wp_send_json_success( $response );
+  }
+
+  /**
+   * Update available block version.
+   *
+   * @since 1.1.4
+   * @param
+   * @return
+   */
+  public function update_version() {
+    $block = $_REQUEST['data'];
+    if ( isset( $block ) ) {
+      $the_block = array(
+        'package_name'    => isset( $block['packageName'] ) ? $block['packageName'] : '',
+        'available_version'   => isset( $block['availVersion'] ) ? $block['availVersion'] : ''
+      );
+
+      $existing_block = Options::get( $the_block['package_name'] );
+
+      $block_id = Options::update_version( $existing_block->id, $the_block );
+
+      if ( isset( $block_id ) ) {
+        $response = array(
+          'code'      => 200,
+          'message'   => 'Succesfully updated.'
+        );
+      } else {
+        $response = array(
+          'code'      => 400,
+          'message'   => 'Version could not be updated!'
+        );
+      }
+      wp_send_json_success( $response );
+    }
+    $response = array(
+      'code'      => 400,
+      'message'   => 'Version could not be updated!'
     );
     wp_send_json_success( $response );
   }

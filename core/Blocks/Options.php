@@ -152,7 +152,8 @@ class Options {
         'info_url'        => $info_url,
         'thumbnail'       => $thumbnail,
         'block_version'   => $block_version,
-        'block_manifest'   => $block_manifest
+        'block_manifest'   => $block_manifest,
+        'available_version' => ''
       ),
       array(
         'id'      => $id
@@ -161,6 +162,32 @@ class Options {
 
     return $id;
   }
+
+    /**
+     * Update existing value in database.
+     * @since 1.1.4
+     * @param array $options   The options need to be stored into database
+     * @return int $id         Inserted records id
+     */
+    public static function update_version( $id, $options ) {
+        global $wpdb;
+
+        $available_version = $options['available_version'];
+
+        $table_name = $wpdb->prefix . str_replace( '-', '_', FGC_NAME );
+
+        $id = $wpdb->update(
+            $table_name,
+            array(
+                'available_version' => $available_version
+            ),
+            array(
+                'id'      => $id
+            )
+        );
+
+        return $id;
+    }
 
   /**
   * Get all installed blocks.
