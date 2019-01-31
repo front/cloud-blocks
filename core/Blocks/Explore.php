@@ -6,7 +6,7 @@ use CloudBlocks\Blocks\Options;
 use CloudBlocks\Blocks\Blocks;
 
 class Explore {
- 
+
 	/**
 	 * @param object $page_title
 	 */
@@ -28,15 +28,13 @@ class Explore {
     self::$page_title = ucwords( str_replace( '-', ' ', FGC_NAME ) );
     self::$menu_slug = FGC_NAME;
 
-    register_activation_hook( __FILE__, 'cron_schedule' );
-    register_deactivation_hook(__FILE__, 'cron_unschedule');
-
     // Add menu
-    add_action( 'admin_menu', array( __class__, 'add_menu') );
+    add_action( 'admin_menu', array( __CLASS__, 'add_menu') );
     // Handle uploading custom blocks as zip files
     add_action( 'init', array( __CLASS__, 'upload_block' ) );
     // Schedule cron with check updates
-    add_action( 'cron_check_updates', 'check_updates' );
+    add_action( 'init', array( __CLASS__, 'cron_schedule' ) );
+    add_action( 'fgc_cron_check_updates', array( __CLASS__, 'check_updates' ) );
   }
 
   /**
@@ -59,9 +57,9 @@ class Explore {
         if($mime_type == $type) {
           $okay = true;
           break;
-        } 
+        }
       }
-      
+
       $continue = strtolower( $name[1] ) == 'zip' ? true : false;
       if ( !$continue ) {
         \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'cloud-blocks' ), 'error' );
@@ -71,7 +69,7 @@ class Explore {
         $destination = wp_upload_dir();
         $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
         $create_folder = wp_mkdir_p( $destination_path );
-        
+
         // Here the magic happens.
         if ( move_uploaded_file( $source, $destination_path . $filename ) ) {
           // Unzip
@@ -109,7 +107,7 @@ class Explore {
       11
     );
   }
-  
+
   /**
    * Settings page output.
    *
@@ -143,10 +141,10 @@ class Explore {
           </form>
         </div>
       </div>
-        
+
       <admin-notice></admin-notice>
       <explorer-filter></explorer-filter>
-      
+
 		  <div class="theme-browser content-filterable rendered">
         <div class="themes wp-clearfix">
           <block-card v-for="block in blocks" :key="block.name" :block="block"/>
@@ -189,8 +187,8 @@ class Explore {
   * @return
   */
   public static function cron_schedule() {
-    if ( !wp_next_scheduled( 'cron_check_updates' ) ) {
-        wp_schedule_event(time(), 'daily', 'cron_check_updates');
+    if ( !wp_next_scheduled( 'fgc_cron_check_updates' ) ) {
+        wp_schedule_event(time(), 'daily', 'fgc_cron_check_updates');
     }
   }
 
@@ -201,8 +199,8 @@ class Explore {
   * @param
   * @return
   */
-    public static function cron_unschedule() {
-    wp_clear_scheduled_hook('cron_check_updates');
+  public static function cron_unschedule() {
+    wp_clear_scheduled_hook('fgc_cron_check_updates');
   }
 
   /**
@@ -226,11 +224,14 @@ class Explore {
           $body     = wp_remote_retrieve_body( $response );
           $the_block  = json_decode( $body, true );
 
-          $_REQUEST['data'] = $the_block;
-          Blocks::update_version();
+          if( !empty($the_block['version']) && $the_block['version'] !== $block->block_version) {
+              $_REQUEST['data'] = $the_block;
+              Blocks::update_version($the_block);
+          }
         }
       }
-    }
+
+  }
 
 }
 

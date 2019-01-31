@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Cloud Blocks
-Version: 1.1.3
+Version: 1.1.4
 Description: Your library of Gutenberg blocks in the cloud
 Author: Frontkom
 Author URI: https://frontkom.no
@@ -29,7 +29,7 @@ if ( ! defined( 'FGC_NAME' ) ) {
 }
 // Plugin version .
 if ( ! defined( 'FGC_VERSION' ) ) {
-	define( 'FGC_VERSION', '1.1.3' );
+	define( 'FGC_VERSION', '1.1.4' );
 }
 
 // Require autoload
@@ -43,6 +43,11 @@ function fgc_register_translations() {
 
 // Register activation hook
 register_activation_hook( __FILE__, array( 'CloudBlocks\Activator', 'init' ) );
+
+// Register CRON hooks
+register_activation_hook( __FILE__, array( 'CloudBlocks\Blocks\Explore', 'cron_schedule' ) );
+register_deactivation_hook( __FILE__, array( 'CloudBlocks\Blocks\Explore', 'cron_unschedule' ) );
+
 
 // Initiate plugin
 new CloudBlocks\CloudBlocks;
