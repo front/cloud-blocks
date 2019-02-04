@@ -1,5 +1,10 @@
 ## Changelog
 
+#### 1.1.4
+* **Change**: Update counter as a WP CRON (Thanks to [ajotka](https://github.com/front/cloud-blocks/pull/14))
+* **Change**: Update some docs
+* **Fix**: Fix polish translations
+
 #### 1.1.3
 * **Fix**: Fix some translations
 * **Fix**: Fix database table issue if plugin network activated [issue #13](https://github.com/front/cloud-blocks/issues/13)

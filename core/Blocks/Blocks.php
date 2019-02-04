@@ -25,6 +25,9 @@ class Blocks {
     add_action( 'wp_ajax_fgc_update_block', array( $this, 'update' ) );
     add_action( 'wp_ajax_nopriv_fgc_update_block', array( $this, 'update' ) );
 
+    add_action( 'wp_ajax_fgc_update_version', array( $this, 'update_version' ) );
+    add_action( 'wp_ajax_nopriv_fgc_update_version', array( $this, 'update_version' ) );
+
     add_action( 'wp_ajax_fgc_local_blocks', array( $this, 'local_blocks' ) );
     add_action( 'wp_ajax_nopriv_fgc_local_blocks', array( $this, 'local_blocks' ) );
   }
@@ -61,7 +64,8 @@ class Blocks {
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : '',
-        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : ''
+        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : '',
+        'available_version'   => isset( $block['availVersion'] ) ? $block['availVersion'] : ''
       );
       Options::add( $new_block, true );
 
@@ -125,7 +129,8 @@ class Blocks {
         'info_url'        => isset( $block['infoUrl'] ) ? $block['infoUrl'] : '',
         'thumbnail'       => isset( $block['imageUrl'] ) ? $block['imageUrl'] : '',
         'block_version'   => isset( $block['version'] ) ? $block['version'] : '',
-        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : ''
+        'block_manifest'  => isset( $block['blockManifest'] ) ? $block['blockManifest'] : '',
+        'available_version'   => isset( $block['availVersion'] ) ? $block['availVersion'] : ''
       );
 
       $existing_block = Options::get( $the_block['package_name'] );
@@ -150,6 +155,47 @@ class Blocks {
       'message'   => 'Block could not be updated!'
     );
     wp_send_json_success( $response );
+  }
+
+  /**
+   * Update available block version.
+   *
+   * @since 1.1.4
+   * @param
+   * @return
+   */
+  public static function update_version( $block = false ) {
+      if( !$block ) {
+          $block = $_REQUEST['data'];
+      }
+
+      if ( isset( $block ) ) {
+          $the_block = array(
+            'package_name'    => isset( $block['packageName'] ) ? $block['packageName'] : $block['package']['name'],
+            'available_version'   => isset( $block['availVersion'] ) ? $block['availVersion'] : $block['version']
+          );
+
+          $existing_block = Options::get( $the_block['package_name'] );
+          $block_id = Options::update_version( $existing_block->id, $the_block );
+
+          if ( isset( $block_id ) ) {
+            $response = array(
+              'code'      => 200,
+              'message'   => 'Succesfully updated.'
+            );
+          } else {
+            $response = array(
+              'code'      => 400,
+              'message'   => 'Version could not be updated!'
+            );
+          }
+          wp_send_json_success( $response );
+      }
+      $response = array(
+          'code'      => 400,
+          'message'   => 'Version could not be updated!'
+      );
+      wp_send_json_success( $response );
   }
 
   /**
@@ -190,7 +236,7 @@ class Blocks {
       $editor_style = null;
       $block_script = null;
       $block_thumbnail = null;
-      
+
       // Extract block js and css files
       foreach ($block_files as $file) {
         if ( preg_match('/style.css$/i', $file) ) {
@@ -203,7 +249,7 @@ class Blocks {
           preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $file, $block_script );
         }
       }
-      // Extract block screenshot 
+      // Extract block screenshot
       foreach ($screenshot as $img) {
         if ( preg_match('/thumbnail|screenshot/i', $img) ) {
           preg_match( '/wp-content\/uploads\/gutenberg-blocks\/[a-zA-Z0-9-_\/.]*/i', $img, $block_thumbnail );
@@ -244,7 +290,7 @@ class Blocks {
         'blockManifest'   => json_encode($block_manifest)
       );
 
-      
+
     }
 
     wp_send_json_success( $local_blocks );
@@ -268,7 +314,7 @@ class Blocks {
 
       $block = str_replace( $destination['baseurl'] . '/gutenberg-blocks/', '', $block );
       preg_match( '/[a-zA-Z0-9-_]*(?!:\/)/i', $block, $block_dir );
-      
+
       $filesystem = new \WP_Filesystem_Direct(array());
       $removed = $filesystem->delete( $destination_path . $block_dir[0], true );
 
@@ -306,14 +352,14 @@ class Blocks {
     if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || !is_admin() ) {
       foreach ($blocks as $block) {
         /**
-         * Use this filter in your functions.php or custom plugin 
+         * Use this filter in your functions.php or custom plugin
          * to enable/disable styling per individual block or for all of them.
          */
         $disable_style = apply_filters( 'cloud_blocks_disable_style', false, $block );
         if ( !$disable_style && !empty( $block->css_url ) ) {
           wp_register_style( str_replace( ' ', '-', $block->block_name ) , $block->css_url, array(), $block->block_version);
           wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) );
-          
+
           if (is_admin() && isset( $block->editor_css ) && !empty( $block->editor_css ) ) {
             wp_register_style( str_replace( ' ', '-', $block->block_name ) . '-editor' , $block->editor_css, array(), $block->block_version);
             wp_enqueue_style( str_replace( ' ', '-', $block->block_name ) . '-editor' );

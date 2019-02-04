@@ -2,8 +2,11 @@
 
 namespace CloudBlocks\Blocks;
 
+use CloudBlocks\Blocks\Options;
+use CloudBlocks\Blocks\Blocks;
+
 class Explore {
- 
+
 	/**
 	 * @param object $page_title
 	 */
@@ -24,10 +27,14 @@ class Explore {
   public static function init() {
     self::$page_title = ucwords( str_replace( '-', ' ', FGC_NAME ) );
     self::$menu_slug = FGC_NAME;
-    // Add menu 
-    add_action( 'admin_menu', array( __class__, 'add_menu') );
+
+    // Add menu
+    add_action( 'admin_menu', array( __CLASS__, 'add_menu') );
     // Handle uploading custom blocks as zip files
     add_action( 'init', array( __CLASS__, 'upload_block' ) );
+    // Schedule cron with check updates
+    add_action( 'admin_init', array( __CLASS__, 'cron_schedule' ) );
+    add_action( 'fgc_cron_check_updates', array( __CLASS__, 'check_updates' ) );
   }
 
   /**
@@ -50,9 +57,9 @@ class Explore {
         if($mime_type == $type) {
           $okay = true;
           break;
-        } 
+        }
       }
-      
+
       $continue = strtolower( $name[1] ) == 'zip' ? true : false;
       if ( !$continue ) {
         \CloudBlocks\Settings\Tools::add_notice( __( 'The file you are trying to upload is not a supported file type. Please try again.', 'cloud-blocks' ), 'error' );
@@ -62,7 +69,7 @@ class Explore {
         $destination = wp_upload_dir();
         $destination_path = $destination['basedir'] . '/gutenberg-blocks/';
         $create_folder = wp_mkdir_p( $destination_path );
-        
+
         // Here the magic happens.
         if ( move_uploaded_file( $source, $destination_path . $filename ) ) {
           // Unzip
@@ -100,7 +107,7 @@ class Explore {
       11
     );
   }
-  
+
   /**
    * Settings page output.
    *
@@ -134,10 +141,10 @@ class Explore {
           </form>
         </div>
       </div>
-        
+
       <admin-notice></admin-notice>
       <explorer-filter></explorer-filter>
-      
+
 		  <div class="theme-browser content-filterable rendered">
         <div class="themes wp-clearfix">
           <block-card v-for="block in blocks" :key="block.name" :block="block"/>
@@ -156,29 +163,74 @@ class Explore {
    * @param
    * @return $counter
    */
-
   public static function count_updates() {
     $counter = 0;
-
     $installed_blocks = Options::get_all();
-    foreach ($installed_blocks as $block) {
-      // We must check if block is not local block, then we check for new versino availability
-      $manifest = json_decode( stripslashes( $block->block_manifest ), true );
-      if ( empty($manifest['isLocal']) ) {
-        $args = array(
-          'method' => 'GET'
-        );
-        $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $block->package_name, $args );
-        $body = wp_remote_retrieve_body( $response );
-        $json = json_decode($body, true);
 
-        if( !empty($json['version']) && $json['version'] !== $block->block_version) {
-          $counter++;
-        }
+    foreach ($installed_blocks as $block) {
+      // We must check if block is not local block, then we check for new version availability
+      $manifest = json_decode( stripslashes( $block->block_manifest ), true );
+
+      if( empty($manifest['isLocal']) && !empty($block->available_version) && version_compare($block->available_version, $block->block_version, '>')) {
+        $counter++;
       }
     }
 
     return $counter;
+  }
+
+  /**
+  * CRON schedule.
+  *
+  * @since 1.1.4
+  * @param
+  * @return
+  */
+  public static function cron_schedule() {
+    if ( !wp_next_scheduled( 'fgc_cron_check_updates' ) ) {
+        wp_schedule_event(time(), 'daily', 'fgc_cron_check_updates');
+    }
+  }
+
+  /**
+  * CRON unschedule.
+  *
+  * @since 1.1.4
+  * @param
+  * @return
+  */
+  public static function cron_unschedule() {
+    wp_clear_scheduled_hook('fgc_cron_check_updates');
+  }
+
+  /**
+  * CRON schedule.
+  *
+  * @since 1.1.4
+  * @param
+  * @return
+  */
+  public static function check_updates() {
+    $installed_blocks = Options::get_all();
+
+      foreach ( $installed_blocks as $block ) {
+        // We must check if block is not local block, then we check for new version availability
+        $manifest = json_decode( stripslashes( $block->block_manifest ), true );
+        if ( empty( $manifest['isLocal'] ) ) {
+          $args     = array(
+            'method' => 'GET'
+          );
+          $response = wp_remote_request( 'https://api.gutenbergcloud.org/blocks/' . $block->package_name, $args );
+          $body     = wp_remote_retrieve_body( $response );
+          $the_block  = json_decode( $body, true );
+
+          if( !empty($the_block['version']) && $the_block['version'] !== $block->block_version) {
+              $_REQUEST['data'] = $the_block;
+              Blocks::update_version($the_block);
+          }
+        }
+      }
+
   }
 
 }

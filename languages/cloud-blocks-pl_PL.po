@@ -29,7 +29,7 @@ msgid ""
 "The file you are trying to upload is not a supported file type. Please try "
 "again."
 msgstr ""
-"Plik, który próbujesz załadować zawiera niepoprawne rozszerzenie . Spróbuj "
+"Plik, który próbujesz załadować zawiera niepoprawne rozszerzenie. Spróbuj "
 "ponownie."
 
 #: core/Blocks/Explore.php:72
@@ -124,7 +124,7 @@ msgid ""
 "content will not be exported."
 msgstr ""
 "Eksport wszystkich zainstalowanych bloków z Chmury Gutenberga jako plik JSON."
-" Uwaga: Treść bloków nie będzie wyeksportowana."
+" Uwaga: Treść bloków nie będzie eksportowana."
 
 #: core/Settings/Tools.php:224
 msgid "Export file"
@@ -228,19 +228,19 @@ msgstr "Więcej szczegółów"
 
 #: core/Settings/Translations.php:38
 msgid "have been installed successfully."
-msgstr "zostało pomyślnie zainstalowane."
+msgstr "został pomyślnie zainstalowany."
 
 #: core/Settings/Translations.php:39
 msgid "have been uninstalled successfully."
-msgstr "zostało pomyślnie odinstalowane."
+msgstr "został pomyślnie odinstalowany."
 
 #: core/Settings/Translations.php:40
 msgid "have been deleted successfully."
-msgstr "zostało pomyślnie usunięte."
+msgstr "został pomyślnie usunięty."
 
 #: core/Settings/Translations.php:41
 msgid "have been updated successfully."
-msgstr "zostało pomyślnie zaktualizowane."
+msgstr "został pomyślnie zaktualizowany."
 
 #: core/Settings/Translations.php:42
 msgid "New version available."
@@ -252,11 +252,11 @@ msgstr "Wersja"
 
 #: core/Settings/Translations.php:44
 msgid "Visit homepage"
-msgstr "Odwiedź stronę główną"
+msgstr "Odwiedź stronę bloku"
 
 #: core/Settings/Translations.php:45
 msgid "Homepage"
-msgstr "Strona Główna"
+msgstr "Strona Bloku"
 
 #: vendor/foadyousefi/seven-fields/src/Container/Container.php:196
 msgid "Actions"
