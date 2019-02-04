@@ -33,7 +33,7 @@ class Explore {
     // Handle uploading custom blocks as zip files
     add_action( 'init', array( __CLASS__, 'upload_block' ) );
     // Schedule cron with check updates
-    add_action( 'init', array( __CLASS__, 'cron_schedule' ) );
+    add_action( 'admin_init', array( __CLASS__, 'cron_schedule' ) );
     add_action( 'fgc_cron_check_updates', array( __CLASS__, 'check_updates' ) );
   }
 
