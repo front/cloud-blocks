@@ -146,4 +146,4 @@ $ npm publish
 
 or just `$ npm run deploy` if you used create-cloud-block tool.
 
-That’s it! Your block will be available to Gutenberg Cloud in a few minutes. Bravo!
+That’s it! Your block will be available to Gutenberg Cloud after our review. Bravo!

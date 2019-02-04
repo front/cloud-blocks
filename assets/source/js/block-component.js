@@ -75,10 +75,17 @@ Vue.component('block-card', {
                 theBlock.blockManifest = JSON.stringify(block.package)
                 theBlock.version = block.version
                 theBlock.packageName = block.name
+  
+                if (res.version && b.block_version < res.version) {
+                  this.updateAvailable = true
+                  theBlock.availVersion = block.version
+                }
+
                 this.fromCloud = theBlock
-              }
-              if (res && res.version && b.block_version < res.version) {
-                this.updateAvailable = true
+                
+                if (this.updateAvailable) {
+                  this.setAvalVersion()
+                }
               }
             })
           }
@@ -163,6 +170,23 @@ Vue.component('block-card', {
         .fail(error => {
           this.installing = false
           console.log('There is some issues updating block: ', error)
+        })
+    },
+    setAvalVersion() {
+      let postData = this.fromCloud
+      jQuery.ajax({
+        type: 'POST',
+        url: fgcData.ajaxUrl,
+        data: {
+          action: "fgc_update_version",
+          data: postData
+        }
+      })
+        .done(res => {
+          console.log('Available new version ', res.data)  
+        })
+        .fail(error => {
+          console.log('There is some issues: ', error)
         })
     },
     incrementInstalls(packageName) {
