@@ -79,8 +79,8 @@ class CloudBlocks {
   * @return
   */
   public function enqueue_scripts() {
-    wp_enqueue_script( 'vuejs', 'https://unpkg.com/vue@2.5.17/dist/vue.min.js', array( 'jquery' ), FGC_VERSION, true );
-    wp_enqueue_script( 'vuex', 'https://unpkg.com/vuex@3.0.1/dist/vuex.min.js', array('vuejs'), FGC_VERSION, TRUE );
+    wp_enqueue_script( 'vuejs', 'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js', array( 'jquery' ), FGC_VERSION, true ); 
+    wp_enqueue_script( 'vuex', 'https://cdn.jsdelivr.net/npm/vuex@3.1.0/dist/vuex.min.js', array( 'vuejs' ), FGC_VERSION, true );
     wp_enqueue_script( 'gutenberg_cloud_admin_js', FGC_URL . 'assets/js/script.js', array( 'jquery', 'vuejs', 'vuex' ), FGC_VERSION, true );
     $localized_data = array(
       'ajaxUrl' 				=> admin_url( 'admin-ajax.php' ),
