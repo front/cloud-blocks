@@ -19,7 +19,7 @@ Installing an actual plugin for each block or block collection easily leads to m
 4. Activate a few blocks. Voila – these are now available to you in the Gutenberg editor!
 
 ### How it works under the hood
-Gutenberg Cloud is a service that fetches Open Source Gutenberg blocks hosted on NPM. The assets from these are served from CloudFlare using unpkg.com. The Cloud Blocks plugin provides an interface in WordPress for Gutenberg Cloud.
+Gutenberg Cloud is a service that fetches Open Source Gutenberg blocks hosted on NPM. The assets from these are served from CloudFlare using jsdelivr.com. The Cloud Blocks plugin provides an interface in WordPress for Gutenberg Cloud.
 
 Code once, use everywhere: Since the blocks are JS/CSS only, they are CMS agnostic. This means you can develop a block for a Drupal site, and reuse it later on a WordPress blog.
 

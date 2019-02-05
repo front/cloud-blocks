@@ -1,5 +1,8 @@
 ## Changelog
 
+#### 1.1.5
+* **Change**: Replace unpkg.com CDN in favor of jsdelivr.com
+
 #### 1.1.4
 * **Change**: Update counter as a WP CRON (Thanks to [ajotka](https://github.com/front/cloud-blocks/pull/14))
 * **Change**: Update some docs

@@ -5,7 +5,7 @@ Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
 Tested up to: 5.0
 Requires PHP: 5.4
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -30,7 +30,7 @@ Installing an actual plugin for each block or block collection easily leads to m
 4. Activate a few blocks. Voila – these are now available to you in the Gutenberg editor!
 
 ## How it works under the hood
-Gutenberg Cloud is a service that fetches Open Source Gutenberg blocks hosted on NPM. The assets from these are served from CloudFlare using unpkg.com. The Cloud Blocks plugin provides an interface in WordPress for Gutenberg Cloud.
+Gutenberg Cloud is a service that fetches Open Source Gutenberg blocks hosted on NPM. The assets from these are served from CloudFlare using jsdelivr.com. The Cloud Blocks plugin provides an interface in WordPress for Gutenberg Cloud.
 
 Code once, use everywhere: Since the blocks are JS/CSS only, they are CMS agnostic. This means you can develop a block for a Drupal site, and reuse it later on a WordPress blog.
 
@@ -74,6 +74,9 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 
 == Changelog ==
+
+= 1.1.5 =
+* Change: Replace unpkg.com CDN in favor of jsdelivr.com
 
 = 1.1.4 =
 * Change: Update counter as a WP CRON (Thanks to [ajotka](https://github.com/front/cloud-blocks/pull/14))
