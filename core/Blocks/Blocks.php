@@ -281,11 +281,11 @@ class Blocks {
       $local_blocks[] = array(
         'name'            => isset( $package_json->gutenbergCloud->name ) ? $package_json->gutenbergCloud->name : $package_json->name,
         'packageName'     => isset( $package_json->name ) ? $package_json->name : '',
-        'jsUrl'           => ( isset( $block_script ) && !empty( $block_script ) ) ? site_url() . '/' . $block_script[0] : site_url() . '/wp-content\uploads\gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->js,
-        'cssUrl'          => ( isset( $block_style ) && !empty( $block_style ) ) ? site_url() . '/' . $block_style[0] : site_url() . '/wp-content\uploads\gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->css,
-        'editorCss'       => ( isset( $editor_style ) && !empty( $editor_style ) ) ? site_url() . '/' . $editor_style[0] : site_url() . '/wp-content\uploads\gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->editor,
+        'jsUrl'           => ( isset( $block_script ) && !empty( $block_script ) ) ? site_url() . '/' . $block_script[0] : site_url() . '/wp-content/uploads/gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->js,
+        'cssUrl'          => ( isset( $block_style ) && !empty( $block_style ) ) ? site_url() . '/' . $block_style[0] : site_url() . '/wp-content/uploads/gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->css,
+        'editorCss'       => ( isset( $editor_style ) && !empty( $editor_style ) ) ? site_url() . '/' . $editor_style[0] : site_url() . '/wp-content/uploads/gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->editor,
         'infoUrl'         => 'https://www.npmjs.com/package/' . $package_json->name,
-        'imageUrl'        => ( !isset( $block_thumbnail ) && empty( $block_thumbnail ) ) ? ( ( isset( $package_json->gutenbergCloud ) && !empty( $package_json->gutenbergCloud->thumbnail ) ) ? site_url() . '/wp-content\uploads\gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->thumbnail : '' ) : site_url() . '/' . $block_thumbnail[0],
+        'imageUrl'        => ( !isset( $block_thumbnail ) && empty( $block_thumbnail ) ) ? ( ( isset( $package_json->gutenbergCloud ) && !empty( $package_json->gutenbergCloud->thumbnail ) ) ? site_url() . '/wp-content/uploads/gutenberg-blocks/' . $block_name[0] . $package_json->gutenbergCloud->thumbnail : '' ) : site_url() . '/' . $block_thumbnail[0],
         'version'         => isset( $package_json->version ) ? $package_json->version : '',
         'blockManifest'   => json_encode($block_manifest)
       );
@@ -369,3 +369,4 @@ class Blocks {
     }
   }
 }
+
