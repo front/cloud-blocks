@@ -1,5 +1,5 @@
 === Cloud Blocks ===
-Contributors: frontkom, foadyousefi, ssousa
+Contributors: frontkom, foadyousefi, ajkstyle, ssousa
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
