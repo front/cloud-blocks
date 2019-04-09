@@ -1,6 +1,9 @@
 ## Changelog
 
 #### 1.1.5
+* **Fix**: Fix missing slash in local blocks
+
+#### 1.1.5
 * **Change**: Replace unpkg.com CDN in favor of jsdelivr.com
 
 #### 1.1.4
