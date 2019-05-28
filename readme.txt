@@ -1,5 +1,5 @@
 === Cloud Blocks ===
-Contributors: frontkom, foadyousefi, ajkstyle, ssousa
+Contributors: frontkom, foadyousefi, ajotka, ssousa
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
@@ -75,7 +75,7 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 == Changelog ==
 
-= 1.1.5 =
+= 1.1.6 =
 * Fix: Fix missing slash in local blocks
 
 = 1.1.5 =
