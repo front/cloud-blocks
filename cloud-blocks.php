@@ -48,6 +48,9 @@ register_activation_hook( __FILE__, array( 'CloudBlocks\Activator', 'init' ) );
 register_activation_hook( __FILE__, array( 'CloudBlocks\Blocks\Explore', 'cron_schedule' ) );
 register_deactivation_hook( __FILE__, array( 'CloudBlocks\Blocks\Explore', 'cron_unschedule' ) );
 
+// Register uninstall hook
+register_uninstall_hook( __FILE__, array( 'CloudBlocks\Uninstall', 'init' ) );
+
 
 // Initiate plugin
 new CloudBlocks\CloudBlocks;
