@@ -1,5 +1,9 @@
 ## Changelog
 
+#### 1.1.7
+* **Fix**: Fix db error in activator hook
+* **Change**: Dlete db table on plugin uninstallation
+
 #### 1.1.6
 * **Fix**: Fix missing slash in local blocks
 

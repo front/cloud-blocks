@@ -3,9 +3,9 @@ Contributors: frontkom, foadyousefi, ajotka, ssousa
 Author URI: https://frontkom.no
 Tags: gutenberg, pagebuilder, blocks, gutenberg blocks, page builder
 Requires at least: 4.9.8
-Tested up to: 5.1
+Tested up to: 5.2
 Requires PHP: 5.4
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,10 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 
 == Changelog ==
+
+= 1.1.7 =
+* Fix: Fix db error in activator hook
+* Change: Dlete db table on plugin uninstallation
 
 = 1.1.6 =
 * Fix: Fix missing slash in local blocks
