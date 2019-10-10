@@ -75,6 +75,9 @@ Sure! Just add your custom blocks into **wp-content/uploads/gutenberg-blocks/** 
 
 == Changelog ==
 
+= 1.1.8 =
+*Fix: Fix an issue with local blocks directory which was losting every files as block
+
 = 1.1.7 =
 * Fix: Fix db error in activator hook
 * Change: Dlete db table on plugin uninstallation
